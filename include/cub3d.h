@@ -3,4 +3,7 @@
 
 #include <stdio.h>
 
+void	check_arg(int ac, char **av);
+
+
 #endif

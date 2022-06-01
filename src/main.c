@@ -2,6 +2,6 @@
 
 int	main(int ac, char **av)
 {
-	printf("%s\n", "Hello World");
+	check_arg(ac, av);
 	return (0);
 }

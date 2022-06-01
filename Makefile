@@ -2,7 +2,8 @@ NAME = cub3D
 UNAME	=	$(shell uname)
 
 SRC =	main.c \
-		check_arg.c
+		check_arg.c \
+		finish_error.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)

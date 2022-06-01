@@ -1,6 +1,69 @@
+UNAME	=	$(shell uname)
+
+ifeq ($(UNAME),Darwin)
+
+NAME = 		cub3D
+
+SRC = main.c \
+			check_arg.c \
+
+SRCDIR = ./src
+
+SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
+
+OBJS = 		$(SRCS:.c=.o)
+
+MLX_DIR = 	minilibx
+
+MLX_LIB = 	minilibx/libmlx.a
+
+FT_DIR = 	libft
+
+FT_LIB = 	libft/libft.a
+
+CC =		gcc
+
+RM =		rm -f
+
+CFLAGS =	-Wall -Wextra -Werror
+
+OPT = 		-L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
+
+.PHONY: all re clean fclean
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS) $(MLX_LIB) $(FT_LIB)
+			$(CC) $^ $(OPT) -o $@
+
+$(MLX_LIB):
+			make -C $(@D)
+
+$(FT_LIB):
+			make -C $(@D)
+
+%.o:		%.c
+			$(CC) $(CFLAGS) -c $< -o $@
+
+re:
+			make fclean
+			make
+
+clean:
+			$(RM) $(OBJS)
+			make -C $(FT_DIR) clean
+			make -C $(MLX_DIR) clean
+
+fclean:		clean
+			$(RM) $(NAME)
+			make -C $(FT_DIR) fclean
+
+else
+
 NAME = cub3D
 
-SRC =	main.c
+SRC =	main.c \
+			check_arg.c \
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)
@@ -38,3 +101,5 @@ fclean : clean
 re : fclean all
 
 .PHONY: all clean fclean re .c.o
+
+endif

@@ -71,7 +71,7 @@ SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LIBFTDIR = ./libft
 LIBFT = ft
 MLXDIR	=	./minilibx
@@ -86,7 +86,7 @@ LFLAG = -L$(LIBFTDIR) -l$(LIBFT) -L$(MLXDIR) -l$(MLX) -lXext -lX11 -lm
 $(NAME) : $(OBJS)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
-	$(CC) $(FLAGS) $(OBJS) $(INCLUDE) $(LFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 all : $(NAME)
 

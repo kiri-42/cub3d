@@ -27,6 +27,8 @@ RM =		rm -f
 
 CFLAGS =	-Wall -Wextra -Werror
 
+INCLUDE = -I./include -I$(FT_DIR) -I$(MLX_DIR)
+
 OPT = 		-L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 
 .PHONY: all re clean fclean
@@ -34,7 +36,7 @@ OPT = 		-L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(MLX_LIB) $(FT_LIB)
-			$(CC) $^ $(OPT) -o $@
+			$(CC) $^ $(INCLUDE) $(OPT) -o $@
 
 $(MLX_LIB):
 			make -C $(@D)
@@ -43,7 +45,7 @@ $(FT_LIB):
 			make -C $(@D)
 
 %.o:		%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 re:
 			make fclean

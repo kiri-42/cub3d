@@ -2,5 +2,6 @@
 # define CUB3D_H
 
 #include <stdio.h>
+#include "libft.h"
 
 #endif

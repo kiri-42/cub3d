@@ -29,8 +29,6 @@ static char	**malloc_cubfile(char *cubfile_name)
 
 	line_size = count_line(cubfile_name);
 	cubfile = (char **)x_malloc((line_size + 1) * sizeof(char *));
-	if (cubfile == NULL)
-		exit_error("Error");
 	return (cubfile);
 }
 

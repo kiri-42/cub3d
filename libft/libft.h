@@ -87,6 +87,7 @@ char	*ft_strchr_gnl(const char *s, int c);
 
 //cub3d utils
 void	exit_error(char *error_message);
+void	*x_malloc(size_t size);
 
 
 #endif

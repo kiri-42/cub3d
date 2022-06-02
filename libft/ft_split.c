@@ -68,7 +68,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	sep = ft_check_sep((char *)s, c);
-	rtn = (char **)malloc(sizeof(char *) * (sep + 1));
+	rtn = (char **)x_malloc(sizeof(char *) * (sep + 1));
 	if (!rtn)
 		return (NULL);
 	rtn = ft_cpy((char *)s, rtn, c, sep);

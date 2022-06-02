@@ -46,7 +46,7 @@ char	*ft_itoa(int n)
 		len++;
 	}
 	len += ft_count_digits(ln);
-	rtn = (char *)malloc(sizeof(char) * (len + 1));
+	rtn = (char *)x_malloc(sizeof(char) * (len + 1));
 	if (!rtn)
 		return (NULL);
 	put_num(rtn, n, ln, len);

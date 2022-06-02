@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "libft.h"
 
 /* Function to output an error message and exit the program */
 void	exit_error(char *error_message)

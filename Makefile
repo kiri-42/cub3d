@@ -3,7 +3,6 @@ UNAME	=	$(shell uname)
 
 SRC =	main.c \
 		check_arg.c \
-		exit_error.c \
 		read_cubfile.c \
 		print_cubfile.c
 SRCDIR = ./src

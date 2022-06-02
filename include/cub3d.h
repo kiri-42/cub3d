@@ -8,8 +8,6 @@
 # include <sys/stat.h>
 # include "libft.h"
 # include "mlx.h"
-# include "color.h"
-# include "error.h"
 
 typedef struct s_texture_path
 {
@@ -37,7 +35,6 @@ typedef struct s_game_data
 
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
-void	exit_error(char *error_message);
 void	print_cubfile(t_game_data *gd);
 
 

@@ -34,7 +34,7 @@ char	*ft_strjoin_gnl(char *s1, char const *s2)
 		return (ft_strdup(s2));
 	else if (!s2)
 		return (NULL);
-	join = (unsigned char *)malloc(sizeof(unsigned char)
+	join = (unsigned char *)x_malloc(sizeof(unsigned char)
 			* (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!join)
 	{

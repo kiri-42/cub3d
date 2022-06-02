@@ -15,7 +15,7 @@ static bool	is_ber_extension(char *map_file)
 void	check_arg(int ac, char **av)
 {
 	if (ac != 2)
-		finish_error("the number of arguments is different");
+		exit_error("the number of arguments is different");
 	if (!is_ber_extension(av[1]))
-		finish_error("the map file could not be loaded");
+		exit_error("the map file could not be loaded");
 }

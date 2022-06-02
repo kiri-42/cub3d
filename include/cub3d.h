@@ -9,6 +9,8 @@
 # include "libft.h"
 # include "mlx.h"
 
+# define TEXTURE_LINE 4
+
 typedef struct s_game_data
 {
 	char	*no_path;
@@ -19,7 +21,7 @@ typedef struct s_game_data
 
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile);
-void	finish_error(char *error_message);
+void	exit_error(char *error_message);
 
 
 #endif

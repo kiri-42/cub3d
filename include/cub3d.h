@@ -9,8 +9,6 @@
 # include "libft.h"
 # include "mlx.h"
 
-# define TEXTURE_LINE 4
-
 typedef struct s_texture_path
 {
 	char	*no_path;

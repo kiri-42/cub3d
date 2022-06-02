@@ -9,6 +9,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "color.h"
+# include "error.h"
 
 typedef struct s_texture_path
 {

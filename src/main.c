@@ -6,6 +6,6 @@ int	main(int ac, char **av)
 
 	check_arg(ac, av);
 	read_cubfile(&gd, av[1]);
-	print_cubfile(&gd);
+	// print_cubfile(&gd);
 	return (0);
 }

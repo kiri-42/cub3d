@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// デバッグ用の関数
 void	print_cubfile(t_game_data *gd)
 {
 	size_t	i;

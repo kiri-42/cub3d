@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
-/* Function to check if a map file has a .ber extension */
-static bool	is_ber_extension(char *map_file)
+/* Function to check if a map file has a .cub extension */
+static bool	is_cub_extension(char *map_file)
 {
 	char	*extension;
 

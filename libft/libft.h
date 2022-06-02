@@ -85,4 +85,8 @@ char	*ft_gnl_trim_until_end(char **line, ssize_t rc);
 char	*ft_strjoin_gnl(char *s1, char const *s2);
 char	*ft_strchr_gnl(const char *s, int c);
 
+//cub3d utils
+void	exit_error(char *error_message);
+
+
 #endif

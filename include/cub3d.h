@@ -31,11 +31,12 @@ typedef struct s_game_data
 	t_texture_path	tp;
 	t_rgb			floor_color;
 	t_rgb			ceiling_color;
+	char			**cubfile;
 	char			**map;
 }	t_game_data;
 
 void	check_arg(int ac, char **av);
-void	read_cubfile(t_game_data *gd, char *cubfile);
+void	read_cubfile(t_game_data *gd, char *cubfile_name);
 void	exit_error(char *error_message);
 
 

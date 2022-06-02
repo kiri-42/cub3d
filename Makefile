@@ -3,7 +3,7 @@ UNAME	=	$(shell uname)
 
 SRC =	main.c \
 		check_arg.c \
-		finish_error.c \
+		exit_error.c \
 		read_cubfile.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

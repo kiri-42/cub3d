@@ -37,6 +37,7 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 	int		fd;
 	size_t	i;
 	char	*line;
+	char	*new_line;
 
 	gd->cubfile = malloc_cubfile(cubfile_name);
 	fd = open(cubfile_name, O_RDONLY);
@@ -48,7 +49,11 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		gd->cubfile[i] = line;
+		new_line = ft_strtrim(line, "\n");
+		if (new_line == NULL)
+			exit_error("ft_strtrim");
+		gd->cubfile[i] = new_line;
+		printf("cubfile: %s\n", gd->cubfile[i]);
 		i++;
 	}
 	gd->cubfile[i] = NULL;

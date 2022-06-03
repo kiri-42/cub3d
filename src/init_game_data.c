@@ -67,8 +67,10 @@ void	init_game_data(t_game_data *gd)
 				exit_error(MALLOC_ERROR);
 			if (is_path_line(prefix))
 				init_texture_path(gd, gd->cubfile[i], prefix);
-			if (is_color_line(prefix))
+			else if (is_color_line(prefix))
 				init_color(gd, gd->cubfile[i], prefix);
+			else if (gd->cubfile[i][0] != '\0')
+				exit_error("Error");
 			free(prefix);
 		}
 		else

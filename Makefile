@@ -4,6 +4,7 @@ UNAME	=	$(shell uname)
 SRC =	main.c \
 		check_arg.c \
 		read_cubfile.c \
+		init_game_data.c \
 		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

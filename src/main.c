@@ -109,30 +109,51 @@ void	init_texture_path(t_game_data *gd, char *line, char *prefix)
 	// printf("end\n");
 }
 
-// size_t	get_map_start_i(char **file)
-// {
-// 	size_t	i;
+bool	is_map_start_line(char *line)
+{
+	size_t	i;
 
-// 	while (file[i] != NULL)
-// 	{
-// 		if ()
-// 	}
+	if (line[0] == '\0')
+		return (false);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (!ft_strchr(" 1", line[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
-// }
+size_t	get_map_start_i(char **file)
+{
+	size_t	i;
+
+	i = 0;
+	while (file[i] != NULL)
+	{
+		if (is_map_start_line(file[i]))
+			return (i);
+		i++;
+	}
+	exit_error("mapが見つからない");
+	return (0);
+}
 
 void	init_game_data(t_game_data *gd)
 {
 	size_t	i;
-	// size_t	map_start_i;
+	size_t	map_start_i;
 	size_t	init_count;
 	char	*prefix;
 
 	i = 0;
 	init_count = 0;
-	// map_start_i = get_map_start_i(gd->cubfile);
+	map_start_i = get_map_start_i(gd->cubfile);
+	printf("%zu\n", map_start_i);
 	while (gd->cubfile[i] != NULL)
 	{
-		if (init_count < 10)
+		if (init_count < map_start_i)
 		{
 			prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
 			if (prefix == NULL)

@@ -45,7 +45,7 @@ void	init_color(t_game_data *gd, char *line, char *prefix)
 {
 	t_rgb	rgb;
 
-	printf("init_color: %s\n", line);
+	// printf("init_color: %s\n", line);
 	rgb = get_rgb(line);
 	if (!ft_strncmp(prefix, "F ", 2))
 	{
@@ -87,22 +87,22 @@ void	init_texture_path(t_game_data *gd, char *line, char *prefix)
 	if (!ft_strncmp(prefix, "NO", PREFIX_SIZE))
 	{
 		gd->tp.no_path = texture_path;
-		printf("%s\n", gd->tp.no_path);
+		// printf("%s\n", gd->tp.no_path);
 	}
 	else if (!ft_strncmp(prefix, "SO", PREFIX_SIZE))
 	{
 		gd->tp.so_path = texture_path;
-		printf("%s\n", gd->tp.so_path);
+		// printf("%s\n", gd->tp.so_path);
 	}
 	else if (!ft_strncmp(prefix, "WE", PREFIX_SIZE))
 	{
 		gd->tp.we_path = texture_path;
-		printf("%s\n", gd->tp.we_path);
+		// printf("%s\n", gd->tp.we_path);
 	}
 	else if (!ft_strncmp(prefix, "EA", PREFIX_SIZE))
 	{
 		gd->tp.ea_path = texture_path;
-		printf("%s\n", gd->tp.ea_path);
+		// printf("%s\n", gd->tp.ea_path);
 	}
 	// printf("init\n");
 	// print_texture_path(gd);
@@ -140,20 +140,26 @@ size_t	get_map_start_i(char **file)
 	return (0);
 }
 
+char	**malloc_map(t_game_data *gd, size_t map_start_i)
+{
+	char	**map;
+
+	map = (char **)x_malloc((gd->cubfile_linage - map_start_i + 1) * sizeof(char *));
+	return (map);
+}
+
 void	init_game_data(t_game_data *gd)
 {
 	size_t	i;
 	size_t	map_start_i;
-	size_t	init_count;
 	char	*prefix;
 
 	i = 0;
-	init_count = 0;
 	map_start_i = get_map_start_i(gd->cubfile);
-	printf("%zu\n", map_start_i);
+	gd->map = malloc_map(gd, map_start_i);
 	while (gd->cubfile[i] != NULL)
 	{
-		if (init_count < map_start_i)
+		if (i < map_start_i)
 		{
 			prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
 			if (prefix == NULL)
@@ -164,11 +170,16 @@ void	init_game_data(t_game_data *gd)
 				init_color(gd, gd->cubfile[i], prefix);
 			free(prefix);
 		}
+		else
+		{
+			gd->map[i - map_start_i] = ft_strdup(gd->cubfile[i]);
+		}
 		i++;
-		init_count++;
 	}
+	gd->map[i - map_start_i] = NULL;
 	print_color(gd);
-	print_texture_path(gd); // うまく動かない
+	print_texture_path(gd);
+	print_map(gd);
 }
 
 int	main(int ac, char **av)

@@ -22,13 +22,12 @@ static size_t	count_line(char *file_name)
 	return (line_size);
 }
 
-static char	**malloc_cubfile(char *cubfile_name)
+static char	**malloc_cubfile(t_game_data *gd, char *cubfile_name)
 {
 	char	**cubfile;
-	size_t	line_size;
 
-	line_size = count_line(cubfile_name);
-	cubfile = (char **)x_malloc((line_size + 1) * sizeof(char *));
+	gd->cubfile_linage = count_line(cubfile_name);
+	cubfile = (char **)x_malloc((gd->cubfile_linage + 1) * sizeof(char *));
 	return (cubfile);
 }
 
@@ -39,7 +38,7 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 	char	*line;
 	char	*new_line;
 
-	gd->cubfile = malloc_cubfile(cubfile_name);
+	gd->cubfile = malloc_cubfile(gd, cubfile_name);
 	fd = open(cubfile_name, O_RDONLY);
 	if (fd == -1)
 		exit_error("the file could not be opened");
@@ -53,7 +52,7 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 		if (new_line == NULL)
 			exit_error("ft_strtrim");
 		gd->cubfile[i] = new_line;
-		printf("cubfile: %s\n", gd->cubfile[i]);
+		// printf("cubfile: %s\n", gd->cubfile[i]);
 		i++;
 	}
 	gd->cubfile[i] = NULL;

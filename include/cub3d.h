@@ -39,6 +39,8 @@ typedef struct s_game_data
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
 void	init_game_data(t_game_data *gd);
+void	init_color(t_game_data *gd, char *line, char *prefix);
+void	init_texture_path(t_game_data *gd, char *line, char *prefix);
 
 // デバッグ用の関数
 void	print_cubfile(t_game_data *gd);

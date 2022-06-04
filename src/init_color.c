@@ -36,21 +36,21 @@ t_rgb	get_rgb(char *line)
 	return (rgb);
 }
 
-void	init_color_line(t_game_data *gd, char *line, char *prefix, bool *can_read_floor, bool *can_read_ceiling)
+void	init_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color *crc)
 {
 	t_rgb	rgb;
 	rgb = get_rgb(line);
-	if (!ft_strncmp(prefix, "F ", 2) && *can_read_floor)
+	if (!ft_strncmp(prefix, "F ", 2) && crc->floor)
 	{
-		*can_read_floor = false;
+		crc->floor = false;
 		gd->floor_color.red = rgb.red;
 		gd->floor_color.green = rgb.green;
 		gd->floor_color.blue = rgb.blue;
 		// printf("%d %d %d\n", gd->floor_color.red, gd->floor_color.green, gd->floor_color.blue);
 	}
-	else if (!ft_strncmp(prefix, "C ", 2) && *can_read_ceiling)
+	else if (!ft_strncmp(prefix, "C ", 2) && crc->ceiling)
 	{
-		*can_read_ceiling = false;
+		crc->ceiling = false;
 		gd->ceiling_color.red = rgb.red;
 		gd->ceiling_color.green = rgb.green;
 		gd->ceiling_color.blue = rgb.blue;
@@ -66,17 +66,16 @@ void	init_color(t_game_data *gd, size_t *line_i)
 {
 	size_t	start_i;
 	char	*prefix;
-	bool	can_read_floor;
-	bool	can_read_ceiling;
+	t_can_read_color	crc;
 
-	can_read_floor = true;
-	can_read_ceiling = true;
+	crc.floor = true;
+	crc.ceiling = true;
 	start_i = *line_i;
 	while (gd->cubfile[*line_i] != NULL && *line_i < start_i + 2)
 	{
 		prefix = ft_substr(gd->cubfile[*line_i], 0, PREFIX_SIZE);
 		if (is_color_line(prefix))
-			init_color_line(gd, gd->cubfile[*line_i], prefix, &can_read_floor, &can_read_ceiling);
+			init_color_line(gd, gd->cubfile[*line_i], prefix, &crc);
 		else
 			exit_error("color_lineではありません");
 		(*line_i)++;

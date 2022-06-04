@@ -36,6 +36,13 @@ typedef struct s_game_data
 	char			**map;
 }	t_game_data;
 
+typedef struct s_can_read_color
+{
+	bool	floor;
+	bool	ceiling;
+}	t_can_read_color;
+
+
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
 void	init_game_data(t_game_data *gd);

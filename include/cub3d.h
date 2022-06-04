@@ -9,6 +9,8 @@
 # include "libft.h"
 # include "mlx.h"
 
+# define PREFIX_SIZE 2
+
 typedef struct s_texture_path
 {
 	char	*no_path;
@@ -30,12 +32,20 @@ typedef struct s_game_data
 	t_rgb			floor_color;
 	t_rgb			ceiling_color;
 	char			**cubfile;
+	size_t			cubfile_linage;
 	char			**map;
 }	t_game_data;
 
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
-void	print_cubfile(t_game_data *gd);
+void	init_game_data(t_game_data *gd);
+void	init_color(t_game_data *gd, char *line, char *prefix);
+void	init_texture_path(t_game_data *gd, char *line, char *prefix);
 
+// デバッグ用の関数
+void	print_cubfile(t_game_data *gd);
+void	print_texture_path(t_game_data *gd);
+void	print_color(t_game_data *gd);
+void	print_map(t_game_data *gd);
 
 #endif

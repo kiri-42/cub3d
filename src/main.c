@@ -6,6 +6,7 @@ int	main(int ac, char **av)
 
 	check_arg(ac, av);
 	read_cubfile(&gd, av[1]);
-	// print_cubfile(&gd);
+	init_game_data(&gd);
+	// print_texture_path(&gd);
 	return (0);
 }

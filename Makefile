@@ -4,7 +4,10 @@ UNAME	=	$(shell uname)
 SRC =	main.c \
 		check_arg.c \
 		read_cubfile.c \
-		print_cubfile.c
+		init_game_data.c \
+		init_color.c \
+		init_texture_path.c \
+		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)
@@ -37,12 +40,12 @@ all : $(NAME)
 clean :
 	make clean -C ./libft
 	make clean -C $(MLXDIR)
-	rm -rf $(OBJS)
+	$(RM) $(OBJS)
 
 fclean : clean
 	make fclean -C ./libft
 	make clean -C $(MLXDIR)
-	rm -rf $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
 

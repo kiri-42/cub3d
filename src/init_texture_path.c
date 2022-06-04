@@ -10,7 +10,7 @@ char	*get_texture_path(char *line)
 	return (texture_path);
 }
 
-void	init_texture_path(t_game_data *gd, char *line, char *prefix)
+void	init_texture_path_line(t_game_data *gd, char *line, char *prefix)
 {
 	char	*texture_path;
 
@@ -38,4 +38,25 @@ void	init_texture_path(t_game_data *gd, char *line, char *prefix)
 	// printf("init\n");
 	// print_texture_path(gd);
 	// printf("end\n");
+}
+
+void	init_texture_path(t_game_data *gd, size_t *line_i)
+{
+	size_t	start_i;
+	char	*prefix;
+
+	start_i = *line_i;
+	while (gd->cubfile[*line_i] != NULL && *line_i < start_i + 4)
+	{
+		prefix = ft_substr(gd->cubfile[*line_i], 0, PREFIX_SIZE);
+		if (is_path_line(prefix))
+			init_texture_path_line(gd, gd->cubfile[*line_i], prefix);
+		else
+			exit_error("path_lineではありません");
+		(*line_i)++;
+		free(prefix);
+	}
+	if (gd->cubfile[*line_i] == NULL)
+		exit_error("pathが4つありません");
+	(*line_i)--;
 }

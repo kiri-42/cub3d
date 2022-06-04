@@ -5,10 +5,10 @@
 // 	return (!ft_strncmp(str, "NO", PREFIX_SIZE) || !ft_strncmp(str, "SO", PREFIX_SIZE) || !ft_strncmp(str, "WE", PREFIX_SIZE) || !ft_strncmp(str, "EA", PREFIX_SIZE));
 // }
 
-bool	is_color_line(char *str)
-{
-	return (!ft_strncmp(str, "F ", PREFIX_SIZE) || !ft_strncmp(str, "C ", PREFIX_SIZE));
-}
+// bool	is_color_line(char *str)
+// {
+// 	return (!ft_strncmp(str, "F ", PREFIX_SIZE) || !ft_strncmp(str, "C ", PREFIX_SIZE));
+// }
 
 bool	is_map_start_line(char *line)
 {
@@ -68,7 +68,7 @@ void	init_game_data(t_game_data *gd)
 			if (is_path_line(prefix))
 				init_texture_path(gd, &i);
 			else if (is_color_line(prefix))
-				init_color(gd, gd->cubfile[i], prefix);
+				init_color(gd, &i);
 			else if (gd->cubfile[i][0] != '\0' || i == 0)
 				exit_error("Error");
 			free(prefix);

@@ -36,7 +36,7 @@ t_rgb	get_rgb(char *line)
 	return (rgb);
 }
 
-void	init_color(t_game_data *gd, char *line, char *prefix)
+void	init_color_line(t_game_data *gd, char *line, char *prefix)
 {
 	t_rgb	rgb;
 
@@ -56,4 +56,25 @@ void	init_color(t_game_data *gd, char *line, char *prefix)
 		gd->ceiling_color.blue = rgb.blue;
 		// printf("%d %d %d\n", gd->ceiling_color.red, gd->ceiling_color.green, gd->ceiling_color.blue);
 	}
+}
+
+void	init_color(t_game_data *gd, size_t *line_i)
+{
+	size_t	start_i;
+	char	*prefix;
+
+	start_i = *line_i;
+	while (gd->cubfile[*line_i] != NULL && *line_i < start_i + 2)
+	{
+		prefix = ft_substr(gd->cubfile[*line_i], 0, PREFIX_SIZE);
+		if (is_color_line(prefix))
+			init_color_line(gd, gd->cubfile[*line_i], prefix);
+		else
+			exit_error("color_lineではありません");
+		(*line_i)++;
+		free(prefix);
+	}
+	if (gd->cubfile[*line_i] == NULL)
+		exit_error("color_lineが4つありません");
+	(*line_i)--;
 }

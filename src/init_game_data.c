@@ -69,7 +69,7 @@ void	init_game_data(t_game_data *gd)
 				init_texture_path(gd, gd->cubfile[i], prefix);
 			else if (is_color_line(prefix))
 				init_color(gd, gd->cubfile[i], prefix);
-			else if (gd->cubfile[i][0] != '\0')
+			else if (gd->cubfile[i][0] != '\0' || i == 0)
 				exit_error("Error");
 			free(prefix);
 		}

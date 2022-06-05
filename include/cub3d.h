@@ -42,6 +42,14 @@ typedef struct s_can_read_color
 	bool	ceiling;
 }	t_can_read_color;
 
+typedef struct s_can_read_texture
+{
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+}	t_can_read_texture;
+
 
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);

@@ -8,6 +8,7 @@ SRC =	main.c \
 		init_game_data_utils.c \
 		init_color.c \
 		init_texture_path.c \
+		free_cubfile.c \
 		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

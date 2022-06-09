@@ -183,11 +183,52 @@ void	free_map(char **map)
 	free(map);
 }
 
+// void	flood_fill(char **map, size_t x, size_t y, char current_color, char new_color)
+// {
+
+// }
+
+bool	is_valid_position(char c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+void	get_position(char **map, char *c, size_t *x, size_t *y)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (is_valid_position(map[i][j]))
+			{
+				*c = map[i][j];
+				*x = j;
+				*y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+
+}
+
 void	check_wall(t_game_data *gd)
 {
 	char	**map;
+	char	c;
+	size_t	x;
+	size_t	y;
 
 	map = dupmap(gd->map);
+	get_position(map, &c, &x, &y);
+	printf("%c %zu, %zu\n", c, x, y);
+	// flood_fill();
 	free_map(map);
 }
 

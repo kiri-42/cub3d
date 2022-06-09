@@ -170,11 +170,25 @@ char **dupmap(char **map)
 	return (dup);
 }
 
+void	free_map(char **map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
 void	check_wall(t_game_data *gd)
 {
 	char	**map;
 
 	map = dupmap(gd->map);
+	free_map(map);
 }
 
 void	check_map(t_game_data *gd)

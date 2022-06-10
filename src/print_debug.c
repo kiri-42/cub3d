@@ -32,15 +32,15 @@ void	print_color(t_game_data *gd)
 	printf("%send: %s%s\n", F_BLUE, __func__, F_RESET);
 }
 
-void	print_map(t_game_data *gd)
+void	print_map(char **map)
 {
 	printf("%sstart: %s%s\n", F_BLUE, __func__, F_RESET);
 	size_t	i;
 
 	i = 0;
-	while (gd->map[i] != NULL)
+	while (map[i] != NULL)
 	{
-		printf("%s\n", gd->map[i]);
+		printf("%s\n", map[i]);
 		i++;
 	}
 	printf("%send: %s%s\n", F_BLUE, __func__, F_RESET);

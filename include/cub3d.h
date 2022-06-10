@@ -64,6 +64,6 @@ void	free_cubfile(t_game_data *gd);
 void	print_cubfile(t_game_data *gd);
 void	print_texture_path(t_game_data *gd);
 void	print_color(t_game_data *gd);
-void	print_map(t_game_data *gd);
+void	print_map(char **map);
 
 #endif

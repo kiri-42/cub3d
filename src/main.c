@@ -34,6 +34,8 @@ void	is_initialized(t_game_data *gd)
 	is_initialized_texture_path(&(gd->tp));
 	is_initialized_rgb(&(gd->ceiling_color));
 	is_initialized_rgb(&(gd->floor_color));
+	if (gd->map == NULL)
+		exit_error("map is uninitialized");
 }
 
 void	check_game_data(t_game_data *gd)

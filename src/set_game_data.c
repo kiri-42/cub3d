@@ -49,7 +49,7 @@ char	**malloc_map(t_game_data *gd, size_t map_start_i)
 	return (map);
 }
 
-void	init_game_data(t_game_data *gd)
+void	set_game_data(t_game_data *gd)
 {
 	size_t	i;
 	size_t	map_start_i;
@@ -66,9 +66,9 @@ void	init_game_data(t_game_data *gd)
 			if (prefix == NULL)
 				exit_error(MALLOC_ERROR);
 			if (is_path_line(prefix))
-				init_texture_path(gd, &i);
+				set_texture_path(gd, &i);
 			else if (is_color_line(prefix))
-				init_color(gd, &i);
+				set_color(gd, &i);
 			else if (gd->cubfile[i][0] != '\0' || i == 0)
 				exit_error("Error");
 			free(prefix);

@@ -4,10 +4,10 @@ UNAME	=	$(shell uname)
 SRC =	main.c \
 		check_arg.c \
 		read_cubfile.c \
-		init_game_data.c \
-		init_game_data_utils.c \
-		init_color.c \
-		init_texture_path.c \
+		set_game_data.c \
+		set_game_data_utils.c \
+		set_color.c \
+		set_texture_path.c \
 		free_cubfile.c \
 		check_map.c \
 		print_debug.c

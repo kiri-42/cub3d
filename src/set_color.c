@@ -36,7 +36,7 @@ t_rgb	get_rgb(char *line)
 	return (rgb);
 }
 
-void	init_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color *crc)
+void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color *crc)
 {
 	t_rgb	rgb;
 	rgb = get_rgb(line);
@@ -62,7 +62,7 @@ void	init_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color
 	}
 }
 
-void	init_color(t_game_data *gd, size_t *line_i)
+void	set_color(t_game_data *gd, size_t *line_i)
 {
 	size_t	start_i;
 	char	*prefix;
@@ -75,7 +75,7 @@ void	init_color(t_game_data *gd, size_t *line_i)
 	{
 		prefix = ft_substr(gd->cubfile[*line_i], 0, PREFIX_SIZE);
 		if (is_color_line(prefix))
-			init_color_line(gd, gd->cubfile[*line_i], prefix, &crc);
+			set_color_line(gd, gd->cubfile[*line_i], prefix, &crc);
 		else
 			exit_error("color_lineではありません");
 		(*line_i)++;

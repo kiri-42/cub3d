@@ -53,9 +53,9 @@ typedef struct s_can_read_texture
 
 void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
-void	init_game_data(t_game_data *gd);
-void	init_color(t_game_data *gd, size_t *line_i);
-void	init_texture_path(t_game_data *gd, size_t *line_i);
+void	set_game_data(t_game_data *gd);
+void	set_color(t_game_data *gd, size_t *line_i);
+void	set_texture_path(t_game_data *gd, size_t *line_i);
 bool	is_path_line(char *str);
 bool	is_color_line(char *str);
 void	free_cubfile(t_game_data *gd);

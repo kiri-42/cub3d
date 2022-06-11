@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 	check_arg(ac, av);
 	init_game_data_NULL(&gd);
 	read_cubfile(&gd, av[1]);
-	init_game_data(&gd);
+	set_game_data(&gd);
 	free_cubfile(&gd);
 	// check_texture_path(&gd);
 	check_map(&gd);

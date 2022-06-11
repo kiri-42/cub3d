@@ -60,6 +60,7 @@ void	set_texture_path(t_game_data *gd, size_t *line_i);
 bool	is_path_line(char *str);
 bool	is_color_line(char *str);
 void	free_cubfile(t_game_data *gd);
+void	check_game_data(t_game_data *gd);
 void	check_map(t_game_data *gd);
 void	is_initialized(t_game_data *gd);
 

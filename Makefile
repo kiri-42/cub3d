@@ -3,6 +3,7 @@ UNAME	=	$(shell uname)
 
 SRC =	main.c \
 		check_arg.c \
+		init_game_data.c \
 		read_cubfile.c \
 		set_game_data.c \
 		set_game_data_utils.c \

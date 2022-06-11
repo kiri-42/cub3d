@@ -129,7 +129,15 @@ void	check_wall(t_game_data *gd)
 	free_map(map);
 }
 
+void	is_initialized_map(char **map)
+{
+	if (map == NULL)
+		exit_error("map is uninitialized");
+}
+
+// rgbの値が有効か確認する(未完成かも)
 void	check_map(t_game_data *gd)
 {
+	is_initialized_map(gd->map);
 	check_wall(gd);
 }

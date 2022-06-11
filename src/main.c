@@ -46,6 +46,7 @@ void	check_game_data(t_game_data *gd)
 	check_texture_path(gd->tp);
 	check_rgb(gd->ceiling_color);
 	check_rgb(gd->floor_color);
+	check_map(gd);
 }
 
 int	main(int ac, char **av)
@@ -59,7 +60,7 @@ int	main(int ac, char **av)
 	free_cubfile(&gd);
 	check_game_data(&gd);
 	// check_texture_path(&gd);
-	check_map(&gd);
+	// check_map(&gd);
 	// print_texture_path(&gd);
 	return (0);
 }

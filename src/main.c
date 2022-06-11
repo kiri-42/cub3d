@@ -210,7 +210,8 @@ void	get_position(char **map, char *c, size_t *x, size_t *y)
 		}
 		i++;
 	}
-
+	*c = ' ';
+	return ;
 }
 
 void	flood_fill(char **map, ssize_t x, ssize_t y, ssize_t max_y, char new_color)
@@ -223,17 +224,18 @@ void	flood_fill(char **map, ssize_t x, ssize_t y, ssize_t max_y, char new_color)
 		// printf("range error: %zu %zu %zu\n", x, y, max_x);
 		return ;
 	}
-	if (!is_valid_position(map[y][x]))
-	{
-		if (map[y][x] == '1')
-			return ;
-		else
-			exit_error("not wall");
-	}
 	if (map[y][x] == new_color)
 	{
 		// printf("not new_color: %zu %zu %zu\n", x, y, max_x);
 		return ;
+	}
+	if (!is_valid_position(map[y][x]))
+	{
+		printf("%c\n", map[y][x]);
+		if (map[y][x] == '1')
+			return ;
+		else
+			exit_error("not wall");
 	}
 
 	map[y][x] = new_color;
@@ -254,11 +256,16 @@ void	check_wall(t_game_data *gd)
 	size_t	max_y;
 
 	map = dupmap(gd->map);
-	get_position(map, &c, &x, &y);
-	printf("%c %zu, %zu\n", c, x, y);
 	max_y = get_line_size(map);
-	flood_fill(map, x, y, max_y, '#');
-	print_map(map);
+	while (true)
+	{
+		get_position(map, &c, &x, &y);
+		if (c == ' ')
+			break ;
+		printf("%c %zu, %zu\n", c, x, y);
+		flood_fill(map, x, y, max_y, '#');
+		print_map(map);
+	}
 	free_map(map);
 }
 

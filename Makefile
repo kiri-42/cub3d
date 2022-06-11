@@ -11,7 +11,7 @@ SRC =	main.c \
 		set_texture_path.c \
 		free_cubfile.c \
 		check_game_data.c \
-		check_map.c \
+		check_wall.c \
 		is_initialized.c \
 		print_debug.c
 SRCDIR = ./src

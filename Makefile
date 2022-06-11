@@ -11,6 +11,7 @@ SRC =	main.c \
 		set_texture_path.c \
 		free_cubfile.c \
 		check_map.c \
+		is_initialized.c \
 		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

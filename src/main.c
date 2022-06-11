@@ -6,7 +6,7 @@
 // 	printf("texture_path\n");
 // }
 
-void	init_texture_path_NULL(t_texture_path *tp)
+void	init_texture_path(t_texture_path *tp)
 {
 	tp->no_path = NULL;
 	tp->so_path = NULL;
@@ -21,9 +21,9 @@ void	init_rgb(t_rgb *color)
 	color->blue = -1;
 }
 
-void	init_game_data_NULL(t_game_data *gd)
+void	init_game_data(t_game_data *gd)
 {
-	init_texture_path_NULL(&(gd->tp));
+	init_texture_path(&(gd->tp));
 	init_rgb(&(gd->ceiling_color));
 	init_rgb(&(gd->floor_color));
 	gd->map = NULL;
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	t_game_data	gd;
 
 	check_arg(ac, av);
-	init_game_data_NULL(&gd);
+	init_game_data(&gd);
 	read_cubfile(&gd, av[1]);
 	set_game_data(&gd);
 	free_cubfile(&gd);

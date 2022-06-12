@@ -10,6 +10,7 @@ void	check_texture_path(t_texture_path tp)
 void	check_rgb(t_rgb color)
 {
 	is_initialized_rgb(color);
+	is_invalid_rgb(color);
 }
 
 // rgbの値が有効か確認する(未完成かも)

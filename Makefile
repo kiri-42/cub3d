@@ -13,6 +13,7 @@ SRC =	main.c \
 		check_game_data.c \
 		check_wall.c \
 		is_initialized.c \
+		is_invalid.c \
 		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

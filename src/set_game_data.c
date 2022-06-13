@@ -80,7 +80,7 @@ void	set_game_data(t_game_data *gd)
 		i++;
 	}
 	gd->map[i - map_start_i] = NULL;
-	print_color(gd);
-	print_texture_path(gd);
-	print_map(gd->map);
+	// print_color(gd);
+	// print_texture_path(gd);
+	// print_map(gd->map);
 }

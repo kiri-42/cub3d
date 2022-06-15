@@ -14,6 +14,7 @@ SRC =	main.c \
 		check_wall.c \
 		is_initialized.c \
 		is_invalid.c \
+		is_open.c \
 		print_debug.c
 SRCDIR = ./src
 SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))

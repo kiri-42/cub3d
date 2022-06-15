@@ -27,7 +27,7 @@ size_t	get_map_start_i(char **file)
 			return (i);
 		i++;
 	}
-	exit_error("mapが見つからない");
+	exit_error(CUB_FORMAT_ERROR);
 	return (0);
 }
 
@@ -60,7 +60,7 @@ void	set_game_data(t_game_data *gd)
 			else if (is_color_line(prefix))
 				set_color(gd, &i);
 			else if (gd->cubfile[i][0] != '\0' || i == 0)
-				exit_error("Error");
+				exit_error(CUB_FORMAT_ERROR);
 			free(prefix);
 		}
 		else

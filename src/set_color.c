@@ -46,7 +46,6 @@ void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color 
 		gd->floor_color.red = rgb.red;
 		gd->floor_color.green = rgb.green;
 		gd->floor_color.blue = rgb.blue;
-		// printf("%d %d %d\n", gd->floor_color.red, gd->floor_color.green, gd->floor_color.blue);
 	}
 	else if (!ft_strncmp(prefix, "C ", 2) && crc->ceiling)
 	{
@@ -54,12 +53,9 @@ void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color 
 		gd->ceiling_color.red = rgb.red;
 		gd->ceiling_color.green = rgb.green;
 		gd->ceiling_color.blue = rgb.blue;
-		// printf("%d %d %d\n", gd->ceiling_color.red, gd->ceiling_color.green, gd->ceiling_color.blue);
 	}
 	else
-	{
-		exit_error("Error");
-	}
+		exit_error(CUB_FORMAT_ERROR);
 }
 
 void	set_color(t_game_data *gd, size_t *line_i)
@@ -77,11 +73,11 @@ void	set_color(t_game_data *gd, size_t *line_i)
 		if (is_color_line(prefix))
 			set_color_line(gd, gd->cubfile[*line_i], prefix, &crc);
 		else
-			exit_error("color_lineではありません");
+			exit_error(CUB_FORMAT_ERROR);
 		(*line_i)++;
 		free(prefix);
 	}
 	if (gd->cubfile[*line_i] == NULL)
-		exit_error("color_lineが4つありません");
+		exit_error(CUB_FORMAT_ERROR);
 	(*line_i)--;
 }

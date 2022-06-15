@@ -17,5 +17,5 @@ void	check_arg(int ac, char **av)
 	if (ac != 2)
 		exit_error(ARG_ERROR);
 	if (!is_cub_extension(av[1]))
-		exit_error(EXTENSION_ERROR);
+		exit_error(CUB_EXTENSION_ERROR);
 }

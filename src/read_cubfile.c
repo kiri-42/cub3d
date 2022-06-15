@@ -41,7 +41,7 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 	gd->cubfile = malloc_cubfile(gd, cubfile_name);
 	fd = open(cubfile_name, O_RDONLY);
 	if (fd == -1)
-		exit_error("the file could not be opened");
+		exit_error(CUB_OPEN_ERROR);
 	i = 0;
 	while (true)
 	{

@@ -19,29 +19,25 @@ void	set_texture_path_line(t_game_data *gd, char *line, char *prefix, t_can_read
 	{
 		crt->north = false;
 		gd->tp.no_path = texture_path;
-		// printf("%s\n", gd->tp.no_path);
 	}
 	else if (!ft_strncmp(prefix, "SO", PREFIX_SIZE) && crt->south)
 	{
 		crt->south = false;
 		gd->tp.so_path = texture_path;
-		// printf("%s\n", gd->tp.so_path);
 	}
 	else if (!ft_strncmp(prefix, "WE", PREFIX_SIZE) && crt->west)
 	{
 		crt->west = false;
 		gd->tp.we_path = texture_path;
-		// printf("%s\n", gd->tp.we_path);
 	}
 	else if (!ft_strncmp(prefix, "EA", PREFIX_SIZE) && crt->east)
 	{
 		crt->east = false;
 		gd->tp.ea_path = texture_path;
-		// printf("%s\n", gd->tp.ea_path);
 	}
 	else
 	{
-		exit_error("Error");
+		exit_error(CUB_FORMAT_ERROR);
 	}
 	// printf("init\n");
 	// print_texture_path(gd);
@@ -65,11 +61,11 @@ void	set_texture_path(t_game_data *gd, size_t *line_i)
 		if (is_path_line(prefix))
 			set_texture_path_line(gd, gd->cubfile[*line_i], prefix, &crt);
 		else
-			exit_error("path_lineではありません");
+			exit_error(CUB_FORMAT_ERROR);
 		(*line_i)++;
 		free(prefix);
 	}
 	if (gd->cubfile[*line_i] == NULL)
-		exit_error("pathが4つありません");
+		exit_error(CUB_FORMAT_ERROR);
 	(*line_i)--;
 }

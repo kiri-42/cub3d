@@ -6,7 +6,7 @@ void	is_open_path(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit_error("not open");
+		exit_error(PATH_OPEN_ERROR);
 	close(fd);
 }
 

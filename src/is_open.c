@@ -10,7 +10,7 @@ void	is_open_path(char *path)
 	close(fd);
 }
 
-void	is_open(t_texture_path tp)
+void	is_open_texture_path(t_texture_path tp)
 {
 	is_open_path(tp.no_path);
 	is_open_path(tp.so_path);

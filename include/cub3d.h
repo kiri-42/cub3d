@@ -66,7 +66,7 @@ void	is_initialized_rgb(t_rgb color);
 void	is_initialized_map(char **map);
 void	check_wall(t_game_data *gd);
 void	is_invalid_rgb(t_rgb color);
-void	is_open(t_texture_path tp);
+void	is_open_texture_path(t_texture_path tp);
 
 // デバッグ用の関数
 void	print_cubfile(t_game_data *gd);

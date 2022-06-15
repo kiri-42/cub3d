@@ -4,7 +4,7 @@
 void	check_texture_path(t_texture_path tp)
 {
 	is_initialized_texture_path(tp);
-	is_open(tp);
+	is_open_texture_path(tp);
 }
 
 // rgbの値が有効か確認する(未完成)

@@ -45,6 +45,15 @@ fclean : clean
 	make fclean -C ./libft
 	make clean -C $(MLXDIR)
 	rm -rf $(NAME)
+	rm -rf $(wildcard ./test/*.o)
+
+DBGSRC	= $(filter-out $(SRCDIR)/main.c,$(SRCS))
+DBGSRC	+= $(wildcard ./test/*.c)
+DBGOBJ	= $(DBGSRC:%.c=%.o)
+debug : $(DBGOBJ)
+	make -C $(MLXDIR)
+	make bonus -C ./libft
+	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 re : fclean all
 

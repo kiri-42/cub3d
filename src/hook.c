@@ -9,8 +9,6 @@ int	key_hook(int keycode, t_game_data *data)
 {
 	(void)data;
 	if (keycode == KEY_ESC)
-	{
 		close_window();
-	}
 	return (0);
 }

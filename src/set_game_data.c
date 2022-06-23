@@ -1,18 +1,8 @@
 #include "cub3d.h"
 
-// bool	is_path_line(char *str)
-// {
-// 	return (!ft_strncmp(str, "NO", PREFIX_SIZE) || !ft_strncmp(str, "SO", PREFIX_SIZE) || !ft_strncmp(str, "WE", PREFIX_SIZE) || !ft_strncmp(str, "EA", PREFIX_SIZE));
-// }
-
-// bool	is_color_line(char *str)
-// {
-// 	return (!ft_strncmp(str, "F ", PREFIX_SIZE) || !ft_strncmp(str, "C ", PREFIX_SIZE));
-// }
-
 bool	is_map_start_line(char *line)
 {
-	size_t	i;
+	int	i;
 
 	if (line[0] == '\0')
 		return (false);
@@ -26,9 +16,9 @@ bool	is_map_start_line(char *line)
 	return (true);
 }
 
-size_t	get_map_start_i(char **file)
+int	get_map_start(char **file)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (file[i] != NULL)
@@ -37,30 +27,30 @@ size_t	get_map_start_i(char **file)
 			return (i);
 		i++;
 	}
-	exit_error("mapが見つからない");
+	exit_error(CUB_FORMAT_ERROR);
 	return (0);
 }
 
-char	**malloc_map(t_game_data *gd, size_t map_start_i)
+char	**malloc_map(t_game_data *gd, int map_start)
 {
 	char	**map;
 
-	map = (char **)x_malloc((gd->cubfile_linage - map_start_i + 1) * sizeof(char *));
+	map = (char **)x_malloc((gd->cubfile_linage - map_start + 1) * sizeof(char *));
 	return (map);
 }
 
 void	set_game_data(t_game_data *gd)
 {
-	size_t	i;
-	size_t	map_start_i;
+	int		i;
+	int		map_start;
 	char	*prefix;
 
 	i = 0;
-	map_start_i = get_map_start_i(gd->cubfile);
-	gd->map = malloc_map(gd, map_start_i);
+	map_start = get_map_start(gd->cubfile);
+	gd->map = malloc_map(gd, map_start);
 	while (gd->cubfile[i] != NULL)
 	{
-		if (i < map_start_i)
+		if (i < map_start)
 		{
 			prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
 			if (prefix == NULL)
@@ -70,17 +60,14 @@ void	set_game_data(t_game_data *gd)
 			else if (is_color_line(prefix))
 				set_color(gd, &i);
 			else if (gd->cubfile[i][0] != '\0' || i == 0)
-				exit_error("Error");
+				exit_error(CUB_FORMAT_ERROR);
 			free(prefix);
 		}
 		else
 		{
-			gd->map[i - map_start_i] = ft_strdup(gd->cubfile[i]);
+			gd->map[i - map_start] = ft_strdup(gd->cubfile[i]);
 		}
 		i++;
 	}
-	gd->map[i - map_start_i] = NULL;
-	// print_color(gd);
-	// print_texture_path(gd);
-	// print_map(gd->map);
+	gd->map[i - map_start] = NULL;
 }

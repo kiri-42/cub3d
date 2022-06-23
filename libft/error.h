@@ -2,7 +2,16 @@
 # define ERROR_H
 
 # define MALLOC_ERROR			"Malloc failed"
-# define ARG_ERROR				"The number of arguments is different"
-# define EXTENSION_ERROR		"The map file could not be loaded"
+# define ARG_ERROR				"Number of arguments is different"
+# define CUB_EXTENSION_ERROR	"Cubfile could not be loaded"
+# define CUB_OPEN_ERROR			"Cubfile could not be open"
+# define CUB_FORMAT_ERROR		"Cubfile is not the correct format"
+# define MAP_INIT_ERROR			"Map is uninitialized"
+# define PATH_INIT_ERROR		"Path is uninitialized"
+# define PATH_READ_ERROR		"Path could not be read"
+# define PATH_OPEN_ERROR		"Path could not be open"
+# define RGB_INIT_ERROR			"RGB is uninitialized"
+# define RGB_INVALID_ERROR		"RGB is invalid value"
+# define WALL_ERROR				"Map was not walled off"
 
 #endif

@@ -1,10 +1,10 @@
 #include "cub3d.h"
 
-static size_t	count_line(char *file_name)
+static int	count_line(char *file_name)
 {
 	char	*line;
 	int		fd;
-	size_t	line_size;
+	int		line_size;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
@@ -34,14 +34,14 @@ static char	**malloc_cubfile(t_game_data *gd, char *cubfile_name)
 void	read_cubfile(t_game_data *gd, char *cubfile_name)
 {
 	int		fd;
-	size_t	i;
+	int		i;
 	char	*line;
 	char	*new_line;
 
 	gd->cubfile = malloc_cubfile(gd, cubfile_name);
 	fd = open(cubfile_name, O_RDONLY);
 	if (fd == -1)
-		exit_error("the file could not be opened");
+		exit_error(CUB_OPEN_ERROR);
 	i = 0;
 	while (true)
 	{
@@ -52,7 +52,6 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 		if (new_line == NULL)
 			exit_error("ft_strtrim");
 		gd->cubfile[i] = new_line;
-		// printf("cubfile: %s\n", gd->cubfile[i]);
 		i++;
 	}
 	gd->cubfile[i] = NULL;

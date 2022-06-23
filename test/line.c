@@ -2,7 +2,6 @@
 #include <string.h>
 #include <math.h>
 
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
 void	draw_line(int *addr, double x1, double y1, double x2, double y2)
 {

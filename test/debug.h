@@ -12,6 +12,8 @@
 
 # define LINE_RGB 0xFF0000
 
+# define TO_COORD(X, Y) ((int)Y * WIDTH + (int)X)
+
 typedef struct s_player_data
 {
 	int	x;
@@ -25,9 +27,8 @@ typedef struct s_player_data
 	float	rotationSpeed;
 }	t_player_data;
 
-void	*square;
+int	*square;
 void	*map;
-void	*mlx2;
 t_player_data	player;
 
 void	set_map(char ***m);
@@ -44,4 +45,9 @@ void	draw_line(int *addr, double x1, double y1, double x2, double y2);
 void	draw_map(t_game_data *data);
 void	set_line(double x1, double y1, double x2, double y2);
 
+
+// p2.c
+void	set_white_square();
+void	draw_map2(t_game_data *data);
+void	draw_all(t_game_data *data);
 #endif

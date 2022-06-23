@@ -80,9 +80,6 @@ void	dinit_map(t_game_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(EXIT_FAILURE);
-	mlx2 = mlx_init();
-	if (!mlx2)
-		exit(EXIT_FAILURE);
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
 	if (0)
 		exit(EXIT_FAILURE);

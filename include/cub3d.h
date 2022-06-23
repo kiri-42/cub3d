@@ -32,7 +32,7 @@ typedef struct s_game_data
 	t_rgb			floor_color;
 	t_rgb			ceiling_color;
 	char			**cubfile;
-	size_t			cubfile_linage;
+	int				cubfile_linage;
 	char			**map;
 }	t_game_data;
 
@@ -55,8 +55,8 @@ void	check_arg(int ac, char **av);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
 void	init_game_data(t_game_data *gd);
 void	set_game_data(t_game_data *gd);
-void	set_color(t_game_data *gd, size_t *line_i);
-void	set_texture_path(t_game_data *gd, size_t *line_i);
+void	set_color(t_game_data *gd, int *line_i);
+void	set_texture_path(t_game_data *gd, int *line_i);
 bool	is_path_line(char *str);
 bool	is_color_line(char *str);
 void	free_cubfile(t_game_data *gd);

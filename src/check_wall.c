@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-size_t	get_line_size(char **map)
+int	get_line_size(char **map)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (map[i] != NULL)
@@ -15,11 +15,11 @@ size_t	get_line_size(char **map)
 char **dupmap(char **map)
 {
 	char	**dup;
-	size_t	line_size;
-	size_t	i;
+	int	line_size;
+	int	i;
 
 	line_size = get_line_size(map);
-	dup = (char **)x_malloc(sizeof(size_t) * (line_size + 1));
+	dup = (char **)x_malloc(sizeof(int) * (line_size + 1));
 	i = 0;
 	while (i < line_size)
 	{
@@ -32,7 +32,7 @@ char **dupmap(char **map)
 
 void	free_map(char **map)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (map[i] != NULL)
@@ -48,10 +48,10 @@ bool	is_valid_position(char c)
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-void	get_position(char **map, char *c, size_t *x, size_t *y)
+void	get_position(char **map, char *c, int *x, int *y)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i] != NULL)
@@ -74,9 +74,9 @@ void	get_position(char **map, char *c, size_t *x, size_t *y)
 	return ;
 }
 
-void	flood_fill(char **map, ssize_t x, ssize_t y, ssize_t max_y, char new_color)
+void	flood_fill(char **map, int x, int y, int max_y, char new_color)
 {
-	ssize_t	max_x;
+	int	max_x;
 
 	max_x = ft_strlen(map[y]);
 	if (x < 0 || y < 0 || x >= max_x || y >= max_y)
@@ -103,9 +103,9 @@ void	check_wall(t_game_data *gd)
 {
 	char	**map;
 	char	c;
-	size_t	x;
-	size_t	y;
-	size_t	max_y;
+	int		x;
+	int		y;
+	int		max_y;
 
 	map = dupmap(gd->map);
 	max_y = get_line_size(map);

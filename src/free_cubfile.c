@@ -2,7 +2,7 @@
 
 void	free_cubfile(t_game_data *gd)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (gd->cubfile[i] != NULL)

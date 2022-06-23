@@ -2,7 +2,7 @@
 
 bool	is_three_elem(char	**rgb)
 {
-	size_t	i;
+	int	i;
 
 	if (rgb == NULL)
 		return (false);
@@ -18,7 +18,7 @@ bool	is_three_elem(char	**rgb)
 
 t_rgb	get_rgb(char *line)
 {
-	size_t	len;
+	int		len;
 	t_rgb	rgb;
 	char	*str_rgb;
 	char	**split_rgb;
@@ -58,10 +58,10 @@ void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color 
 		exit_error(CUB_FORMAT_ERROR);
 }
 
-void	set_color(t_game_data *gd, size_t *line_i)
+void	set_color(t_game_data *gd, int *line_i)
 {
-	size_t	start_i;
-	char	*prefix;
+	int					start_i;
+	char				*prefix;
 	t_can_read_color	crc;
 
 	crc.floor = true;

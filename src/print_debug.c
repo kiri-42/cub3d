@@ -2,7 +2,7 @@
 
 void	print_cubfile(t_game_data *gd)
 {
-	size_t	i;
+	int	i;
 
 	printf("%sstartend: %s%s\n", F_BLUE, __func__, F_RESET);
 	i = 0;
@@ -35,7 +35,7 @@ void	print_color(t_game_data *gd)
 void	print_map(char **map)
 {
 	printf("%sstart: %s%s\n", F_BLUE, __func__, F_RESET);
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (map[i] != NULL)

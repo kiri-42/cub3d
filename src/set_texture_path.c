@@ -44,10 +44,10 @@ void	set_texture_path_line(t_game_data *gd, char *line, char *prefix, t_can_read
 	// printf("end\n");
 }
 
-void	set_texture_path(t_game_data *gd, size_t *line_i)
+void	set_texture_path(t_game_data *gd, int *line_i)
 {
-	size_t	start_i;
-	char	*prefix;
+	int					start_i;
+	char				*prefix;
 	t_can_read_texture	crt;
 
 	crt.north = true;

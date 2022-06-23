@@ -27,6 +27,15 @@ typedef struct s_player_data
 	float	rotationSpeed;
 }	t_player_data;
 
+typedef struct s_img_data
+{
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}	t_img_data;
+
 int	*square;
 void	*map;
 t_player_data	player;

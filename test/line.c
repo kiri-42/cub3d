@@ -1,6 +1,5 @@
 #include "debug.h"
 #include <string.h>
-#include <math.h>
 
 
 void	draw_line(int *addr, double x1, double y1, double x2, double y2)

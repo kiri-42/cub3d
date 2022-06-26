@@ -1,22 +1,45 @@
 #include "debug.h"
-#include <string.h>
-#include <math.h>
 
-void	draw_map(t_game_data *data)
+void	paint_tile(int i, int j, int color)
 {
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-	int	i;
+	int	k;
+	int l;
+	int	coord;
+
+	k = 0;
+	while (k < TILE_SIZE)
+	{
+		l = 0;
+		while (l < TILE_SIZE)
+		{
+			coord = ((i * TILE_SIZE) + k) * WIDTH + ((j * TILE_SIZE) + l);
+			map.addr[coord] = color;
+			if ((k % TILE_SIZE == 0 || l % TILE_SIZE == 0) && color != 0x000000)
+				map.addr[coord] = 0x696969;
+			l++;
+		}
+		k++;
+	}
+	return ;
+}
+
+void	put_all_tile(t_game_data *data)
+{
+	int		i;
+	int		j;
 
 	i = 0;
-	map = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	addr = (int *)mlx_get_data_addr(map, &bits_per_pixel, &line_lenght, &endian);
-	while (i < WIDTH * HEIGHT)
+	while (i < ROWS)
 	{
-		addr[i] = 0xFFFFFF;
+		j = 0;
+		while (j < COLS)
+		{
+			if (data->map[i][j] != 1)
+				paint_tile(i, j, 0xFFFFFF);
+			else
+				paint_tile(i, j, 0x000000);
+			j++;
+		}
 		i++;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, map, 0, 0);
 }

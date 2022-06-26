@@ -1,4 +1,3 @@
-#include "cub3d.h"
 #include "debug.h"
 
 int	dclose_window(void)
@@ -6,45 +5,35 @@ int	dclose_window(void)
 	exit(EXIT_SUCCESS);
 }
 
-void	to_draw_line(t_game_data *data)
-{
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-	int	len;
-
-	(void)data;
-	addr = (int *)mlx_get_data_addr(map, &bits_per_pixel, &line_lenght, &endian);
-	len = 100;
-	if (player.y + len > HEIGHT)
-		len = 0;
-	draw_line(addr, player.x, player.y, player.x, player.y+len);
-}
-
 int	dkey_hook(int keycode, t_game_data *data)
 {
 	(void)data;
+	// double moveStep;
+
 	if (keycode == KEY_ESC)
 		close_window();
 	else if (keycode == KEY_W)
-		player.y--;
+	{
+		player.walkDirection = 1;
+	}
 	else if (keycode == KEY_A)
-		player.x--;
+		player.turnDirection = -1;
 	else if (keycode == KEY_S)
-		player.y++;
+		player.walkDirection = -1;
 	else if (keycode == KEY_D)
-		player.x++;
-	draw_all(data);
-	to_draw_line(data);
-	mlx_put_image_to_window(data->mlx, data->win, map, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->win, player.img, player.x, player.y);
+		player.turnDirection = 1;
+	player.rotationAngle += player.turnDirection * player.rotationSpeed;
+	player.turnDirection = 0;
+	player.walkDirection = 0;
 	return (0);
 }
 
 int	dloop_hook(t_game_data *data)
 {
-	(void)data;
+	put_all_tile(data);
+	map.addr[TO_COORD(player.x, player.y)] = 0xFF0000;
+	draw_line(map, player.x, player.y, player.x+cos(player.rotationAngle)*30, player.y+sin(player.rotationAngle)*30);
+	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
 	return (0);
 }
 

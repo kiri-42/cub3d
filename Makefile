@@ -53,7 +53,7 @@ DBGOBJ	= $(DBGSRC:%.c=%.o)
 debug : $(DBGOBJ)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) -g $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 re : fclean all
 

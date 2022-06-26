@@ -12,7 +12,7 @@
 
 # define LINE_RGB 0xFF0000
 
-# define TO_COORD(X, Y) ((int)Y * WIDTH + (int)X)
+# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
 
 typedef struct s_player_data
 {
@@ -36,27 +36,13 @@ typedef struct s_img_data
 	int		endian;
 }	t_img_data;
 
-int	*square;
-void	*map;
+t_img_data		map;
 t_player_data	player;
 
-void	set_map(char ***m);
-void	print_map_data(char **map);
+void	dset_map(char ***m);
 void	dinit_map(t_game_data *data);
-void	draw_white_square(t_game_data *data);
-void	put_tile(t_game_data *data);
-void	init_player();
-void	draw_player(t_game_data *data);
+void	dinit_player(void);
+void	put_all_tile(t_game_data *data);
 void	dloop_start(t_game_data *data);
-
-void	draw_line(int *addr, double x1, double y1, double x2, double y2);
-
-void	draw_map(t_game_data *data);
-void	set_line(double x1, double y1, double x2, double y2);
-
-
-// p2.c
-void	set_white_square();
-void	draw_map2(t_game_data *data);
-void	draw_all(t_game_data *data);
+void	draw_line(t_img_data map, double x1, double y1, double x2, double y2);
 #endif

@@ -35,10 +35,10 @@ void	draw_line(t_img_data map, double x1, double y1, double x2, double y2)
 	double	deltaY;
 	double	step;
 	
-	x1 = floor(x1);
-	y1 = floor(y1);
-	x2 = floor(x2);
-	y2 = floor(y2);
+	x1 = round(x1);
+	y1 = round(y1);
+	x2 = round(x2);
+	y2 = round(y2);
 	deltaX = x2 - x1;
 	deltaY = y2 - y1;
 	step = (fabs(deltaX) > fabs(deltaY)) ? fabs(deltaX) : fabs(deltaY);

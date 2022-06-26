@@ -16,8 +16,8 @@
 
 typedef struct s_player_data
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 	void	*img;
 	int	radius;
 	int	turnDirection;	/* -1 if left, +1 if right */

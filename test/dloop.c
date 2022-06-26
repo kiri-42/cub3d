@@ -8,18 +8,30 @@ int	dclose_window(void)
 int	dkey_hook(int keycode, t_game_data *data)
 {
 	(void)data;
-	// double moveStep;
+	double moveStep;
 
 	if (keycode == KEY_ESC)
 		close_window();
 	else if (keycode == KEY_W)
 	{
 		player.walkDirection = 1;
+		moveStep = player.walkDirection * player.moveSpeed;
+		printf("x:%f y:%f\n", player.x, player.y);
+		printf("x':%f y':%f\n", player.x+cos(player.rotationAngle)*moveStep, player.y+sin(player.rotationAngle)*moveStep);
+		player.x += cos(player.rotationAngle) * moveStep;
+		player.y += sin(player.rotationAngle) * moveStep;
 	}
 	else if (keycode == KEY_A)
 		player.turnDirection = -1;
 	else if (keycode == KEY_S)
+	{
 		player.walkDirection = -1;
+		moveStep = player.walkDirection * player.moveSpeed;
+		printf("x:%f y:%f\n", player.x, player.y);
+		printf("x':%f y':%f\n", player.x+cos(player.rotationAngle)*moveStep, player.y+sin(player.rotationAngle)*moveStep);
+		player.x += cos(player.rotationAngle) * moveStep;
+		player.y += sin(player.rotationAngle) * moveStep;
+	}
 	else if (keycode == KEY_D)
 		player.turnDirection = 1;
 	player.rotationAngle += player.turnDirection * player.rotationSpeed;

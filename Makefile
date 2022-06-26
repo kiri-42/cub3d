@@ -12,7 +12,7 @@ SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 LIBFTDIR = ./libft
 LIBFT = ft
 MLXDIR	=	./minilibx

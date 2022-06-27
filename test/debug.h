@@ -9,10 +9,18 @@
 
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
+# define FOV (60 * (M_PI / 180))
+# define WALL_STRIP_WIDTH 4
+# define RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 # define LINE_RGB 0xFF0000
 
 # define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
+
+typedef enum e_ud{
+	UP = 1,
+	DOWN = -1	
+}	t_ud;
 
 typedef struct s_player_data
 {

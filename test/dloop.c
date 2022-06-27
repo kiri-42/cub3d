@@ -9,6 +9,8 @@ int	dkey_hook(int keycode, t_game_data *data)
 {
 	(void)data;
 	double moveStep;
+	double new_x;
+	double new_y;
 
 	if (keycode == KEY_ESC)
 		close_window();
@@ -18,8 +20,13 @@ int	dkey_hook(int keycode, t_game_data *data)
 		moveStep = player.walkDirection * player.moveSpeed;
 		printf("x:%f y:%f\n", player.x, player.y);
 		printf("x':%f y':%f\n", player.x+cos(player.rotationAngle)*moveStep, player.y+sin(player.rotationAngle)*moveStep);
-		player.x += cos(player.rotationAngle) * moveStep;
-		player.y += sin(player.rotationAngle) * moveStep;
+		new_x = player.x + cos(player.rotationAngle) * moveStep;
+		new_y = player.y + sin(player.rotationAngle) * moveStep;
+		if (!has_wall(data->map, new_x, new_y))
+		{
+			player.x = new_x;
+			player.y = new_y;
+		}
 	}
 	else if (keycode == KEY_A)
 		player.turnDirection = -1;
@@ -29,8 +36,13 @@ int	dkey_hook(int keycode, t_game_data *data)
 		moveStep = player.walkDirection * player.moveSpeed;
 		printf("x:%f y:%f\n", player.x, player.y);
 		printf("x':%f y':%f\n", player.x+cos(player.rotationAngle)*moveStep, player.y+sin(player.rotationAngle)*moveStep);
-		player.x += cos(player.rotationAngle) * moveStep;
-		player.y += sin(player.rotationAngle) * moveStep;
+		new_x = player.x + cos(player.rotationAngle) * moveStep;
+		new_y = player.y + sin(player.rotationAngle) * moveStep;
+		if (!has_wall(data->map, new_x, new_y))
+		{
+			player.x = new_x;
+			player.y = new_y;
+		}
 	}
 	else if (keycode == KEY_D)
 		player.turnDirection = 1;

@@ -12,7 +12,7 @@
 
 # define LINE_RGB 0xFF0000
 
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
+# define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
 
 typedef struct s_player_data
 {
@@ -22,9 +22,9 @@ typedef struct s_player_data
 	int	radius;
 	int	turnDirection;	/* -1 if left, +1 if right */
 	int	walkDirection;	/* -1 if back, +1 if front */
-	float	rotationAngle;
-	float	moveSpeed;
-	float	rotationSpeed;
+	double	rotationAngle;
+	double	moveSpeed;
+	double	rotationSpeed;
 }	t_player_data;
 
 typedef struct s_img_data
@@ -45,4 +45,5 @@ void	dinit_player(void);
 void	put_all_tile(t_game_data *data);
 void	dloop_start(t_game_data *data);
 void	draw_line(t_img_data map, double x1, double y1, double x2, double y2);
+bool	has_wall(char **map, double x, double y);
 #endif

@@ -57,7 +57,7 @@ int	dloop_hook(t_game_data *data)
 	put_all_tile(data);
 	map.addr[TO_COORD(player.x, player.y)] = 0xFF0000;
 	// draw_line(map, player.x, player.y, player.x+cos(player.rotationAngle)*30, player.y+sin(player.rotationAngle)*30);
-	cast_all_rays();
+	cast_all_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
 	return (0);
 }

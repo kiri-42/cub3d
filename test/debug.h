@@ -17,10 +17,26 @@
 
 # define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
 
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
+
 typedef enum e_ud{
 	UP = 1,
 	DOWN = -1	
 }	t_ud;
+
+typedef struct s_coord{
+	double	x;
+	double	y;
+} t_coord;
+
+typedef struct s_direction{
+	bool	up;
+	bool	left;
+	bool	down;
+	bool	right;
+}	t_direction;
 
 typedef struct s_player_data
 {

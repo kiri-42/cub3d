@@ -52,8 +52,9 @@ typedef struct s_fov{
 
 typedef struct s_player_data
 {
-	double	x;
-	double	y;
+	// double	x;
+	// double	y;
+	t_coord	p_coord;
 	void	*img;
 	int	radius;
 	int	turnDirection;	/* -1 if left, +1 if right */

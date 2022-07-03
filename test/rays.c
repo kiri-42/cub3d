@@ -59,10 +59,10 @@ t_coord	get_horz_intercept(double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.y = floor(player.y / TILE_SIZE) * TILE_SIZE;
+	intercept.y = floor(player.p_coord.y / TILE_SIZE) * TILE_SIZE;
 	if (d.down == 1)
 		intercept.y += TILE_SIZE;
-	intercept.x = player.x + (intercept.y - player.y) / tan(angle);
+	intercept.x = player.p_coord.x + (intercept.y - player.p_coord.y) / tan(angle);
 	return (intercept);
 }
 
@@ -70,10 +70,10 @@ t_coord	get_vert_intercept(double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.x = floor(player.x / TILE_SIZE) * TILE_SIZE;
+	intercept.x = floor(player.p_coord.x / TILE_SIZE) * TILE_SIZE;
 	if (d.right == true)
 		intercept.x += TILE_SIZE;
-	intercept.y = player.y + (intercept.x - player.x) * tan(angle);
+	intercept.y = player.p_coord.y + (intercept.x - player.p_coord.x) * tan(angle);
 	return (intercept);
 }
 
@@ -117,7 +117,7 @@ void	found_horz_wall_hit(t_game_data *data, t_fov *fov)
 	if (fov->d.up == true)
 		intercept.y--;
 	fov->h_wall_hit = get_touch_point(data, &fov->h_is_hit, intercept, step);
-	fov->h_distance = distance_between_points(player.x, player.y, fov->h_wall_hit.x, fov->h_wall_hit.y);
+	fov->h_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->h_wall_hit.x, fov->h_wall_hit.y);
 }
 
 void	found_vert_wall_hit(t_game_data *data, t_fov *fov)
@@ -130,7 +130,7 @@ void	found_vert_wall_hit(t_game_data *data, t_fov *fov)
 	if (fov->d.left == true)
 		intercept.x--;
 	fov->v_wall_hit = get_touch_point(data, &fov->v_is_hit, intercept, step);
-	fov->v_distance = distance_between_points(player.x, player.y, fov->v_wall_hit.x, fov->v_wall_hit.y);
+	fov->v_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->v_wall_hit.x, fov->v_wall_hit.y);
 }
 
 void	draw_one_ray(t_game_data *data, double angle, int id)
@@ -144,10 +144,9 @@ void	draw_one_ray(t_game_data *data, double angle, int id)
 	found_horz_wall_hit(data, &fov);
 	found_vert_wall_hit(data, &fov);
 	if (fov.h_distance >= fov.v_distance || (fov.h_is_hit == false && fov.v_is_hit == true))
-		draw_line(map, player.x, player.y, fov.v_wall_hit.x, fov.v_wall_hit.y);
+		draw_line(map, player.p_coord.x, player.p_coord.y, fov.v_wall_hit.x, fov.v_wall_hit.y);
 	else
-		draw_line(map, player.x, player.y, fov.h_wall_hit.x, fov.h_wall_hit.y);
-
+		draw_line(map, player.p_coord.x, player.p_coord.y, fov.h_wall_hit.x, fov.h_wall_hit.y);
 }
 
 void	cast_all_rays(t_game_data *data)

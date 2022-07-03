@@ -29,20 +29,22 @@ t_direction get_direction_of_line(double angle)
 	return (d);
 }
 
-t_coord	get_touch_point(t_game_data *data, t_coord intercept, t_coord step)
+t_coord	get_touch_point(t_game_data *data, bool *hit, t_coord intercept, t_coord step)
 {
 	t_coord touch;
 	t_coord	wall_hit;
 
+	*hit = false;
 	touch.x = intercept.x;
 	touch.y = intercept.y;
 	while (touch.x >= 0 && touch.x <= WIDTH && touch.y >= 0 && touch.y <= HEIGHT)
 	{
 		if (has_wall(data->map, touch.x, touch.y))
 		{
+			*hit = true;
 			wall_hit.x = touch.x;
 			wall_hit.y = touch.y;
-			return (wall_hit);
+			break;
 		}
 		else
 		{
@@ -105,9 +107,8 @@ t_coord	get_vert_step(double angle, t_coord intercept, t_direction d)
 	return (step);
 }
 
-t_coord	get_horz_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
+void	get_horz_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
 {
-	t_coord		wall_hit;
 	t_coord		intercept;
 	t_coord		step;
 
@@ -115,12 +116,11 @@ t_coord	get_horz_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
 	step = get_horz_step(angle, intercept, fov->d);
 	if (fov->d.up == true)
 		intercept.y--;
-	return (get_touch_point(data, intercept, step));
+	fov->h_wall_hit = get_touch_point(data, &fov->h_is_hit, intercept, step);
 }
 
-t_coord	get_vert_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
+void	get_vert_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
 {
-	t_coord		wall_hit;
 	t_coord		intercept;
 	t_coord		step;
 
@@ -128,7 +128,7 @@ t_coord	get_vert_wall_hit(t_game_data *data, double angle, t_fov *fov, int id)
 	step = get_vert_step(angle, intercept, fov->d);
 	if (fov->d.left == true)
 		intercept.x--;
-	return (get_touch_point(data, intercept, step));
+	fov->v_wall_hit = get_touch_point(data, &fov->v_is_hit, intercept, step);
 }
 
 void	get_wall_hit(t_game_data *data, double angle, int id)
@@ -139,16 +139,18 @@ void	get_wall_hit(t_game_data *data, double angle, int id)
 	double	horz_d;
 	double	vert_d;
 
-	angle = normalize_angle(angle);
-	fov.d = get_direction_of_line(angle);
-	horz = get_horz_wall_hit(data, angle, &fov, id);
-	vert = get_vert_wall_hit(data, angle, &fov, id);
-	horz_d = distance_between_points(player.x, player.y, horz.x, horz.y);
-	vert_d = distance_between_points(player.x, player.y, vert.x, vert.y);
-	if (horz_d >= vert_d)
-		draw_line(map, player.x, player.y, vert.x, vert.y);
+	ft_memset(&fov, 0, sizeof(t_fov));
+	fov.id = id;
+	fov.angle = normalize_angle(angle);
+	fov.d = get_direction_of_line(fov.angle);
+	get_horz_wall_hit(data, angle, &fov, id);
+	get_vert_wall_hit(data, angle, &fov, id);
+	horz_d = distance_between_points(player.x, player.y, fov.h_wall_hit.x, fov.h_wall_hit.y);
+	vert_d = distance_between_points(player.x, player.y, fov.v_wall_hit.x, fov.v_wall_hit.y);
+	if (horz_d >= vert_d || (fov.h_is_hit == false && fov.v_is_hit == true))
+		draw_line(map, player.x, player.y, fov.v_wall_hit.x, fov.v_wall_hit.y);
 	else
-		draw_line(map, player.x, player.y, horz.x, horz.y);
+		draw_line(map, player.x, player.y, fov.h_wall_hit.x, fov.h_wall_hit.y);
 
 }
 
@@ -161,15 +163,15 @@ void	cast_all_rays(t_game_data *data)
 	double	d;
 
 	column_id = 0;
-	// rayAngle = player.rotationAngle - (FOV / 2);
-	rayAngle = player.rotationAngle;
+	rayAngle = player.rotationAngle - (FOV / 2);
+	// rayAngle = player.rotationAngle;
 	i = 0;
-	while (i < 1)
+	while (i < RAYS)
 	{
 		get_wall_hit(data, rayAngle, column_id);
 		rayAngle += (FOV / RAYS);
 		i++;
 		column_id++;
-		break;
+		// break;
 	}
 }

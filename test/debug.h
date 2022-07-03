@@ -39,9 +39,13 @@ typedef struct s_direction{
 }	t_direction;
 
 typedef struct s_fov{
+	int			id;
+	double		angle;
 	t_direction	d;
-	bool		h_hit;
-	bool		v_hit;
+	t_coord		h_wall_hit;
+	t_coord		v_wall_hit;
+	bool		h_is_hit;
+	bool		v_is_hit;
 }	t_fov;
 
 typedef struct s_player_data

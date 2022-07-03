@@ -44,6 +44,8 @@ typedef struct s_fov{
 	t_direction	d;
 	t_coord		h_wall_hit;
 	t_coord		v_wall_hit;
+	double		h_distance;
+	double		v_distance;
 	bool		h_is_hit;
 	bool		v_is_hit;
 }	t_fov;

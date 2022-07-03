@@ -38,6 +38,12 @@ typedef struct s_direction{
 	bool	right;
 }	t_direction;
 
+typedef struct s_fov{
+	t_direction	d;
+	bool		h_hit;
+	bool		v_hit;
+}	t_fov;
+
 typedef struct s_player_data
 {
 	double	x;

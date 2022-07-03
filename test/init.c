@@ -16,6 +16,9 @@ void	dinit_player(void)
 	player.rotationAngle = M_PI / 2;
 	player.moveSpeed = 2.0;
 	player.rotationSpeed = 3 * (M_PI / 180);
+	
+	player.x = 240;
+	player.y = 200;
 }
 
 void	dinit_map(t_game_data *data)

@@ -2,6 +2,7 @@
 # define DEBUG_H
 
 # include "cub3d.h"
+#include <float.h>
 
 # define ROWS 11
 # define COLS 15

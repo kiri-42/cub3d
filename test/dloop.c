@@ -59,7 +59,8 @@ int	dloop_hook(t_game_data *data)
 
 void	dloop_start(t_game_data *data)
 {
-	mlx_key_hook(data->win, dkey_hook, data);
+	// mlx_key_hook(data->win, dkey_hook, data);
+	mlx_hook(data->win, 2, 1L << 0, dkey_hook, data);
 	mlx_hook(data->win, 17, 0, dclose_window, NULL);
 	mlx_loop_hook(data->mlx, dloop_hook, data);
 	mlx_loop(data->mlx);

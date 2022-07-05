@@ -1,6 +1,5 @@
 #include "debug.h"
 
-
 int main()
 {
 	t_game_data data;

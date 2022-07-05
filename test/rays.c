@@ -117,7 +117,10 @@ void	found_horz_wall_hit(t_game_data *data, t_fov *fov)
 	if (fov->d.up == true)
 		intercept.y--;
 	fov->h_wall_hit = get_touch_point(data, &fov->h_is_hit, intercept, step);
-	fov->h_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->h_wall_hit.x, fov->h_wall_hit.y);
+	if (fov->h_is_hit == false)
+		fov->h_distance = DBL_MAX;
+	else
+		fov->h_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->h_wall_hit.x, fov->h_wall_hit.y);
 }
 
 void	found_vert_wall_hit(t_game_data *data, t_fov *fov)
@@ -130,7 +133,10 @@ void	found_vert_wall_hit(t_game_data *data, t_fov *fov)
 	if (fov->d.left == true)
 		intercept.x--;
 	fov->v_wall_hit = get_touch_point(data, &fov->v_is_hit, intercept, step);
-	fov->v_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->v_wall_hit.x, fov->v_wall_hit.y);
+	if (fov->v_is_hit == false)
+		fov->v_distance = DBL_MAX;
+	else
+		fov->v_distance = distance_between_points(player.p_coord.x, player.p_coord.y, fov->v_wall_hit.x, fov->v_wall_hit.y);
 }
 
 void	draw_one_ray(t_game_data *data, double angle, int id)
@@ -143,7 +149,7 @@ void	draw_one_ray(t_game_data *data, double angle, int id)
 	fov.d = get_direction_of_line(fov.angle);
 	found_horz_wall_hit(data, &fov);
 	found_vert_wall_hit(data, &fov);
-	if (fov.h_distance >= fov.v_distance || (fov.h_is_hit == false && fov.v_is_hit == true))
+	if (fov.h_distance >= fov.v_distance)
 		draw_line(map, player.p_coord, fov.v_wall_hit);
 	else
 		draw_line(map, player.p_coord, fov.h_wall_hit);

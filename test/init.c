@@ -17,8 +17,9 @@ void	dinit_player(void)
 	player.moveSpeed = 2.0;
 	player.rotationSpeed = 3 * (M_PI / 180);
 
-	player.p_coord.x = 240;
-	player.p_coord.y = 200;
+	player.p_coord.x = 237.931826;
+	player.p_coord.y = 110.503863;
+	player.rotationAngle = 6.021386;
 }
 
 void	dinit_map(t_game_data *data)

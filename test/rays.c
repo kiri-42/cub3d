@@ -144,9 +144,9 @@ void	draw_one_ray(t_game_data *data, double angle, int id)
 	found_horz_wall_hit(data, &fov);
 	found_vert_wall_hit(data, &fov);
 	if (fov.h_distance >= fov.v_distance || (fov.h_is_hit == false && fov.v_is_hit == true))
-		draw_line(map, player.p_coord.x, player.p_coord.y, fov.v_wall_hit.x, fov.v_wall_hit.y);
+		draw_line(map, player.p_coord, fov.v_wall_hit);
 	else
-		draw_line(map, player.p_coord.x, player.p_coord.y, fov.h_wall_hit.x, fov.h_wall_hit.y);
+		draw_line(map, player.p_coord, fov.h_wall_hit);
 }
 
 void	cast_all_rays(t_game_data *data)

@@ -18,8 +18,6 @@ int	dkey_hook(int keycode, t_game_data *data)
 	{
 		player.walkDirection = 1;
 		moveStep = player.walkDirection * player.moveSpeed;
-		printf("x:%f y:%f\n", player.p_coord.x, player.p_coord.y);
-		printf("x':%f y':%f\n", player.p_coord.x+cos(player.rotationAngle)*moveStep, player.p_coord.y+sin(player.rotationAngle)*moveStep);
 		new_x = player.p_coord.x + cos(player.rotationAngle) * moveStep;
 		new_y = player.p_coord.y + sin(player.rotationAngle) * moveStep;
 		if (!has_wall(data->map, new_x, new_y))
@@ -34,8 +32,6 @@ int	dkey_hook(int keycode, t_game_data *data)
 	{
 		player.walkDirection = -1;
 		moveStep = player.walkDirection * player.moveSpeed;
-		printf("x:%f y:%f\n", player.p_coord.x, player.p_coord.y);
-		printf("x':%f y':%f\n", player.p_coord.x+cos(player.rotationAngle)*moveStep, player.p_coord.y+sin(player.rotationAngle)*moveStep);
 		new_x = player.p_coord.x + cos(player.rotationAngle) * moveStep;
 		new_y = player.p_coord.y + sin(player.rotationAngle) * moveStep;
 		if (!has_wall(data->map, new_x, new_y))
@@ -56,7 +52,6 @@ int	dloop_hook(t_game_data *data)
 {
 	put_all_tile(data);
 	map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
-	// draw_line(map, player.x, player.y, player.x+cos(player.rotationAngle)*30, player.y+sin(player.rotationAngle)*30);
 	cast_all_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
 	return (0);

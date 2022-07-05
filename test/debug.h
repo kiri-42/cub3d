@@ -52,8 +52,6 @@ typedef struct s_fov{
 
 typedef struct s_player_data
 {
-	// double	x;
-	// double	y;
 	t_coord	p_coord;
 	void	*img;
 	int	radius;
@@ -81,6 +79,7 @@ void	dinit_map(t_game_data *data);
 void	dinit_player(void);
 void	put_all_tile(t_game_data *data);
 void	dloop_start(t_game_data *data);
-void	draw_line(t_img_data map, double x1, double y1, double x2, double y2);
+void	draw_line(t_img_data map, t_coord start, t_coord goal);
 bool	has_wall(char **map, double x, double y);
+void	cast_all_rays(t_game_data *data);
 #endif

@@ -11,7 +11,7 @@
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV (60 * (M_PI / 180))
-# define WALL_STRIP_WIDTH 10
+# define WALL_STRIP_WIDTH 1
 # define RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 # define LINE_RGB 0xFF0000

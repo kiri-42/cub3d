@@ -6,7 +6,7 @@
 
 # define ROWS 11
 # define COLS 15
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE

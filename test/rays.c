@@ -176,6 +176,8 @@ void	found_vert_wall_hit(t_game_data *data, t_fov *fov)
 void	draw_one_ray(t_game_data *data, double angle, int id)
 {
 	t_fov	fov;
+	t_coord	start;
+	t_coord goal;
 
 	ft_memset(&fov, 0, sizeof(t_fov));
 	fov.id = id;
@@ -183,10 +185,21 @@ void	draw_one_ray(t_game_data *data, double angle, int id)
 	fov.d = get_direction_of_line(fov.angle);
 	found_horz_wall_hit(data, &fov);
 	found_vert_wall_hit(data, &fov);
+	start.x = player.p_coord.x * MINIMAP_SCALE;
+	start.y = player.p_coord.y * MINIMAP_SCALE;
 	if (fov.h_distance >= fov.v_distance)
-		draw_line(map, player.p_coord, fov.v_wall_hit);
+	{
+		goal.x = fov.v_wall_hit.x * MINIMAP_SCALE;
+		goal.y = fov.v_wall_hit.y * MINIMAP_SCALE;
+		// draw_line(map, player.p_coord, fov.v_wall_hit);
+	}
 	else
-		draw_line(map, player.p_coord, fov.h_wall_hit);
+	{
+		goal.x = fov.h_wall_hit.x * MINIMAP_SCALE;
+		goal.y = fov.h_wall_hit.y * MINIMAP_SCALE;
+		// draw_line(map, player.p_coord, fov.h_wall_hit);
+	}
+	draw_line(data, start, goal, 0xFF0000);
 }
 
 void	cast_all_rays(t_game_data *data)

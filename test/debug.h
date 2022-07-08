@@ -7,6 +7,8 @@
 # define ROWS 11
 # define COLS 15
 # define TILE_SIZE 64
+# define MINIMAP_SCALE 0.2
+# define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
@@ -80,7 +82,7 @@ void	dinit_map(t_game_data *data);
 void	dinit_player(void);
 void	put_all_tile(t_game_data *data);
 void	dloop_start(t_game_data *data);
-void	draw_line(t_img_data map, t_coord start, t_coord goal);
+void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
 bool	has_wall(char **map, double x, double y);
 void	cast_all_rays(t_game_data *data);
 #endif

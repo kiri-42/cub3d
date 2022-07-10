@@ -54,7 +54,7 @@ int	dloop_hook(t_game_data *data)
 
 	i = 0;
 	while (i < WIDTH * HEIGHT)
-		map.addr[i++] = 0xFFFFFF;
+		map.addr[i++] = 0x696969;
 
 	put_all_tile(data);
 	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;

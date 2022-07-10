@@ -53,7 +53,7 @@ fclean : clean
 DBGSRC	= $(filter-out $(SRCDIR)/main.c,$(SRCS))
 DBGSRC	+= $(wildcard ./test/*.c)
 DBGOBJ	= $(DBGSRC:%.c=%.o)
-debug : fclean $(DBGOBJ)
+debug : $(DBGOBJ)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
 	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)

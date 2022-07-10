@@ -18,6 +18,20 @@ void	dset_map(char ***m)
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	};
 
+	// char map[ROWS][COLS] = {
+	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	// };
+
 	i = 0;
 	*m = malloc(sizeof(char *) * (ROWS + 1));
 	while (i < ROWS)
@@ -64,6 +78,8 @@ void	print_player_data(t_player_data player)
 
 void	print_fov_data(t_fov fov)
 {
-	printf("horz x:%f, horz y:%f horz distance:%f horz hit:%d\n", fov.h_wall_hit.x, fov.h_wall_hit.y, fov.h_distance, fov.h_is_hit);
-	printf("vert x:%f, vert y:%f vert distance:%f vert hit:%d\n", fov.v_wall_hit.x, fov.v_wall_hit.y, fov.v_distance, fov.v_is_hit);
+	printf("=========\n");
+	printf("horz x:%f, horz y:%f horz hit:%d\n", fov.h_wall_hit.x, fov.h_wall_hit.y, fov.h_is_hit);
+	printf("vert x:%f, vert y:%f vert hit:%d\n", fov.v_wall_hit.x, fov.v_wall_hit.y, fov.v_is_hit);
+	printf("distance:%f\n", fov.distance);
 }

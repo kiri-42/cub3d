@@ -47,8 +47,7 @@ typedef struct s_fov{
 	t_direction	d;
 	t_coord		h_wall_hit;
 	t_coord		v_wall_hit;
-	double		h_distance;
-	double		v_distance;
+	double		distance;
 	bool		h_is_hit;
 	bool		v_is_hit;
 }	t_fov;
@@ -85,4 +84,5 @@ void	dloop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
 bool	has_wall(char **map, double x, double y);
 void	cast_all_rays(t_game_data *data);
+void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 #endif

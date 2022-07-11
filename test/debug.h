@@ -7,7 +7,7 @@
 # define ROWS 11
 # define COLS 15
 # define TILE_SIZE 64
-# define MINIMAP_SCALE 0.2
+# define MINIMAP_SCALE 1
 # define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
 # define WIDTH COLS * TILE_SIZE

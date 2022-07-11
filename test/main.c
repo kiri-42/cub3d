@@ -4,6 +4,7 @@ int main()
 {
 	t_game_data data;
 
+	data.fov = malloc(sizeof(t_fov) * RAYS);
 	dset_map(&data.map);
 	dinit_map(&data);
 	dinit_player();

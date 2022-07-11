@@ -7,7 +7,7 @@
 # define ROWS 11
 # define COLS 15
 # define TILE_SIZE 64
-# define MINIMAP_SCALE 1
+# define MINIMAP_SCALE 0.2
 # define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
 # define WIDTH COLS * TILE_SIZE
@@ -28,29 +28,6 @@ typedef enum e_ud{
 	UP = 1,
 	DOWN = -1	
 }	t_ud;
-
-typedef struct s_coord{
-	double	x;
-	double	y;
-} t_coord;
-
-typedef struct s_direction{
-	bool	up;
-	bool	left;
-	bool	down;
-	bool	right;
-}	t_direction;
-
-typedef struct s_fov{
-	int			id;
-	double		angle;
-	t_direction	d;
-	t_coord		h_wall_hit;
-	t_coord		v_wall_hit;
-	double		distance;
-	bool		h_is_hit;
-	bool		v_is_hit;
-}	t_fov;
 
 typedef struct s_player_data
 {

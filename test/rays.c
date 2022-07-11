@@ -169,53 +169,50 @@ double	found_vert_wall_hit(t_game_data *data, t_fov *fov)
 		return (distance_between_points(player.p_coord.x, player.p_coord.y, fov->v_wall_hit.x, fov->v_wall_hit.y));
 }
 
-void	draw_one_ray(t_game_data *data, double angle, int id)
+void	calc_one_ray(t_game_data *data, t_fov *fov)
 {
-	t_fov	fov;
 	t_coord	start;
 	t_coord goal;
 	double	h_distance;
 	double	v_distance;
 
-	ft_memset(&fov, 0, sizeof(t_fov));
-	fov.id = id;
-	fov.angle = normalize_angle(angle);
-	fov.d = get_direction_of_line(fov.angle);
-	h_distance = found_horz_wall_hit(data, &fov);
-	v_distance = found_vert_wall_hit(data, &fov);
+	fov->d = get_direction_of_line(fov->angle);
+	h_distance = found_horz_wall_hit(data, fov);
+	v_distance = found_vert_wall_hit(data, fov);
 	start.x = player.p_coord.x * MINIMAP_SCALE;
 	start.y = player.p_coord.y * MINIMAP_SCALE;
 	if (h_distance >= v_distance)
 	{
-		fov.distance = v_distance;
-		goal.x = fov.v_wall_hit.x * MINIMAP_SCALE;
-		goal.y = fov.v_wall_hit.y * MINIMAP_SCALE;
+		fov->distance = v_distance;
+		goal.x = fov->v_wall_hit.x * MINIMAP_SCALE;
+		goal.y = fov->v_wall_hit.y * MINIMAP_SCALE;
 	}
 	else
 	{
-		fov.distance = h_distance;
-		goal.x = fov.h_wall_hit.x * MINIMAP_SCALE;
-		goal.y = fov.h_wall_hit.y * MINIMAP_SCALE;
+		fov->distance = h_distance;
+		goal.x = fov->h_wall_hit.x * MINIMAP_SCALE;
+		goal.y = fov->h_wall_hit.y * MINIMAP_SCALE;
 	}
-	render_3d_projection_wall(data, &fov);
+	fov->ray_goal.x = goal.x;
+	fov->ray_goal.y = goal.y;
+	render_3d_projection_wall(data, fov);
 	draw_line(data, start, goal, 0xFF0000);
 }
 
 void	cast_all_rays(t_game_data *data)
 {
-	double rayAngle;
-	int		column_id;
+	double	rayAngle;
 	size_t	i;
 
-	column_id = 0;
 	rayAngle = player.rotationAngle - (FOV / 2);
 	// rayAngle = player.rotationAngle + M_PI;
 	i = 0;
 	while (i < RAYS)
 	{
-		draw_one_ray(data, rayAngle, column_id);
+		data->fov[i].id = i;
+		data->fov[i].angle = normalize_angle(rayAngle);
+		calc_one_ray(data, &data->fov[i]);
 		rayAngle += (FOV / RAYS);
 		i++;
-		column_id++;
 	}
 }

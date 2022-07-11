@@ -31,6 +31,30 @@ typedef struct s_rgb
 	int	blue;
 }	t_rgb;
 
+typedef struct s_direction{
+	bool	up;
+	bool	left;
+	bool	down;
+	bool	right;
+}	t_direction;
+
+typedef struct s_coord{
+	double	x;
+	double	y;
+} t_coord;
+
+typedef struct s_fov{
+	int			id;
+	double		angle;
+	t_direction	d;
+	t_coord		h_wall_hit;
+	t_coord		v_wall_hit;
+	double		distance;
+	bool		h_is_hit;
+	bool		v_is_hit;
+	t_coord		ray_goal;
+}	t_fov;
+
 typedef struct s_game_data
 {
 	t_texture_path	tp;
@@ -39,6 +63,7 @@ typedef struct s_game_data
 	char			**map;
 	void			*mlx;
 	void			*win;
+	t_fov	*fov;
 }	t_game_data;
 
 void	check_arg(int ac, char **av);

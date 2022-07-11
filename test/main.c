@@ -1,9 +1,8 @@
 #include "debug.h"
 
-
-int main()
+int	main(void)
 {
-	t_game_data data;
+	t_game_data	data;
 
 	dset_map(&data.map);
 	dinit_map(&data);

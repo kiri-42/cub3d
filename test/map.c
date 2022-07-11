@@ -3,7 +3,7 @@
 void	paint_tile(int i, int j, int color)
 {
 	int	k;
-	int l;
+	int	l;
 	int	coord;
 
 	k = 0;
@@ -25,8 +25,8 @@ void	paint_tile(int i, int j, int color)
 
 void	put_all_tile(t_game_data *data)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < ROWS)

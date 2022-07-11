@@ -11,11 +11,11 @@ void	dinit_player(void)
 	player.p_coord.x = WIDTH / 2;
 	player.p_coord.y = HEIGHT / 2;
 	player.radius = 3;
-	player.turnDirection = 0;	/* -1 if left, +1 if right */
-	player.walkDirection = 0;	/* -1 if back, +1 if front */
-	player.rotationAngle = M_PI / 2;
-	player.moveSpeed = 2.0;
-	player.rotationSpeed = 3 * (M_PI / 180);
+	player.turn_direction = 0;	/* -1 if left, +1 if right */
+	player.walk_direction = 0;	/* -1 if back, +1 if front */
+	player.rotation_angle = M_PI / 2;
+	player.move_speed = 2.0;
+	player.rotation_speed = 3 * (M_PI / 180);
 
 	player.p_coord.x = 240;
 	player.p_coord.y = 200;

@@ -6,7 +6,7 @@ void	draw_line(t_img_data map, t_coord start, t_coord goal)
 	double	deltaX;
 	double	deltaY;
 	double	step;
-	
+
 	start.x = round(start.x);
 	start.y = round(start.y);
 	goal.x = round(goal.x);

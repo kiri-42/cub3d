@@ -31,7 +31,7 @@ void	render_all(t_game_data *data)
 {
 	all_whitewash(data);
 	cast_all_rays(data);
+	render_3d_projection_wall(data, data->fov);
 	put_all_tile(data);
 	draw_minimap_ray(data);
-	// render_3d_projection_wall(data, data->fov);
 }

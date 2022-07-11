@@ -47,12 +47,9 @@ typedef struct s_fov{
 	int			id;
 	double		angle;
 	t_direction	d;
-	t_coord		h_wall_hit;
-	t_coord		v_wall_hit;
 	double		distance;
-	bool		h_is_hit;
-	bool		v_is_hit;
 	t_coord		ray_goal;
+	bool		was_hit_vert;
 }	t_fov;
 
 typedef struct s_game_data
@@ -63,7 +60,7 @@ typedef struct s_game_data
 	char			**map;
 	void			*mlx;
 	void			*win;
-	t_fov	*fov;
+	t_fov			*fov;
 }	t_game_data;
 
 void	check_arg(int ac, char **av);

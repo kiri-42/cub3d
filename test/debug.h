@@ -2,15 +2,18 @@
 # define DEBUG_H
 
 # include "cub3d.h"
+#include <float.h>
 
 # define ROWS 11
 # define COLS 15
-# define TILE_SIZE 32
+# define TILE_SIZE 64
+# define MINIMAP_SCALE 1
+# define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV (60 * (M_PI / 180))
-# define WALL_STRIP_WIDTH 10
+# define WALL_STRIP_WIDTH 1
 # define RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 # define LINE_RGB 0xFF0000
@@ -49,8 +52,7 @@ typedef struct s_fov
 	t_direction	d;
 	t_coord		h_wall_hit;
 	t_coord		v_wall_hit;
-	double		h_distance;
-	double		v_distance;
+	double		distance;
 	bool		h_is_hit;
 	bool		v_is_hit;
 }	t_fov;
@@ -84,7 +86,9 @@ void	dinit_map(t_game_data *data);
 void	dinit_player(void);
 void	put_all_tile(t_game_data *data);
 void	dloop_start(t_game_data *data);
-void	draw_line(t_img_data map, t_coord start, t_coord goal);
+void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
 bool	has_wall(char **map, double x, double y);
 void	cast_all_rays(t_game_data *data);
+void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
+
 #endif

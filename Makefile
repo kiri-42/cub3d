@@ -12,7 +12,8 @@ SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
 OBJS	=	$(SRCS:%.c=%.o)
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror -MMD -MP 
+CFLAGS = -MMD -MP
 LIBFTDIR = ./libft
 LIBFT = ft
 MLXDIR	=	./minilibx
@@ -45,6 +46,8 @@ fclean : clean
 	make fclean -C ./libft
 	make clean -C $(MLXDIR)
 	rm -rf $(NAME)
+	rm -rf $(wildcard ./src/*.d)
+	rm -rf $(wildcard ./test/*.d)
 	rm -rf $(wildcard ./test/*.o)
 
 DBGSRC	= $(filter-out $(SRCDIR)/main.c,$(SRCS))

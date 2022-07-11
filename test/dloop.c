@@ -50,8 +50,14 @@ int	dkey_hook(int keycode, t_game_data *data)
 
 int	dloop_hook(t_game_data *data)
 {
+	int	i;
+
+	i = 0;
+	while (i < WIDTH * HEIGHT)
+		map.addr[i++] = 0x696969;
+
 	put_all_tile(data);
-	map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
+	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
 	cast_all_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
 	return (0);
@@ -59,7 +65,8 @@ int	dloop_hook(t_game_data *data)
 
 void	dloop_start(t_game_data *data)
 {
-	mlx_key_hook(data->win, dkey_hook, data);
+	// mlx_key_hook(data->win, dkey_hook, data);
+	mlx_hook(data->win, 2, 1L << 0, dkey_hook, data);
 	mlx_hook(data->win, 17, 0, dclose_window, NULL);
 	mlx_loop_hook(data->mlx, dloop_hook, data);
 	mlx_loop(data->mlx);

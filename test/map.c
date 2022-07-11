@@ -3,7 +3,7 @@
 void	paint_tile(int i, int j, int color)
 {
 	int	k;
-	int l;
+	int	l;
 	int	coord;
 
 	k = 0;
@@ -59,7 +59,7 @@ void	paint_tile(int i, int j, int color)
 
 bool	has_wall2(char **map, double x, double y)
 {
-	int map_x;
+	int	map_x;
 	int	map_y;
 
 	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
@@ -69,7 +69,6 @@ bool	has_wall2(char **map, double x, double y)
 	// printf("x:%f y:%f\n", map_x, map_y);
 	return (map[map_y][map_x] == 1);
 }
-
 
 void	put_all_tile(t_game_data *data)
 {
@@ -95,5 +94,4 @@ void	put_all_tile(t_game_data *data)
 		}
 		y++;
 	}
-	
 }

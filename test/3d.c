@@ -15,7 +15,10 @@ int	color(t_fov *fov, int color, double distance)
 	r *= dark;
 	g *= dark;
 	b *= dark;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8821e917b5e53ab0fe14f2ebb05c74cd45b8e03
 	if (r > 0xFF)
 		r = 0xFF;
 	if (g > 0xFF)
@@ -87,7 +90,7 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 	while (i < RAYS)
 	{
 		distance_projection_plane = (WIDTH / 2) / tan(FOV / 2);
-		ray_distance = fov[i].distance * cos(fov[i].angle - player.rotationAngle);
+		ray_distance = fov[i].distance * cos(fov[i].angle - player.rotation_angle);
 		wall_strip_height = (TILE_SIZE / ray_distance) * distance_projection_plane;
 
 		start.x = fov[i].id * WALL_STRIP_WIDTH;

@@ -44,7 +44,7 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 	t_coord	goal;
 
 	distance_projection_plane = (WIDTH / 2) / tan(FOV / 2);
-	ray_distance = fov->distance * cos(fov->angle - player.rotationAngle);
+	ray_distance = fov->distance * cos(fov->angle - player.rotation_angle);
 	wall_strip_height = (TILE_SIZE / ray_distance) * distance_projection_plane;
 	start.x = fov->id * WALL_STRIP_WIDTH;
 	start.y = (HEIGHT / 2) - (wall_strip_height / 2);

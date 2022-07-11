@@ -201,18 +201,18 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 
 void	cast_all_rays(t_game_data *data)
 {
-	double	rayAngle;
+	double	ray_angle;
 	size_t	i;
 
-	rayAngle = player.rotationAngle - (FOV / 2);
-	// rayAngle = player.rotationAngle + M_PI;
+	ray_angle = player.rotation_angle - (FOV / 2);
+	// ray_angle = player.rotationAngle + M_PI;
 	i = 0;
 	while (i < RAYS)
 	{
 		data->fov[i].id = i;
-		data->fov[i].angle = normalize_angle(rayAngle);
+		data->fov[i].angle = normalize_angle(ray_angle);
 		calc_one_ray(data, &data->fov[i]);
-		rayAngle += (FOV / RAYS);
+		ray_angle += (FOV / RAYS);
 		i++;
 	}
 }

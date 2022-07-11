@@ -20,7 +20,7 @@ void	dinit_player(void)
 	player.radius = 3;
 	player.turn_direction = 0;	/* -1 if left, +1 if right */
 	player.walk_direction = 0;	/* -1 if back, +1 if front */
-	player.rotationAngle = M_PI / 2;
+	player.rotation_angle = M_PI / 2;
 	player.move_speed = 5.0;
 	player.rotation_speed = 3 * (M_PI / 180);
 }

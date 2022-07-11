@@ -73,7 +73,7 @@ void	print_map_data(char **map)
 
 void	print_player_data(t_player_data player)
 {
-	printf("x:%f, y:%f, angle:%f\n", player.p_coord.x, player.p_coord.y, player.rotationAngle);
+	printf("x:%f, y:%f, angle:%f\n", player.p_coord.x, player.p_coord.y, player.rotation_angle);
 }
 
 void	print_fov_data(t_fov fov)

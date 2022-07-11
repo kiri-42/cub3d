@@ -7,7 +7,7 @@ int	dclose_window(void)
 
 int	dkey_hook(int keycode, t_game_data *data)
 {
-	double	moveStep;
+	double	move_step;
 	double	new_x;
 	double	new_y;
 
@@ -17,9 +17,9 @@ int	dkey_hook(int keycode, t_game_data *data)
 	else if (keycode == KEY_W)
 	{
 		player.walk_direction = 1;
-		moveStep = player.walk_direction * player.move_speed;
-		new_x = player.p_coord.x + cos(player.rotationAngle) * moveStep;
-		new_y = player.p_coord.y + sin(player.rotationAngle) * moveStep;
+		move_step = player.walk_direction * player.move_speed;
+		new_x = player.p_coord.x + cos(player.rotation_angle) * move_step;
+		new_y = player.p_coord.y + sin(player.rotation_angle) * move_step;
 		if (!has_wall(data->map, new_x, new_y))
 		{
 			player.p_coord.x = new_x;
@@ -31,9 +31,9 @@ int	dkey_hook(int keycode, t_game_data *data)
 	else if (keycode == KEY_S)
 	{
 		player.walk_direction = -1;
-		moveStep = player.walk_direction * player.move_speed;
-		new_x = player.p_coord.x + cos(player.rotationAngle) * moveStep;
-		new_y = player.p_coord.y + sin(player.rotationAngle) * moveStep;
+		move_step = player.walk_direction * player.move_speed;
+		new_x = player.p_coord.x + cos(player.rotation_angle) * move_step;
+		new_y = player.p_coord.y + sin(player.rotation_angle) * move_step;
 		if (!has_wall(data->map, new_x, new_y))
 		{
 			player.p_coord.x = new_x;
@@ -42,7 +42,7 @@ int	dkey_hook(int keycode, t_game_data *data)
 	}
 	else if (keycode == KEY_D)
 		player.turn_direction = 1;
-	player.rotationAngle += player.turn_direction * player.rotation_speed;
+	player.rotation_angle += player.turn_direction * player.rotation_speed;
 	player.turn_direction = 0;
 	player.walk_direction = 0;
 	return (0);

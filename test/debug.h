@@ -36,7 +36,7 @@ typedef struct s_player_data
 	int		radius;
 	int		turn_direction;	/* -1 if left, +1 if right */
 	int		walk_direction;	/* -1 if back, +1 if front */
-	double	rotationAngle;
+	double	rotation_angle;
 	double	move_speed;
 	double	rotation_speed;
 }	t_player_data;

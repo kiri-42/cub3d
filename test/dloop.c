@@ -7,11 +7,11 @@ int	dclose_window(void)
 
 int	dkey_hook(int keycode, t_game_data *data)
 {
-	(void)data;
-	double moveStep;
-	double new_x;
-	double new_y;
+	double	moveStep;
+	double	new_x;
+	double	new_y;
 
+	(void)data;
 	if (keycode == KEY_ESC)
 		close_window();
 	else if (keycode == KEY_W)
@@ -55,7 +55,6 @@ int	dloop_hook(t_game_data *data)
 	i = 0;
 	while (i < WIDTH * HEIGHT)
 		map.addr[i++] = 0x696969;
-
 	put_all_tile(data);
 	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
 	cast_all_rays(data);

@@ -8,12 +8,12 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-double distance_between_points(double x1, double y1, double x2, double y2)
+double	distance_between_points(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-t_direction get_direction_of_line(double angle)
+t_direction	get_direction_of_line(double angle)
 {
 	t_direction	d;
 
@@ -31,7 +31,7 @@ t_direction get_direction_of_line(double angle)
 
 t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord intercept, t_coord step)
 {
-	t_coord touch;
+	t_coord	touch;
 	t_coord	wall_hit;
 	double	next;
 
@@ -48,7 +48,7 @@ t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 			*hit = true;
 			wall_hit.x = touch.x;
 			wall_hit.y = touch.y;
-			break;
+			break ;
 		}
 		else
 		{
@@ -61,7 +61,7 @@ t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 
 t_coord	get_vert_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord intercept, t_coord step)
 {
-	t_coord touch;
+	t_coord	touch;
 	t_coord	wall_hit;
 	double	next;
 
@@ -78,7 +78,7 @@ t_coord	get_vert_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 			*hit = true;
 			wall_hit.x = touch.x;
 			wall_hit.y = touch.y;
-			break;
+			break ;
 		}
 		else
 		{
@@ -113,7 +113,7 @@ t_coord	get_vert_intercept(double angle, t_direction d)
 
 t_coord	get_horz_step(double angle, t_coord intercept, t_direction d)
 {
-	t_coord step;
+	t_coord	step;
 
 	step.y = TILE_SIZE;
 	if (d.up == 1)
@@ -128,7 +128,7 @@ t_coord	get_horz_step(double angle, t_coord intercept, t_direction d)
 
 t_coord	get_vert_step(double angle, t_coord intercept, t_direction d)
 {
-	t_coord step;
+	t_coord	step;
 
 	step.x = TILE_SIZE;
 	if (d.left == true)
@@ -172,7 +172,7 @@ double	found_vert_wall_hit(t_game_data *data, t_fov *fov)
 void	calc_one_ray(t_game_data *data, t_fov *fov)
 {
 	t_coord	start;
-	t_coord goal;
+	t_coord	goal;
 	double	h_distance;
 	double	v_distance;
 

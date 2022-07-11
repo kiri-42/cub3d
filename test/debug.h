@@ -2,7 +2,7 @@
 # define DEBUG_H
 
 # include "cub3d.h"
-#include <float.h>
+# include <float.h>
 
 # define ROWS 11
 # define COLS 15
@@ -20,9 +20,9 @@
 
 # define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
 
-#ifndef M_PI
+# ifndef M_PI
 # define M_PI 3.14159265358979323846
-#endif
+# endif
 
 typedef enum e_ud{
 	UP = 1,
@@ -33,9 +33,9 @@ typedef struct s_player_data
 {
 	t_coord	p_coord;
 	void	*img;
-	int	radius;
-	int	turn_direction;	/* -1 if left, +1 if right */
-	int	walk_direction;	/* -1 if back, +1 if front */
+	int		radius;
+	int		turn_direction;	/* -1 if left, +1 if right */
+	int		walk_direction;	/* -1 if back, +1 if front */
 	double	rotationAngle;
 	double	move_speed;
 	double	rotation_speed;

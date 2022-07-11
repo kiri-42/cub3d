@@ -6,7 +6,7 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 	double	deltaX;
 	double	deltaY;
 	double	step;
-	
+
 	start.x = floor(start.x);
 	start.y = floor(start.y);
 	goal.x = floor(goal.x);

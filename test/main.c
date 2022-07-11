@@ -1,8 +1,8 @@
 #include "debug.h"
 
-int main()
+int	main(void)
 {
-	t_game_data data;
+	t_game_data	data;
 
 	data.fov = malloc(sizeof(t_fov) * RAYS);
 	dset_map(&data.map);

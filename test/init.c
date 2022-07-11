@@ -27,7 +27,7 @@ void	dinit_player(void)
 
 void	dinit_map(t_game_data *data)
 {
-	int win_x;
+	int	win_x;
 	int	win_y;
 
 	data->mlx = mlx_init();

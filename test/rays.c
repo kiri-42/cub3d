@@ -196,7 +196,7 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 	fov->ray_goal.x = goal.x;
 	fov->ray_goal.y = goal.y;
 	render_3d_projection_wall(data, fov);
-	draw_line(data, start, goal, 0xFF0000);
+	// draw_line(data, start, goal, 0xFF0000);
 }
 
 void	cast_all_rays(t_game_data *data)

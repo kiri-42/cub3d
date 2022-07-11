@@ -50,14 +50,8 @@ int	dkey_hook(int keycode, t_game_data *data)
 
 int	dloop_hook(t_game_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < WIDTH * HEIGHT)
-		map.addr[i++] = 0x696969;
-	put_all_tile(data);
+	render_all(data);
 	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
-	cast_all_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
 	return (0);
 }

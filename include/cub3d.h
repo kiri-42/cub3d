@@ -143,6 +143,14 @@ void	set_color(t_game_data *gd, int *line_i);
 bool	is_path_line(char *str);
 bool	is_color_line(char *str);
 void	free_cubfile(t_game_data *gd);
+void	check_game_data(t_game_data *gd);
+void	is_initialized_texture_path(t_texture_path tp);
+void	is_initialized_rgb(t_rgb color);
+void	is_initialized_map(char **map);
+void	check_wall(t_game_data *gd);
+void	is_invalid_rgb(t_rgb color);
+void	is_open_texture_path(t_texture_path tp);
+
 
 //map.c
 void	init_map(t_game_data *data);

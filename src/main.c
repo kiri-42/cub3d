@@ -10,6 +10,8 @@ int	main(int ac, char **av)
 	set_game_data(&gd);
 	free_cubfile(&gd);
 	printf("%s %d\n", __FILE__, __LINE__);
+	check_game_data(&gd);
+	printf("%s %d\n", __FILE__, __LINE__);
 
 	gd.fov = malloc(sizeof(t_fov) * RAYS);
 	// printf("%s %d", __FILE__, __LINE__);

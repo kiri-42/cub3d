@@ -2,14 +2,15 @@
 
 int	main(int ac, char **av)
 {
-	t_game_data	data;
+	t_game_data	gd;
 
 	check_arg(ac, av);
-	data.fov = malloc(sizeof(t_fov) * RAYS);
-	dset_map(&data.map);
-	dinit_map(&data);
+	init_game_data(&gd);
+	gd.fov = malloc(sizeof(t_fov) * RAYS);
+	dset_map(&gd.map);
+	dinit_map(&gd);
 	dinit_player();
-	put_all_tile(&data);
-	dloop_start(&data);
+	put_all_tile(&gd);
+	dloop_start(&gd);
 	return (0);
 }

@@ -114,8 +114,7 @@ t_img_data		map;
 t_player_data	player;
 
 void	check_arg(int ac, char **av);
-
-void	check_arg(int ac, char **av);
+void	init_game_data(t_game_data *gd);
 
 //map.c
 void	init_map(t_game_data *data);

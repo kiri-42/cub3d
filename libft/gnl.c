@@ -64,7 +64,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	nl = NULL;
 	rc = 0;
-	buf = (char *)malloc(sizeof(char) * (size_t)BUFFER_SIZE + 1);
+	buf = (char *)x_malloc(sizeof(char) * (size_t)BUFFER_SIZE + 1);
 	nl = ft_strchr_gnl(line[fd], '\n');
 	while (!nl && buf)
 	{

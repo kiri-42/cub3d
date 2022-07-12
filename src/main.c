@@ -8,7 +8,7 @@ int	main(int ac, char **av)
 	init_game_data(&gd);
 	read_cubfile(&gd, av[1]);
 	set_game_data(&gd);
-
+	free_cubfile(&gd);
 	printf("%s %d\n", __FILE__, __LINE__);
 
 	gd.fov = malloc(sizeof(t_fov) * RAYS);

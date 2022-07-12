@@ -1,11 +1,17 @@
 #include "debug.h"
 #include <string.h>
 
+int	to_chr_index(t_coord coord)
+{
+	return ((int)round(coord.y) * WIDTH + (int)round(coord.x));
+}
+
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 {
 	double	delta_x;
 	double	delta_y;
 	double	step;
+	int		index;
 
 	start.x = floor(start.x);
 	start.y = floor(start.y);
@@ -18,15 +24,16 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 	delta_y /= step;
 	while (fabs(goal.x - start.x) > 0.01 || fabs(goal.y - start.y) > 0.01)
 	{
-		// printf("%f %f %f %f deltax:%f, deltay:%f\n", start.x, start.y, goal.x, goal.y, delta_x, delta_y);
-		if (TO_COORD(start.x, start.y) >= 0 && TO_COORD(start.x, start.y) <= WIDTH * HEIGHT)
-			map.addr[TO_COORD(start.x, start.y)] = color;
+		index = to_chr_index(start);
+		if (index >= 0 && index <= WIDTH * HEIGHT)
+			map.addr[index] = color;
 		start.x += delta_x;
 		start.y += delta_y;
 	}
-	if ((TO_COORD(start.x, start.y) >= 0 && TO_COORD(start.x, start.y) <= WIDTH * HEIGHT))
+	index = to_chr_index(start);
+	if ((index >= 0 && index <= WIDTH * HEIGHT))
 	{
-		if (map.addr[TO_COORD(start.x, start.y)] == 0xFFFFFF)
-			map.addr[TO_COORD(start.x, start.y)] = color;
+		if (map.addr[index] == 0xFFFFFF)
+			map.addr[index] = color;
 	}
 }

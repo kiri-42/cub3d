@@ -7,6 +7,7 @@
 # include <stdbool.h>
 # include "libft.h"
 # include "mlx.h"
+# include <float.h>
 
 # define TITLE "cub3D"
 
@@ -15,6 +16,26 @@
 # define KEY_A 0x0061
 # define KEY_S 0x0073
 # define KEY_D 0x0064
+
+# define ROWS 11
+# define COLS 15
+# define TILE_SIZE 64
+# define MINIMAP_SCALE 0.2
+# define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
+
+# define WIDTH COLS * TILE_SIZE
+# define HEIGHT ROWS * TILE_SIZE
+# define FOV (60 * (M_PI / 180))
+# define WALL_STRIP_WIDTH 1
+# define RAYS (WIDTH / WALL_STRIP_WIDTH)
+
+# define LINE_RGB 0xFF0000
+
+# define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
+
+# ifndef M_PI
+# define M_PI 3.14159265358979323846
+# endif
 
 typedef struct s_texture_path
 {
@@ -63,41 +84,6 @@ typedef struct s_game_data
 	t_fov			*fov;
 }	t_game_data;
 
-void	check_arg(int ac, char **av);
-
-//map.c
-void	init_map(t_game_data *data);
-
-//loop.c
-void	loop_start(t_game_data *data);
-
-//hook.c
-int		close_window(void);
-int		key_hook(int keycode, t_game_data *data);
-
-# include "cub3d.h"
-# include <float.h>
-
-# define ROWS 11
-# define COLS 15
-# define TILE_SIZE 64
-# define MINIMAP_SCALE 0.2
-# define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
-
-# define WIDTH COLS * TILE_SIZE
-# define HEIGHT ROWS * TILE_SIZE
-# define FOV (60 * (M_PI / 180))
-# define WALL_STRIP_WIDTH 1
-# define RAYS (WIDTH / WALL_STRIP_WIDTH)
-
-# define LINE_RGB 0xFF0000
-
-# define TO_COORD(X, Y) ((int)round(Y) * WIDTH + (int)round(X))
-
-# ifndef M_PI
-# define M_PI 3.14159265358979323846
-# endif
-
 typedef enum e_ud{
 	UP = 1,
 	DOWN = -1
@@ -126,6 +112,18 @@ typedef struct s_img_data
 
 t_img_data		map;
 t_player_data	player;
+
+void	check_arg(int ac, char **av);
+
+//map.c
+void	init_map(t_game_data *data);
+
+//loop.c
+void	loop_start(t_game_data *data);
+
+//hook.c
+int		close_window(void);
+int		key_hook(int keycode, t_game_data *data);
 
 void	dset_map(char ***m);
 void	dinit_map(t_game_data *data);

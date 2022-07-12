@@ -7,6 +7,7 @@ int	main(int ac, char **av)
 	check_arg(ac, av);
 	init_game_data(&gd);
 	read_cubfile(&gd, av[1]);
+	set_game_data(&gd);
 
 	printf("%s %d\n", __FILE__, __LINE__);
 

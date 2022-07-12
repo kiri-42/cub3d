@@ -40,6 +40,8 @@
 # define M_PI 3.14159265358979323846
 # endif
 
+# define PREFIX_SIZE 2
+
 typedef struct s_texture_path
 {
 	char	*no_path;
@@ -115,12 +117,31 @@ typedef struct s_img_data
 	int		endian;
 }	t_img_data;
 
+typedef struct s_can_read_color
+{
+	bool	floor;
+	bool	ceiling;
+}	t_can_read_color;
+
+typedef struct s_can_read_texture
+{
+	bool	north;
+	bool	south;
+	bool	west;
+	bool	east;
+}	t_can_read_texture;
+
 t_img_data		map;
 t_player_data	player;
 
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
+void	set_game_data(t_game_data *gd);
+void	set_texture_path(t_game_data *gd, int *line_i);
+void	set_color(t_game_data *gd, int *line_i);
+bool	is_path_line(char *str);
+bool	is_color_line(char *str);
 
 //map.c
 void	init_map(t_game_data *data);

@@ -115,6 +115,8 @@ t_player_data	player;
 
 void	check_arg(int ac, char **av);
 
+void	check_arg(int ac, char **av);
+
 //map.c
 void	init_map(t_game_data *data);
 

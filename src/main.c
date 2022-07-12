@@ -1,9 +1,10 @@
 #include "cub3d.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game_data	data;
 
+	check_arg(ac, av);
 	data.fov = malloc(sizeof(t_fov) * RAYS);
 	dset_map(&data.map);
 	dinit_map(&data);

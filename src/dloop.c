@@ -13,7 +13,7 @@ int	dkey_hook(int keycode, t_game_data *data)
 
 	(void)data;
 	if (keycode == KEY_ESC)
-		close_window();
+		dclose_window();
 	else if (keycode == KEY_W)
 	{
 		player.walk_direction = 1;

@@ -1,14 +1,14 @@
-#include "cub3d.h"
+#include "debug.h"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	// t_game_data data;
+	t_game_data	data;
 
-	// check_arg(ac, av);
-	(void)ac;
-	(void)av;
-	printf("aaa\n");
-	// init_map(&data);
-	// loop_start(&data);
+	data.fov = malloc(sizeof(t_fov) * RAYS);
+	dset_map(&data.map);
+	dinit_map(&data);
+	dinit_player();
+	put_all_tile(&data);
+	dloop_start(&data);
 	return (0);
 }

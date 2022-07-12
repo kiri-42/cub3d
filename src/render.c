@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 void	all_whitewash(t_game_data *data)
 {

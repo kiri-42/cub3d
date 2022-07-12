@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 static void	dinit_map_data(t_game_data *data)
 {

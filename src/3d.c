@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 int	color(t_fov *fov, int color, double distance)
 {

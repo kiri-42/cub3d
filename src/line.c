@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 #include <string.h>
 
 int	to_chr_index(t_coord coord)

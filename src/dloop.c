@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 int	dclose_window(void)
 {

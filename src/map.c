@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 void	paint_tile(int i, int j, int color)
 {

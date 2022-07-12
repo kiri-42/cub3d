@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 void	dset_map(char ***m)
 {

@@ -8,6 +8,9 @@
 # include "libft.h"
 # include "mlx.h"
 # include <float.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 # define TITLE "cub3D"
 
@@ -78,6 +81,8 @@ typedef struct s_game_data
 	t_texture_path	tp;
 	t_rgb			floor_color;
 	t_rgb			ceiling_color;
+	int				cubfile_linage;
+	char			**cubfile;
 	char			**map;
 	void			*mlx;
 	void			*win;
@@ -115,6 +120,7 @@ t_player_data	player;
 
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);
+void	read_cubfile(t_game_data *gd, char *cubfile_name);
 
 //map.c
 void	init_map(t_game_data *data);

@@ -93,10 +93,10 @@ t_coord	get_horz_intercept(double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.y = floor(player.p_coord.y / TILE_SIZE) * TILE_SIZE;
+	intercept.y = floor(player.pos.y / TILE_SIZE) * TILE_SIZE;
 	if (d.down == 1)
 		intercept.y += TILE_SIZE;
-	intercept.x = player.p_coord.x + (intercept.y - player.p_coord.y) / tan(angle);
+	intercept.x = player.pos.x + (intercept.y - player.pos.y) / tan(angle);
 	return (intercept);
 }
 
@@ -104,10 +104,10 @@ t_coord	get_vert_intercept(double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.x = floor(player.p_coord.x / TILE_SIZE) * TILE_SIZE;
+	intercept.x = floor(player.pos.x / TILE_SIZE) * TILE_SIZE;
 	if (d.right == true)
 		intercept.x += TILE_SIZE;
-	intercept.y = player.p_coord.y + (intercept.x - player.p_coord.x) * tan(angle);
+	intercept.y = player.pos.y + (intercept.x - player.pos.x) * tan(angle);
 	return (intercept);
 }
 
@@ -153,7 +153,7 @@ double	found_horz_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	if (is_hit == false)
 		return (DBL_MAX);
 	else
-		return (distance_between_points(player.p_coord.x, player.p_coord.y, coord->x, coord->y));
+		return (distance_between_points(player.pos.x, player.pos.y, coord->x, coord->y));
 }
 
 double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
@@ -168,7 +168,7 @@ double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	if (is_hit == false)
 		return (DBL_MAX);
 	else
-		return (distance_between_points(player.p_coord.x, player.p_coord.y, coord->x, coord->y));
+		return (distance_between_points(player.pos.x, player.pos.y, coord->x, coord->y));
 }
 
 void	calc_one_ray(t_game_data *data, t_fov *fov)

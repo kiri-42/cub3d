@@ -73,7 +73,7 @@ void	print_map_data(char **map)
 
 void	print_player_data(t_player_data player)
 {
-	printf("x:%f, y:%f, angle:%f\n", player.p_coord.x, player.p_coord.y, player.rotation_angle);
+	printf("x:%f, y:%f, angle:%f\n", player.pos.x, player.pos.y, player.rotation_angle);
 }
 
 // void	print_fov_data(t_fov fov)
@@ -83,3 +83,9 @@ void	print_player_data(t_player_data player)
 // 	printf("vert x:%f, vert y:%f\n", fov.v_wall_hit.x, fov.v_wall_hit.y);
 // 	printf("distance:%f\n", fov.distance);
 // }
+
+void	init_north_tex(t_game_data *data, t_imgs *img)
+{
+	img->wall_north.ptr = mlx_xpm_file_to_image(data->mlx, "./texture/wall_north.xpm", &img->wall_north.width, &img->wall_north.height);
+	img->wall_north.addr = mlx_get_data_addr(img->wall_north.ptr, &img->wall_north.bits_per_pixel, &img->wall_north.line_lenght, &img->wall_north.endian);
+}

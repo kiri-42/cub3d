@@ -5,6 +5,7 @@
 # include <string.h>
 # include <math.h>
 # include <stdbool.h>
+# include <float.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -15,6 +16,39 @@
 # define KEY_A 0x0061
 # define KEY_S 0x0073
 # define KEY_D 0x0064
+
+typedef struct s_coord{
+	double	x;
+	double	y;
+} t_coord;
+
+typedef struct s_player_data
+{
+	t_coord	pos;
+	void	*img;
+	int		radius;
+	int		turn_direction;	/* -1 if left, +1 if right */
+	int		walk_direction;	/* -1 if back, +1 if front */
+	double	rotation_angle;
+	double	move_speed;
+	double	rotation_speed;
+}	t_player_data;
+
+typedef struct s_img_data
+{
+	void	*ptr;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img_data;
+
+typedef struct s_imgs
+{
+	t_img_data	wall_north;
+}	t_imgs;
 
 typedef struct s_texture_path
 {
@@ -38,11 +72,6 @@ typedef struct s_direction{
 	bool	right;
 }	t_direction;
 
-typedef struct s_coord{
-	double	x;
-	double	y;
-} t_coord;
-
 typedef struct s_fov{
 	int			id;
 	double		angle;
@@ -61,6 +90,7 @@ typedef struct s_game_data
 	void			*mlx;
 	void			*win;
 	t_fov			*fov;
+	t_imgs			imgs;
 }	t_game_data;
 
 void	check_arg(int ac, char **av);
@@ -75,8 +105,7 @@ void	loop_start(t_game_data *data);
 int		close_window(void);
 int		key_hook(int keycode, t_game_data *data);
 
-# include "cub3d.h"
-# include <float.h>
+
 
 # define ROWS 11
 # define COLS 15
@@ -98,32 +127,6 @@ int		key_hook(int keycode, t_game_data *data);
 # define M_PI 3.14159265358979323846
 # endif
 
-typedef enum e_ud{
-	UP = 1,
-	DOWN = -1
-}	t_ud;
-
-typedef struct s_player_data
-{
-	t_coord	p_coord;
-	void	*img;
-	int		radius;
-	int		turn_direction;	/* -1 if left, +1 if right */
-	int		walk_direction;	/* -1 if back, +1 if front */
-	double	rotation_angle;
-	double	move_speed;
-	double	rotation_speed;
-}	t_player_data;
-
-typedef struct s_img_data
-{
-	void	*img;
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-}	t_img_data;
-
 t_img_data		map;
 t_player_data	player;
 
@@ -137,5 +140,7 @@ bool	has_wall(char **map, double x, double y);
 void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
+
+void	init_north_tex(t_game_data *data, t_imgs *img);
 
 #endif

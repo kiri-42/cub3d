@@ -18,12 +18,12 @@ int	dkey_hook(int keycode, t_game_data *data)
 	{
 		player.walk_direction = 1;
 		move_step = player.walk_direction * player.move_speed;
-		new_x = player.p_coord.x + cos(player.rotation_angle) * move_step;
-		new_y = player.p_coord.y + sin(player.rotation_angle) * move_step;
+		new_x = player.pos.x + cos(player.rotation_angle) * move_step;
+		new_y = player.pos.y + sin(player.rotation_angle) * move_step;
 		if (!has_wall(data->map, new_x, new_y))
 		{
-			player.p_coord.x = new_x;
-			player.p_coord.y = new_y;
+			player.pos.x = new_x;
+			player.pos.y = new_y;
 		}
 	}
 	else if (keycode == KEY_A)
@@ -32,12 +32,12 @@ int	dkey_hook(int keycode, t_game_data *data)
 	{
 		player.walk_direction = -1;
 		move_step = player.walk_direction * player.move_speed;
-		new_x = player.p_coord.x + cos(player.rotation_angle) * move_step;
-		new_y = player.p_coord.y + sin(player.rotation_angle) * move_step;
+		new_x = player.pos.x + cos(player.rotation_angle) * move_step;
+		new_y = player.pos.y + sin(player.rotation_angle) * move_step;
 		if (!has_wall(data->map, new_x, new_y))
 		{
-			player.p_coord.x = new_x;
-			player.p_coord.y = new_y;
+			player.pos.x = new_x;
+			player.pos.y = new_y;
 		}
 	}
 	else if (keycode == KEY_D)
@@ -52,7 +52,7 @@ int	dloop_hook(t_game_data *data)
 {
 	render_all(data);
 	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
-	mlx_put_image_to_window(data->mlx, data->win, map.img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->win, map.ptr, 0, 0);
 	return (0);
 }
 

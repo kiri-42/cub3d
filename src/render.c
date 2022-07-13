@@ -16,8 +16,8 @@ void	draw_minimap_ray(t_game_data *data)
 	size_t	i;
 
 	i = 0;
-	start.x = player.p_coord.x * MINIMAP_SCALE;
-	start.y = player.p_coord.y * MINIMAP_SCALE;
+	start.x = player.pos.x * MINIMAP_SCALE;
+	start.y = player.pos.y * MINIMAP_SCALE;
 	while (i < RAYS)
 	{
 		goal.x = data->fov[i].ray_goal.x;

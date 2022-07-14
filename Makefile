@@ -1,18 +1,11 @@
 NAME = cub3D
 UNAME	=	$(shell uname)
 
-SRC =	main.c \
-		check_arg.c \
-		map.c\
-		loop.c\
-		hook.c
-		
-SRCDIR = ./src
-SRCS	=	$(addprefix $(SRCDIR)/, $(SRC))
-OBJS	=	$(SRCS:%.c=%.o)
+DBGSRC	= $(wildcard ./src/*.c) #あとでわける
+DBGOBJ	= $(DBGSRC:%.c=%.o)
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -MMD -MP 
+# CFLAGS = -Wall -Wextra -Werror -MMD -MP
 CFLAGS = -MMD -MP
 LIBFTDIR = ./libft
 LIBFT = ft
@@ -30,33 +23,24 @@ endif
 .c.o :
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME) : $(OBJS)
+$(NAME) : $(DBGOBJ)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(LFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 all : $(NAME)
 
 clean :
 	make clean -C ./libft
 	make clean -C $(MLXDIR)
-	rm -rf $(OBJS)
+	rm -rf $(DBGOBJ)
 
 fclean : clean
 	make fclean -C ./libft
 	make clean -C $(MLXDIR)
 	rm -rf $(NAME)
 	rm -rf $(wildcard ./src/*.d)
-	rm -rf $(wildcard ./test/*.d)
-	rm -rf $(wildcard ./test/*.o)
-
-DBGSRC	= $(filter-out $(SRCDIR)/main.c,$(SRCS))
-DBGSRC	+= $(wildcard ./test/*.c)
-DBGOBJ	= $(DBGSRC:%.c=%.o)
-debug : $(DBGOBJ)
-	make -C $(MLXDIR)
-	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
+	rm -rf $(wildcard ./src/*.o)
 
 re : fclean all
 

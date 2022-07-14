@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 bool	has_wall(char **map, double x, double y)
 {

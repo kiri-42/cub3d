@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "cub3d.h"
 
 void	dset_map(char ***m)
 {
@@ -73,13 +73,19 @@ void	print_map_data(char **map)
 
 void	print_player_data(t_player_data player)
 {
-	printf("x:%f, y:%f, angle:%f\n", player.p_coord.x, player.p_coord.y, player.rotationAngle);
+	printf("x:%f, y:%f, angle:%f\n", player.pos.x, player.pos.y, player.rotation_angle);
 }
 
-void	print_fov_data(t_fov fov)
+// void	print_fov_data(t_fov fov)
+// {
+// 	printf("=========\n");
+// 	printf("horz x:%f, horz y:%f\n", fov.h_wall_hit.x, fov.h_wall_hit.y);
+// 	printf("vert x:%f, vert y:%f\n", fov.v_wall_hit.x, fov.v_wall_hit.y);
+// 	printf("distance:%f\n", fov.distance);
+// }
+
+void	init_north_tex(t_game_data *data, t_imgs *img)
 {
-	printf("=========\n");
-	printf("horz x:%f, horz y:%f horz hit:%d\n", fov.h_wall_hit.x, fov.h_wall_hit.y, fov.h_is_hit);
-	printf("vert x:%f, vert y:%f vert hit:%d\n", fov.v_wall_hit.x, fov.v_wall_hit.y, fov.v_is_hit);
-	printf("distance:%f\n", fov.distance);
+	img->wall_north.ptr = mlx_xpm_file_to_image(data->mlx, "./texture/wall_north.xpm", &img->wall_north.width, &img->wall_north.height);
+	img->wall_north.addr = mlx_get_data_addr(img->wall_north.ptr, &img->wall_north.bits_per_pixel, &img->wall_north.line_lenght, &img->wall_north.endian);
 }

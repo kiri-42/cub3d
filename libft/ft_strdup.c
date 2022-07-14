@@ -9,7 +9,7 @@ char	*ft_strdup(const char *src)
 
 	len = ft_strlen(src);
 	p = (unsigned char *)src;
-	dup = (unsigned char *)malloc(sizeof(unsigned char) * (len + 1));
+	dup = (unsigned char *)x_malloc(sizeof(unsigned char) * (len + 1));
 	if (!dup)
 		return (NULL);
 	i = 0;

@@ -1,8 +1,8 @@
 NAME = cub3D
 UNAME	=	$(shell uname)
 
-DBGSRC	= $(wildcard ./src/*.c) #あとでわける
-DBGOBJ	= $(DBGSRC:%.c=%.o)
+SRC	= $(wildcard ./src/*.c) #あとでわける
+OBJ	= $(SRC:%.c=%.o)
 
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror -MMD -MP
@@ -23,17 +23,17 @@ endif
 .c.o :
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME) : $(DBGOBJ)
+$(NAME) : $(OBJ)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(DBGOBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 all : $(NAME)
 
 clean :
 	make clean -C ./libft
 	make clean -C $(MLXDIR)
-	rm -rf $(DBGOBJ)
+	rm -rf $(OBJ)
 
 fclean : clean
 	make fclean -C ./libft

@@ -184,16 +184,16 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 	if (h_distance >= v_distance)
 	{
 		fov->distance = v_distance;
-		fov->ray_goal.x = v_wall_hit.x * MINIMAP_SCALE;
-		fov->ray_goal.y = v_wall_hit.y * MINIMAP_SCALE;
-		fov->was_hit_vert = false;
+		fov->wall_hit.x = v_wall_hit.x;
+		fov->wall_hit.y = v_wall_hit.y;
+		fov->was_hit_vert = true;
 	}
 	else
 	{
 		fov->distance = h_distance;
-		fov->ray_goal.x = h_wall_hit.x * MINIMAP_SCALE;
-		fov->ray_goal.y = h_wall_hit.y * MINIMAP_SCALE;
-		fov->was_hit_vert = true;
+		fov->wall_hit.x = h_wall_hit.x;
+		fov->wall_hit.y = h_wall_hit.y;
+		fov->was_hit_vert = false;
 	}
 }
 
@@ -203,7 +203,7 @@ void	cast_all_rays(t_game_data *data)
 	size_t	i;
 
 	ray_angle = player.rotation_angle - (FOV / 2);
-	// ray_angle = player.rotationAngle + M_PI;
+	// ray_angle = player.rotation_angle;
 	i = 0;
 	while (i < RAYS)
 	{

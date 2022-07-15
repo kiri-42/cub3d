@@ -75,11 +75,10 @@ int	color(t_fov *fov, int color, double distance)
 
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 {
-	double	wall_strip_height;
+	// double	wall_strip_height;
 	double	ray_distance;
 	double	distance_projection_plane;
 	t_coord	start;
-	t_coord goal;
 	size_t	i;
 
 	i = 0;
@@ -87,13 +86,18 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 	{
 		distance_projection_plane = (WIDTH / 2) / tan(FOV / 2);
 		ray_distance = fov[i].distance * cos(fov[i].angle - player.rotation_angle);
-		wall_strip_height = (TILE_SIZE / ray_distance) * distance_projection_plane;
+		fov[i].wall_strip_height = (TILE_SIZE / ray_distance) * distance_projection_plane;
 
 		start.x = fov[i].id * WALL_STRIP_WIDTH;
-		start.y = (HEIGHT / 2) - (wall_strip_height / 2);
-		goal.x = start.x;
-		goal.y = start.y + wall_strip_height;
-		draw_line(data, start, goal, color(&fov[i], 0xFFFFFF, ray_distance));
+		start.y = 0;
+		// draw_straight_line(data, &fov[i], start, (HEIGHT / 2) - (fov[i].wall_strip_height / 2), CEILING);
+
+		start.y = (HEIGHT / 2) - (fov[i].wall_strip_height / 2) + 1;
+		draw_straight_line(data, &fov[i], start, fov[i].wall_strip_height, WALL);
+
+		// start.y += fov[i].wall_strip_height + 1;
+		// if (start.y < HEIGHT)
+		// 	draw_straight_line(data, &fov[i], start, HEIGHT, FLOOR);
 		i++;
 	}
 }

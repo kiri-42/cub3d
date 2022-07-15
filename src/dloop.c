@@ -53,6 +53,7 @@ int	dloop_hook(t_game_data *data)
 	render_all(data);
 	// map.addr[TO_COORD(player.p_coord.x, player.p_coord.y)] = 0xFF0000;
 	mlx_put_image_to_window(data->mlx, data->win, map.ptr, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->win, data->imgs.wall_north.ptr, 102, 64);
 	return (0);
 }
 

@@ -32,6 +32,7 @@
 # define FOV (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
 # define RAYS (WIDTH / WALL_STRIP_WIDTH)
+// # define RAYS 1
 
 # define LINE_RGB 0xFF0000
 
@@ -40,6 +41,13 @@
 # endif
 
 # define PREFIX_SIZE 2
+
+typedef enum e_part
+{
+	WALL,
+	CEILING,
+	FLOOR
+}	t_part;
 
 typedef struct s_coord
 {
@@ -74,8 +82,9 @@ typedef struct s_fov{
 	double		angle;
 	t_direction	d;
 	double		distance;
-	t_coord		ray_goal;
+	t_coord		wall_hit;
 	bool		was_hit_vert;
+	double		wall_strip_height;
 }	t_fov;
 
 typedef struct s_img_data
@@ -178,4 +187,5 @@ void	render_all(t_game_data *data);
 
 void	init_north_tex(t_game_data *data, t_imgs *img);
 
+void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
 #endif

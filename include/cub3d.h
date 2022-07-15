@@ -80,11 +80,13 @@ typedef struct s_fov{
 
 typedef struct s_img_data
 {
-	void	*img;
+	void	*ptr;
 	int		*addr;
 	int		bits_per_pixel;
 	int		line_lenght;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img_data;
 
 typedef struct s_imgs

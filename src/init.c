@@ -40,6 +40,6 @@ void	dinit_map(t_game_data *data)
 	if (!data->win)
 		exit(EXIT_FAILURE);
 	dinit_map_data(data);
-	init_north_tex(data, &data->imgs);
+	open_tex(data, &data->imgs);
 	return ;
 }

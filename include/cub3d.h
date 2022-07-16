@@ -101,6 +101,10 @@ typedef struct s_img_data
 typedef struct s_imgs
 {
 	t_img_data	wall_north;
+	t_img_data	wall_south;
+	t_img_data	wall_east;
+	t_img_data	wall_west;
+	int			wall_north_dark[TILE_SIZE * TILE_SIZE];
 }	t_imgs;
 
 typedef struct s_game_data
@@ -185,7 +189,8 @@ void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
 
-void	init_north_tex(t_game_data *data, t_imgs *img);
+void	open_tex(t_game_data *data, t_imgs *img);
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
+void	make_dark_tex(t_imgs *imgs);
 #endif

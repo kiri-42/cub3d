@@ -14,21 +14,23 @@ void	init_player(void)
 
 void	init_map_data(t_game_data *gd)
 {
-	int	i;
-	int	col;
+	int	rows;
+	int	cols;
+	size_t	len;
 
-	i = 0;
-	col = 0;
-	while (gd->map[i])
+	rows = 0;
+	cols = 0;
+	while (gd->map[rows])
 	{
-		if (ft_strlen(gd->map[i]) > col)
-			col = ft_strlen(gd->map[i]);
-		i++;
+		len = ft_strlen(gd->map[rows]);
+		if (len > cols)
+			cols = len;
+		rows++;
 	}
-	gd->rows = i;
-	gd->cols = col;
-	gd->width = col * TILE_SIZE;
-	gd->height = i * TILE_SIZE;
+	gd->rows = rows;
+	gd->cols = cols;
+	gd->width = cols * TILE_SIZE;
+	gd->height = rows * TILE_SIZE;
 }
 
 void	init_map(t_game_data *data)

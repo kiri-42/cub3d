@@ -4,7 +4,7 @@ void	debug_set_map(char ***m)
 {
 	int	i;
 	int	j;
-	char map[ROWS][COLS] = {
+	char map[11][15] = {
 	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1'},
 	{'1', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '1', '0', '1'},
@@ -33,12 +33,12 @@ void	debug_set_map(char ***m)
 	// };
 
 	i = 0;
-	*m = malloc(sizeof(char *) * (ROWS + 1));
-	while (i < ROWS)
+	*m = malloc(sizeof(char *) * (11 + 1));
+	while (i < 11)
 	{
 		j = 0;
-		(*m)[i] = malloc(sizeof(char) * COLS);
-		while (j < COLS)
+		(*m)[i] = malloc(sizeof(char) * 15);
+		while (j < 15)
 		{
 			(*m)[i][j] = map[i][j];
 			j++;
@@ -54,14 +54,14 @@ void	print_map_data(char **map)
 	int	j;
 
 	i = 0;
-	while (i < ROWS)
+	while (map[i])
 	{
 		j = 0;
 		printf("{");
-		while (j < COLS)
+		while (map[i][j])
 		{
-			printf("%d", map[i][j]);
-			if (j + 1 < COLS)
+			printf("%c", map[i][j]);
+			if (map[i][j + 1])
 				printf(", ");
 			j++;
 		}

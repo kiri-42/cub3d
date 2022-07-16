@@ -116,5 +116,4 @@ void	check_wall(t_game_data *gd)
 			break ;
 		flood_fill(map, x, y, max_y, '#');
 	}
-	free_map(map);
 }

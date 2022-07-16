@@ -44,9 +44,9 @@ void	init_map(t_game_data *data)
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
 	if (0)
 		exit(EXIT_FAILURE);
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, TITLE);
+	data->win = mlx_new_window(data->mlx, data->width, data->height, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);
-	map.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	map.ptr = mlx_new_image(data->mlx, data->width, data->height);
 	map.addr = (int *)mlx_get_data_addr(map.ptr, &map.bits_per_pixel, &map.line_lenght, &map.endian);
 }

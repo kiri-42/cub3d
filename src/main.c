@@ -4,6 +4,7 @@ int	main(int ac, char **av)
 {
 	t_game_data	gd;
 
+	ft_bzero(&gd, sizeof(t_game_data));
 	// check_arg(ac, av);
 	// init_game_data(&gd);
 	// read_cubfile(&gd, av[1]);
@@ -20,8 +21,8 @@ int	main(int ac, char **av)
 
 	gd.fov = malloc(sizeof(t_fov) * RAYS);	
 	printf("%s %d", __FILE__, __LINE__);
-	init_map(&gd);
 	init_map_data(&gd);
+	init_map(&gd);
 	open_tex(&gd, &gd.imgs);
 	printf("%s %d", __FILE__, __LINE__);
 	init_player();

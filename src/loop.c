@@ -20,7 +20,7 @@ int	key_hook(int keycode, t_game_data *data)
 		move_step = player.walk_direction * player.move_speed;
 		new_x = player.pos.x + cos(player.rotation_angle) * move_step;
 		new_y = player.pos.y + sin(player.rotation_angle) * move_step;
-		if (!has_wall(data->map, new_x, new_y))
+		if (!has_wall(data, new_x, new_y))
 		{
 			player.pos.x = new_x;
 			player.pos.y = new_y;
@@ -34,7 +34,7 @@ int	key_hook(int keycode, t_game_data *data)
 		move_step = player.walk_direction * player.move_speed;
 		new_x = player.pos.x + cos(player.rotation_angle) * move_step;
 		new_y = player.pos.y + sin(player.rotation_angle) * move_step;
-		if (!has_wall(data->map, new_x, new_y))
+		if (!has_wall(data, new_x, new_y))
 		{
 			player.pos.x = new_x;
 			player.pos.y = new_y;

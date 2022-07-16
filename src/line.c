@@ -134,7 +134,7 @@ void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double len
 	while (i < length)
 	{
 		index = to_chr_index(data->width, start);
-		if (index >= 0 && index < WIDTH * HEIGHT)
+		if (index >= 0 && index < data->width * data->height)
 		{
 			if (part == CEILING)
 				map.addr[index] = data->ceiling_color.code;

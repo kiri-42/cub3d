@@ -188,7 +188,7 @@ void	init_player(void);
 void	put_all_tile(t_game_data *data);
 void	loop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
-bool	has_wall(char **map, double x, double y);
+bool	has_wall(t_game_data *data, double x, double y);
 void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
@@ -196,7 +196,7 @@ void	render_all(t_game_data *data);
 bool	open_tex(t_game_data *data, t_imgs *img);
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
-bool	has_wall_minimap(char **map, double x, double y);
+bool	has_wall_minimap(t_game_data *data, double x, double y);
 
 
 

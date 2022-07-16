@@ -5,7 +5,7 @@ void	all_whitewash(t_game_data *data)
 	size_t	i;
 
 	i = 0;
-	while (i < WIDTH * HEIGHT)
+	while (i < data->width * data->height)
 		map.addr[i++] = 0x696969;
 }
 

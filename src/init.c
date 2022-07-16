@@ -1,17 +1,6 @@
 #include "cub3d.h"
 
-static void	dinit_map_data(t_game_data *data)
-{
-	int	i;
-
-	i = 0;
-	map.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	map.addr = (int *)mlx_get_data_addr(map.ptr, &map.bits_per_pixel, &map.line_lenght, &map.endian);
-	while (i < WIDTH * HEIGHT)
-		map.addr[i++] = 0xFFFFFF;
-}
-
-void	dinit_player(void)
+void	init_player(void)
 {
 	player.pos.x = WIDTH / 2;
 	player.pos.y = HEIGHT / 7;
@@ -23,7 +12,26 @@ void	dinit_player(void)
 	player.rotation_speed = 3 * (M_PI / 180);
 }
 
-void	dinit_map(t_game_data *data)
+void	init_map_data(t_game_data *gd)
+{
+	int	i;
+	int	col;
+
+	i = 0;
+	col = 0;
+	while (gd->map[i])
+	{
+		if (ft_strlen(gd->map[i]) > col)
+			col = ft_strlen(gd->map[i]);
+		i++;
+	}
+	gd->rows = i;
+	gd->cols = col;
+	gd->width = col * TILE_SIZE;
+	gd->height = i * TILE_SIZE;
+}
+
+void	init_map(t_game_data *data)
 {
 	int	win_x;
 	int	win_y;
@@ -37,7 +45,6 @@ void	dinit_map(t_game_data *data)
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);
-	dinit_map_data(data);
-	open_tex(data, &data->imgs);
-	return ;
+	map.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	map.addr = (int *)mlx_get_data_addr(map.ptr, &map.bits_per_pixel, &map.line_lenght, &map.endian);
 }

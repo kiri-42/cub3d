@@ -20,12 +20,14 @@ int	main(int ac, char **av)
 
 	gd.fov = malloc(sizeof(t_fov) * RAYS);	
 	printf("%s %d", __FILE__, __LINE__);
-	dinit_map(&gd);
+	init_map(&gd);
+	init_map_data(&gd);
+	open_tex(&gd, &gd.imgs);
 	printf("%s %d", __FILE__, __LINE__);
-	dinit_player();
+	init_player();
 	printf("%s %d\n", __FILE__, __LINE__);
-	put_all_tile(&gd);
+	// put_all_tile(&gd);
 	printf("%s %d", __FILE__, __LINE__);
-	dloop_start(&gd);
+	loop_start(&gd);
 	return (0);
 }

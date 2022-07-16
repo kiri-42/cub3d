@@ -21,6 +21,8 @@
 # define KEY_S 0x0073
 # define KEY_D 0x0064
 
+# define MAP_WALL '1'
+
 # define ROWS 11
 # define COLS 15
 # define TILE_SIZE 64
@@ -103,7 +105,6 @@ typedef struct s_imgs
 	t_img_data	wall_south;
 	t_img_data	wall_east;
 	t_img_data	wall_west;
-	int			wall_north_dark[TILE_SIZE * TILE_SIZE];
 }	t_imgs;
 
 typedef struct s_game_data
@@ -118,6 +119,10 @@ typedef struct s_game_data
 	void			*win;
 	t_fov			*fov;
 	t_imgs			imgs;
+	int				width;
+	int				height;
+	int				rows;
+	int				cols;
 }	t_game_data;
 
 typedef struct s_player_data
@@ -145,14 +150,6 @@ typedef struct s_can_read_texture
 	bool	west;
 	bool	east;
 }	t_can_read_texture;
-
-typedef struct s_map_data
-{
-	int	rows;
-	int	cols;
-	int	width;
-	int	height;
-}	t_map_data;
 
 t_img_data		map;
 t_player_data	player;
@@ -186,10 +183,10 @@ int		close_window(void);
 int		key_hook(int keycode, t_game_data *data);
 
 void	debug_set_map(char ***m);
-void	dinit_map(t_game_data *data);
-void	dinit_player(void);
+void	init_map(t_game_data *data);
+void	init_player(void);
 void	put_all_tile(t_game_data *data);
-void	dloop_start(t_game_data *data);
+void	loop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
 bool	has_wall(char **map, double x, double y);
 void	cast_all_rays(t_game_data *data);
@@ -203,7 +200,7 @@ bool	has_wall_minimap(char **map, double x, double y);
 
 
 
-
+void	init_map_data(t_game_data *gd);
 void	debug_set_texpath(t_game_data *data);
 void	debug_set_color(t_game_data *data);
 #endif

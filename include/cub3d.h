@@ -146,6 +146,14 @@ typedef struct s_can_read_texture
 	bool	east;
 }	t_can_read_texture;
 
+typedef struct s_map_data
+{
+	int	rows;
+	int	cols;
+	int	width;
+	int	height;
+}	t_map_data;
+
 t_img_data		map;
 t_player_data	player;
 
@@ -177,7 +185,7 @@ void	loop_start(t_game_data *data);
 int		close_window(void);
 int		key_hook(int keycode, t_game_data *data);
 
-void	dset_map(char ***m);
+void	debug_set_map(char ***m);
 void	dinit_map(t_game_data *data);
 void	dinit_player(void);
 void	put_all_tile(t_game_data *data);
@@ -188,8 +196,14 @@ void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
 
-void	open_tex(t_game_data *data, t_imgs *img);
+bool	open_tex(t_game_data *data, t_imgs *img);
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
-void	make_dark_tex(t_imgs *imgs);
+bool	has_wall_minimap(char **map, double x, double y);
+
+
+
+
+void	debug_set_texpath(t_game_data *data);
+void	debug_set_color(t_game_data *data);
 #endif

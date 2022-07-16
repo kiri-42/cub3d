@@ -8,9 +8,7 @@ static void	dinit_map_data(t_game_data *data)
 	map.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	map.addr = (int *)mlx_get_data_addr(map.ptr, &map.bits_per_pixel, &map.line_lenght, &map.endian);
 	while (i < WIDTH * HEIGHT)
-	{
 		map.addr[i++] = 0xFFFFFF;
-	}
 }
 
 void	dinit_player(void)

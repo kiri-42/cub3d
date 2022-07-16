@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	dset_map(char ***m)
+void	debug_set_map(char ***m)
 {
 	int	i;
 	int	j;
@@ -71,14 +71,15 @@ void	print_map_data(char **map)
 	printf("\n");
 }
 
-void	print_player_data(t_player_data player)
-{
-	printf("x:%f, y:%f, angle:%f\n", player.pos.x, player.pos.y, player.rotation_angle);
-}
-
 void	debug_set_color(t_game_data *data)
 {
+	data->floor_color.red = 0;
+	data->floor_color.green = 0;
+	data->floor_color.blue = 0xFF;
 	data->floor_color.code = 0x0000FF;
+	data->ceiling_color.red = 0;
+	data->ceiling_color.green = 0xFF;
+	data->ceiling_color.blue = 0;
 	data->ceiling_color.code = 0x00FF00;
 }
 
@@ -90,7 +91,7 @@ void	debug_set_texpath(t_game_data *data)
 	data->tp.we_path = ft_strdup("./texture/wall_west.xpm");
 }
 
-void	open_tex(t_game_data *data, t_imgs *img)
+bool	open_tex(t_game_data *data, t_imgs *img)
 {
 	debug_set_color(data);
 	debug_set_texpath(data);
@@ -103,4 +104,5 @@ void	open_tex(t_game_data *data, t_imgs *img)
 	img->wall_east.addr = mlx_get_data_addr(img->wall_east.ptr, &img->wall_east.bits_per_pixel, &img->wall_east.line_lenght, &img->wall_east.endian);
 	img->wall_west.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.we_path, &img->wall_west.width, &img->wall_west.height);
 	img->wall_west.addr = mlx_get_data_addr(img->wall_west.ptr, &img->wall_west.bits_per_pixel, &img->wall_west.line_lenght, &img->wall_west.endian);
+	return (true);
 }

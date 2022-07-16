@@ -118,8 +118,6 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part part)
 {
-	double	delta_x;
-	double	delta_y;
 	int		index;
 	int		color;
 	size_t	i;
@@ -132,11 +130,11 @@ void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double len
 		if (index >= 0 && index < WIDTH * HEIGHT)
 		{
 			if (part == CEILING)
-				map.addr[index] = 0x0000FF;
+				map.addr[index] = data->ceiling_color.code;
 			else if (part == WALL)
 				map.addr[index] = get_tex_color(data, fov, i);
 			else if (part == FLOOR)
-				map.addr[index] = 0x0;
+				map.addr[index] = data->floor_color.code;
 		}
 		start.y++;
 		i++;

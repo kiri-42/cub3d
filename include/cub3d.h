@@ -6,12 +6,12 @@
 # include <math.h>
 # include <stdbool.h>
 # include <float.h>
-# include "libft.h"
-# include "mlx.h"
 # include <float.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include "libft.h"
+# include "mlx.h"
 
 # define TITLE "cub3D"
 
@@ -33,8 +33,6 @@
 # define WALL_STRIP_WIDTH 1
 # define RAYS (WIDTH / WALL_STRIP_WIDTH)
 // # define RAYS 1
-
-# define LINE_RGB 0xFF0000
 
 # ifndef M_PI
 # define M_PI 3.14159265358979323846
@@ -68,6 +66,7 @@ typedef struct s_rgb
 	int	red;
 	int	green;
 	int	blue;
+	int	code;
 }	t_rgb;
 
 typedef struct s_direction{

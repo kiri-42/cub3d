@@ -90,14 +90,14 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 
 		start.x = fov[i].id * WALL_STRIP_WIDTH;
 		start.y = 0;
-		// draw_straight_line(data, &fov[i], start, (HEIGHT / 2) - (fov[i].wall_strip_height / 2), CEILING);
+		draw_straight_line(data, &fov[i], start, (HEIGHT / 2) - (fov[i].wall_strip_height / 2), CEILING);
 
-		start.y = (HEIGHT / 2) - (fov[i].wall_strip_height / 2) + 1;
+		start.y = (HEIGHT / 2) - (fov[i].wall_strip_height / 2);
 		draw_straight_line(data, &fov[i], start, fov[i].wall_strip_height, WALL);
 
-		// start.y += fov[i].wall_strip_height + 1;
-		// if (start.y < HEIGHT)
-		// 	draw_straight_line(data, &fov[i], start, HEIGHT, FLOOR);
+		start.y += fov[i].wall_strip_height;
+		if (start.y < HEIGHT)
+			draw_straight_line(data, &fov[i], start, HEIGHT, FLOOR);
 		i++;
 	}
 }

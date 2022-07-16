@@ -11,3 +11,15 @@ bool	has_wall(char **map, double x, double y)
 	map_y = floor(y / TILE_SIZE);
 	return (map[map_y][map_x] == 1);
 }
+
+bool	has_wall_minimap(char **map, double x, double y)
+{
+	int	map_x;
+	int	map_y;
+
+	if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+		return (true);
+	map_x = floor(x / MINIMAP_TILE_SIZE);
+	map_y = floor(y / MINIMAP_TILE_SIZE);
+	return (map[map_y][map_x] == 1);
+}

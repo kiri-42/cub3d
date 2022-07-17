@@ -1,9 +1,9 @@
 #include "cub3d.h"
 
-void	init_player(void)
+void	init_player(t_game_data *data)
 {
-	player.pos.x = WIDTH / 2;
-	player.pos.y = HEIGHT / 7;
+	player.pos.x = data->width / 2;
+	player.pos.y = data->height / 7;
 	player.radius = 3;
 	player.turn_direction = 0;	/* -1 if left, +1 if right */
 	player.walk_direction = 0;	/* -1 if back, +1 if front */
@@ -12,7 +12,7 @@ void	init_player(void)
 	player.rotation_speed = 3 * (M_PI / 180);
 }
 
-void	init_map_data(t_game_data *gd)
+void	set_map_data(t_game_data *gd)
 {
 	int	rows;
 	int	cols;
@@ -31,6 +31,7 @@ void	init_map_data(t_game_data *gd)
 	gd->cols = cols;
 	gd->width = cols * TILE_SIZE;
 	gd->height = rows * TILE_SIZE;
+	gd->ray = gd->width / WALL_STRIP_WIDTH;
 }
 
 void	init_map(t_game_data *data)

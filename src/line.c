@@ -98,12 +98,12 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	int		wall_bottom_pixel;
 	int		color;
 
-	wall_top_pixel = ((HEIGHT) / 2) - (fov->wall_strip_height / 2);
+	wall_top_pixel = ((data->height) / 2) - (fov->wall_strip_height / 2);
 	if (wall_top_pixel < 0)
 		wall_top_pixel = 0;
-	wall_bottom_pixel = (HEIGHT / 2) + (fov->wall_strip_height / 2);
-	if (wall_bottom_pixel > HEIGHT)
-		wall_bottom_pixel = HEIGHT;
+	wall_bottom_pixel = (data->height / 2) + (fov->wall_strip_height / 2);
+	if (wall_bottom_pixel > data->height)
+		wall_bottom_pixel = data->height;
 	if (fov->was_hit_vert == true)
 		tex_offset_x = (int)floor(fov->wall_hit.y) % TILE_SIZE;
 	else

@@ -18,7 +18,7 @@ void	draw_minimap_ray(t_game_data *data)
 	i = 0;
 	start.x = player.pos.x * MINIMAP_SCALE;
 	start.y = player.pos.y * MINIMAP_SCALE;
-	while (i < RAYS)
+	while (i < data->ray)
 	{
 		goal.x = data->fov[i].wall_hit.x * MINIMAP_SCALE;
 		goal.y = data->fov[i].wall_hit.y * MINIMAP_SCALE;

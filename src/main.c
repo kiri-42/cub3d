@@ -19,13 +19,15 @@ int	main(int ac, char **av)
 	debug_set_texpath(&gd);
 	debug_set_map(&gd.map);
 
-	gd.fov = malloc(sizeof(t_fov) * RAYS);	
+	set_map_data(&gd);
+
+	gd.fov = malloc(sizeof(t_fov) * gd.ray);	
 	printf("%s %d", __FILE__, __LINE__);
-	init_map_data(&gd);
+	
 	init_map(&gd);
 	open_tex(&gd, &gd.imgs);
 	printf("%s %d", __FILE__, __LINE__);
-	init_player();
+	init_player(&gd);
 	printf("%s %d\n", __FILE__, __LINE__);
 	// put_all_tile(&gd);
 	printf("%s %d", __FILE__, __LINE__);

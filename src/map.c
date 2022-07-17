@@ -7,8 +7,8 @@ void	put_all_tile(t_game_data *data)
 	int	row;
 	int	col;
 
-	row = (int)floor(MINIMAP_TILE_SIZE * ROWS);
-	col = (int)floor(MINIMAP_TILE_SIZE * COLS);
+	row = (int)floor(MINIMAP_TILE_SIZE * data->rows);
+	col = (int)floor(MINIMAP_TILE_SIZE * data->cols);
 
 	y = 0;
 	while (y < row)

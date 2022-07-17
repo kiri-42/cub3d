@@ -8,7 +8,7 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 	size_t	i;
 
 	i = 0;
-	while (i < RAYS)
+	while (i < data->ray)
 	{
 		distance_projection_plane = (data->width / 2) / tan(FOV / 2);
 		ray_distance = fov[i].distance * cos(fov[i].angle - player.rotation_angle);

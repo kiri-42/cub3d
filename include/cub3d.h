@@ -6,7 +6,6 @@
 # include <math.h>
 # include <stdbool.h>
 # include <float.h>
-# include <float.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -29,12 +28,8 @@
 # define MINIMAP_SCALE 0.2
 # define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
-# define WIDTH COLS * TILE_SIZE
-# define HEIGHT ROWS * TILE_SIZE
 # define FOV (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-# define RAYS (WIDTH / WALL_STRIP_WIDTH)
-// # define RAYS 1
 
 # ifndef M_PI
 # define M_PI 3.14159265358979323846
@@ -119,6 +114,7 @@ typedef struct s_game_data
 	void			*win;
 	t_fov			*fov;
 	t_imgs			imgs;
+	int				ray;
 	int				width;
 	int				height;
 	int				rows;
@@ -184,7 +180,7 @@ int		key_hook(int keycode, t_game_data *data);
 
 void	debug_set_map(char ***m);
 void	init_map(t_game_data *data);
-void	init_player(void);
+void	init_player(t_game_data *data);
 void	put_all_tile(t_game_data *data);
 void	loop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
@@ -200,7 +196,7 @@ bool	has_wall_minimap(t_game_data *data, double x, double y);
 
 
 
-void	init_map_data(t_game_data *gd);
+void	set_map_data(t_game_data *gd);
 void	debug_set_texpath(t_game_data *data);
 void	debug_set_color(t_game_data *data);
 #endif

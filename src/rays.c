@@ -89,25 +89,25 @@ t_coord	get_vert_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 	return (wall_hit);
 }
 
-t_coord	get_horz_intercept(double angle, t_direction d)
+t_coord	get_horz_intercept(t_player_data *p, double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.y = floor(player.pos.y / TILE_SIZE) * TILE_SIZE;
+	intercept.y = floor(p->pos.y / TILE_SIZE) * TILE_SIZE;
 	if (d.down == 1)
 		intercept.y += TILE_SIZE;
-	intercept.x = player.pos.x + (intercept.y - player.pos.y) / tan(angle);
+	intercept.x = p->pos.x + (intercept.y - p->pos.y) / tan(angle);
 	return (intercept);
 }
 
-t_coord	get_vert_intercept(double angle, t_direction d)
+t_coord	get_vert_intercept(t_player_data *p, double angle, t_direction d)
 {
 	t_coord	intercept;
 
-	intercept.x = floor(player.pos.x / TILE_SIZE) * TILE_SIZE;
+	intercept.x = floor(p->pos.x / TILE_SIZE) * TILE_SIZE;
 	if (d.right == true)
 		intercept.x += TILE_SIZE;
-	intercept.y = player.pos.y + (intercept.x - player.pos.x) * tan(angle);
+	intercept.y = p->pos.y + (intercept.x - p->pos.x) * tan(angle);
 	return (intercept);
 }
 
@@ -147,13 +147,13 @@ double	found_horz_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	t_coord		step;
 	bool		is_hit;
 
-	intercept = get_horz_intercept(fov->angle, fov->d);
+	intercept = get_horz_intercept(&data->player, fov->angle, fov->d);
 	step = get_horz_step(fov->angle, fov->d);
 	*coord = get_horz_touch_point(data, &is_hit, fov, intercept, step);
 	if (is_hit == false)
 		return (DBL_MAX);
 	else
-		return (distance_between_points(player.pos.x, player.pos.y, coord->x, coord->y));
+		return (distance_between_points(data->player.pos.x, data->player.pos.y, coord->x, coord->y));
 }
 
 double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
@@ -162,13 +162,13 @@ double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	t_coord		step;
 	bool		is_hit;
 
-	intercept = get_vert_intercept(fov->angle, fov->d);
+	intercept = get_vert_intercept(&data->player, fov->angle, fov->d);
 	step = get_vert_step(fov->angle, fov->d);
 	*coord = get_vert_touch_point(data, &is_hit, fov, intercept, step);
 	if (is_hit == false)
 		return (DBL_MAX);
 	else
-		return (distance_between_points(player.pos.x, player.pos.y, coord->x, coord->y));
+		return (distance_between_points(data->player.pos.x, data->player.pos.y, coord->x, coord->y));
 }
 
 void	calc_one_ray(t_game_data *data, t_fov *fov)
@@ -202,7 +202,7 @@ void	cast_all_rays(t_game_data *data)
 	double	ray_angle;
 	size_t	i;
 
-	ray_angle = player.rotation_angle - (FOV / 2);
+	ray_angle = data->player.rotation_angle - (FOV / 2);
 	// ray_angle = player.rotation_angle;
 	i = 0;
 	while (i < (size_t)data->ray)

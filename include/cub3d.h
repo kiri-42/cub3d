@@ -100,25 +100,6 @@ typedef struct s_imgs
 	t_img_data	wall_west;
 }	t_imgs;
 
-typedef struct s_game_data
-{
-	t_texture_path	tp;
-	t_rgb			floor_color;
-	t_rgb			ceiling_color;
-	int				cubfile_linage;
-	char			**cubfile;
-	char			**map;
-	void			*mlx;
-	void			*win;
-	t_fov			*fov;
-	t_imgs			imgs;
-	size_t			ray;
-	size_t			width;
-	size_t			height;
-	size_t			rows;
-	size_t			cols;
-}	t_game_data;
-
 typedef struct s_player_data
 {
 	t_coord	pos;
@@ -130,6 +111,26 @@ typedef struct s_player_data
 	double	move_speed;
 	double	rotation_speed;
 }	t_player_data;
+
+typedef struct s_game_data
+{
+	t_texture_path	tp;
+	t_rgb			floor_color;
+	t_rgb			ceiling_color;
+	int				cubfile_linage;
+	char			**cubfile;
+	char			**map;
+	void			*mlx;
+	void			*win;
+	t_player_data	player;
+	t_fov			*fov;
+	t_imgs			imgs;
+	size_t			ray;
+	size_t			width;
+	size_t			height;
+	size_t			rows;
+	size_t			cols;
+}	t_game_data;
 
 typedef struct s_can_read_color
 {
@@ -146,7 +147,7 @@ typedef struct s_can_read_texture
 }	t_can_read_texture;
 
 t_img_data		map;
-t_player_data	player;
+// t_player_data	player;
 
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);

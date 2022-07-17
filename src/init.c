@@ -2,14 +2,14 @@
 
 void	init_player(t_game_data *data)
 {
-	player.pos.x = data->width / 2;
-	player.pos.y = data->height / 7;
-	player.radius = 3;
-	player.turn_direction = 0;	/* -1 if left, +1 if right */
-	player.walk_direction = 0;	/* -1 if back, +1 if front */
-	player.rotation_angle = M_PI / 2;
-	player.move_speed = 5.0;
-	player.rotation_speed = 3 * (M_PI / 180);
+	data->player.pos.x = data->width / 2;
+	data->player.pos.y = data->height / 7;
+	data->player.radius = 3;
+	data->player.turn_direction = 0;	/* -1 if left, +1 if right */
+	data->player.walk_direction = 0;	/* -1 if back, +1 if front */
+	data->player.rotation_angle = M_PI / 2;
+	data->player.move_speed = 5.0;
+	data->player.rotation_speed = 3 * (M_PI / 180);
 }
 
 void	set_map_data(t_game_data *gd)

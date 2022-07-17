@@ -24,7 +24,7 @@ OBJS +=		$(OBJSB)
 endif
 
 CC =		gcc
-CC_FLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror
 
 $(NAME):	$(OBJS)
 			ar rc $(NAME) $(OBJS)
@@ -32,7 +32,7 @@ $(NAME):	$(OBJS)
 all: $(NAME)
 
 .c.o:
-			$(CC) $(CC_FLAGS) -c $< -o $(<:%.c=%.o)
+			$(CC) $(CFLAGS) -c $< -o $(<:%.c=%.o)
 
 clean:
 	rm -rf $(OBJS) $(OBJSB)
@@ -45,4 +45,4 @@ re: fclean all
 bonus:
 			make WITH_BONUS=1
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re bonus .c.o

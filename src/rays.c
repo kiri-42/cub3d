@@ -111,7 +111,7 @@ t_coord	get_vert_intercept(double angle, t_direction d)
 	return (intercept);
 }
 
-t_coord	get_horz_step(double angle, t_coord intercept, t_direction d)
+t_coord	get_horz_step(double angle, t_direction d)
 {
 	t_coord	step;
 
@@ -126,7 +126,7 @@ t_coord	get_horz_step(double angle, t_coord intercept, t_direction d)
 	return (step);
 }
 
-t_coord	get_vert_step(double angle, t_coord intercept, t_direction d)
+t_coord	get_vert_step(double angle, t_direction d)
 {
 	t_coord	step;
 
@@ -148,7 +148,7 @@ double	found_horz_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	bool		is_hit;
 
 	intercept = get_horz_intercept(fov->angle, fov->d);
-	step = get_horz_step(fov->angle, intercept, fov->d);
+	step = get_horz_step(fov->angle, fov->d);
 	*coord = get_horz_touch_point(data, &is_hit, fov, intercept, step);
 	if (is_hit == false)
 		return (DBL_MAX);
@@ -163,7 +163,7 @@ double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	bool		is_hit;
 
 	intercept = get_vert_intercept(fov->angle, fov->d);
-	step = get_vert_step(fov->angle, intercept, fov->d);
+	step = get_vert_step(fov->angle, fov->d);
 	*coord = get_vert_touch_point(data, &is_hit, fov, intercept, step);
 	if (is_hit == false)
 		return (DBL_MAX);
@@ -205,7 +205,7 @@ void	cast_all_rays(t_game_data *data)
 	ray_angle = player.rotation_angle - (FOV / 2);
 	// ray_angle = player.rotation_angle;
 	i = 0;
-	while (i < data->ray)
+	while (i < (size_t)data->ray)
 	{
 		data->fov[i].id = i;
 		data->fov[i].angle = normalize_angle(ray_angle);

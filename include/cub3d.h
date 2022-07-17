@@ -22,8 +22,6 @@
 
 # define MAP_WALL '1'
 
-# define ROWS 11
-# define COLS 15
 # define TILE_SIZE 64
 # define MINIMAP_SCALE 0.2
 # define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
@@ -114,11 +112,11 @@ typedef struct s_game_data
 	void			*win;
 	t_fov			*fov;
 	t_imgs			imgs;
-	int				ray;
-	int				width;
-	int				height;
-	int				rows;
-	int				cols;
+	size_t			ray;
+	size_t			width;
+	size_t			height;
+	size_t			rows;
+	size_t			cols;
 }	t_game_data;
 
 typedef struct s_player_data

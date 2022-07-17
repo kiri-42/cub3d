@@ -1,12 +1,12 @@
 NAME = cub3D
 UNAME	=	$(shell uname)
 
-SRC	= $(wildcard ./src/*.c) #あとでわける
-OBJ	= $(SRC:%.c=%.o)
+SRCS	= $(wildcard ./src/*.c) #あとでわける
+OBJS	= $(SRCS:%.c=%.o)
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -MMD -MP
-CFLAGS = -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
+# CFLAGS = -MMD -MP
 LIBFTDIR = ./libft
 LIBFT = ft
 MLXDIR	=	./minilibx
@@ -23,17 +23,17 @@ endif
 .c.o :
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJS)
 	make -C $(MLXDIR)
 	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) $(INCLUDE) $(LFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(LFLAG) -o $(NAME)
 
 all : $(NAME)
 
 clean :
 	make clean -C ./libft
 	make clean -C $(MLXDIR)
-	rm -rf $(OBJ)
+	rm -rf $(OBJS)
 
 fclean : clean
 	make fclean -C ./libft

@@ -4,6 +4,8 @@ int	main(int ac, char **av)
 {
 	t_game_data	gd;
 
+	(void)ac;
+	(void)av;
 	ft_bzero(&gd, sizeof(t_game_data));
 	// check_arg(ac, av);
 	// init_game_data(&gd);

@@ -24,9 +24,9 @@ void	get_delta(double *delta_x, double *delta_y)
 	*delta_y /= step;
 }
 
-bool	is_inside(t_game_data *data, int index)
+bool	is_inside(t_game_data *data, size_t index)
 {
-	if (!(index >= 0 && index <= (data->width * data->height)))
+	if (!(index <= (data->width * data->height)))
 		return (false);
 	return (true);
 }
@@ -35,7 +35,7 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 {
 	double	delta_x;
 	double	delta_y;
-	int		index;
+	size_t	index;
 
 	start = floor_coord(start);
 	goal = floor_coord(goal);
@@ -94,13 +94,9 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 {
 	int		tex_offset_x;
 	int		tex_offset_y;
-	int		wall_top_pixel;
-	int		wall_bottom_pixel;
+	size_t	wall_bottom_pixel;
 	int		color;
 
-	wall_top_pixel = ((data->height) / 2) - (fov->wall_strip_height / 2);
-	if (wall_top_pixel < 0)
-		wall_top_pixel = 0;
 	wall_bottom_pixel = (data->height / 2) + (fov->wall_strip_height / 2);
 	if (wall_bottom_pixel > data->height)
 		wall_bottom_pixel = data->height;
@@ -125,8 +121,7 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part part)
 {
-	int		index;
-	int		color;
+	size_t	index;
 	size_t	i;
 
 	i = 0;
@@ -134,7 +129,7 @@ void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double len
 	while (i < length)
 	{
 		index = to_chr_index(data->width, start);
-		if (index >= 0 && index < data->width * data->height)
+		if (index < data->width * data->height)
 		{
 			if (part == CEILING)
 				map.addr[index] = data->ceiling_color.code;

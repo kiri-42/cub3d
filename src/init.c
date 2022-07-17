@@ -14,8 +14,8 @@ void	init_player(t_game_data *data)
 
 void	set_map_data(t_game_data *gd)
 {
-	int	rows;
-	int	cols;
+	size_t	rows;
+	size_t	cols;
 	size_t	len;
 
 	rows = 0;

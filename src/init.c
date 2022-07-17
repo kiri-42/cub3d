@@ -38,7 +38,9 @@ void	init_map(t_game_data *data)
 {
 	int	win_x;
 	int	win_y;
+	t_img_data	*m;
 
+	m = &data->map_img_data; 
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(EXIT_FAILURE);
@@ -48,6 +50,6 @@ void	init_map(t_game_data *data)
 	data->win = mlx_new_window(data->mlx, data->width, data->height, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);
-	map.ptr = mlx_new_image(data->mlx, data->width, data->height);
-	map.addr = (int *)mlx_get_data_addr(map.ptr, &map.bits_per_pixel, &map.line_lenght, &map.endian);
+	m->ptr = mlx_new_image(data->mlx, data->width, data->height);
+	m->addr = (int *)mlx_get_data_addr(m->ptr, &m->bits_per_pixel, &m->line_lenght, &m->endian);
 }

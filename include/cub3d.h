@@ -123,6 +123,7 @@ typedef struct s_game_data
 	void			*mlx;
 	void			*win;
 	t_player_data	player;
+	t_img_data		map_img_data;
 	t_fov			*fov;
 	t_imgs			imgs;
 	size_t			ray;
@@ -145,9 +146,6 @@ typedef struct s_can_read_texture
 	bool	west;
 	bool	east;
 }	t_can_read_texture;
-
-t_img_data		map;
-// t_player_data	player;
 
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);

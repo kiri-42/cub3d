@@ -6,7 +6,7 @@ void	all_whitewash(t_game_data *data)
 
 	i = 0;
 	while (i < data->width * data->height)
-		map.addr[i++] = 0x696969;
+		data->map_img_data.addr[i++] = 0x696969;
 }
 
 void	draw_minimap_ray(t_game_data *data)

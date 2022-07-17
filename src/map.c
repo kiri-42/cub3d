@@ -17,9 +17,9 @@ void	put_all_tile(t_game_data *data)
 		while (x < col)
 		{
 			if (has_wall_minimap(data, x, y) != true)
-				map.addr[y * data->width + x] = 0xFFFFFF;
+				data->map_img_data.addr[y * data->width + x] = 0xFFFFFF;
 			else
-				map.addr[y * data->width + x] = 0x000000;
+				data->map_img_data.addr[y * data->width + x] = 0x000000;
 			x++;
 		}
 		y++;

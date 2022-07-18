@@ -175,7 +175,7 @@ void	init_mlx(t_game_data *data);
 void	loop_start(t_game_data *data);
 
 //hook.c
-int		close_window(void);
+int		close_window(void *data);
 int		key_hook(int keycode, t_game_data *data);
 
 void	debug_set_map(char ***m);
@@ -199,4 +199,5 @@ bool	has_wall_minimap(t_game_data *data, double x, double y);
 void	set_map_data(t_game_data *gd);
 void	debug_set_texpath(t_game_data *data);
 void	debug_set_color(t_game_data *data);
+void	free_all(t_game_data *data);
 #endif

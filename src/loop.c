@@ -1,7 +1,11 @@
 #include "cub3d.h"
 
-int	close_window(void)
+int	close_window(void *data)
 {
+	t_game_data *gd;
+	
+	gd = data;
+	free_all(gd);
 	exit(EXIT_SUCCESS);
 }
 
@@ -15,7 +19,7 @@ int	key_hook(int keycode, t_game_data *data)
 	p = &data->player;
 	(void)data;
 	if (keycode == KEY_ESC)
-		close_window();
+		close_window(data);
 	else if (keycode == KEY_W)
 	{
 		p->walk_direction = 1;
@@ -61,7 +65,7 @@ int	loop_hook(t_game_data *data)
 void	loop_start(t_game_data *data)
 {
 	mlx_hook(data->win, 2, 1L << 0, key_hook, data);
-	mlx_hook(data->win, 17, 0, close_window, NULL);
+	mlx_hook(data->win, 17, 0, close_window, data);
 	mlx_loop_hook(data->mlx, loop_hook, data);
 	mlx_loop(data->mlx);
 }

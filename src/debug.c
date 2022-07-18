@@ -37,12 +37,13 @@ void	debug_set_map(char ***m)
 	while (i < 11)
 	{
 		j = 0;
-		(*m)[i] = malloc(sizeof(char) * 8);
+		(*m)[i] = malloc(sizeof(char) * 8 + 1);
 		while (j < 8)
 		{
 			(*m)[i][j] = map[i][j];
 			j++;
 		}
+		(*m)[i][j] = '\0';
 		i++;
 	}
 	(*m)[i] = NULL;
@@ -89,4 +90,28 @@ void	debug_set_texpath(t_game_data *data)
 	data->tp.so_path = ft_strdup("./texture/wall_south.xpm");
 	data->tp.ea_path = ft_strdup("./texture/wall_east.xpm");
 	data->tp.we_path = ft_strdup("./texture/wall_west.xpm");
+}
+
+void	free_all(t_game_data *data)
+{
+	int i = 0;
+
+	free(data->tp.no_path);
+	free(data->tp.ea_path);
+	free(data->tp.so_path);
+	free(data->tp.we_path);
+	while (data->map[i])
+		free(data->map[i++]);
+	free(data->map);
+	free(data->fov);
+
+	mlx_destroy_image(data->mlx, data->imgs.wall_east.ptr);
+	mlx_destroy_image(data->mlx, data->imgs.wall_north.ptr);
+	mlx_destroy_image(data->mlx, data->imgs.wall_south.ptr);
+	mlx_destroy_image(data->mlx, data->imgs.wall_west.ptr);
+
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_image(data->mlx, data->map_img_data.ptr);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 }

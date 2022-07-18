@@ -47,7 +47,6 @@ void	init_mlx(t_game_data *data)
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
 	if (0)
 		exit(EXIT_FAILURE);
-	// data->win = mlx_new_window(data->mlx, data->width, data->height, TITLE);
 	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);

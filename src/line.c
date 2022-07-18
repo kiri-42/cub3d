@@ -24,9 +24,11 @@ void	get_delta(double *delta_x, double *delta_y)
 	*delta_y /= step;
 }
 
-bool	is_inside(t_game_data *data, size_t index)
+bool	is_inside_blank(t_game_data *data, size_t index)
 {
 	if (!(index <= (data->width * data->height)))
+		return (false);
+	if (data->map_img_data.addr[index] == 0x0)
 		return (false);
 	return (true);
 }
@@ -47,17 +49,14 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 	while (fabs(goal.x - start.x) > 0.01 || fabs(goal.y - start.y) > 0.01)
 	{
 		index = to_chr_index(data->width, start);
-		if (is_inside(data, index))
+		if (is_inside_blank(data, index))
 			m->addr[index] = color;
 		start.x += delta_x;
 		start.y += delta_y;
 	}
 	index = to_chr_index(data->width, start);
-	if (is_inside(data, index))
-	{
-		if (m->addr[index] == 0xFFFFFF)
-			m->addr[index] = color;
-	}
+	if (is_inside_blank(data, index))
+		m->addr[index] = color;
 }
 
 int	darken_color(int color, double distance)

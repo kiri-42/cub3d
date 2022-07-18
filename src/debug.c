@@ -90,16 +90,3 @@ void	debug_set_texpath(t_game_data *data)
 	data->tp.ea_path = ft_strdup("./texture/wall_east.xpm");
 	data->tp.we_path = ft_strdup("./texture/wall_west.xpm");
 }
-
-bool	open_tex(t_game_data *data, t_imgs *img)
-{
-	img->wall_north.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.no_path, &img->wall_north.width, &img->wall_north.height);
-	img->wall_north.addr = (int *)mlx_get_data_addr(img->wall_north.ptr, &img->wall_north.bits_per_pixel, &img->wall_north.line_lenght, &img->wall_north.endian);
-	img->wall_south.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.so_path, &img->wall_south.width, &img->wall_south.height);
-	img->wall_south.addr = (int *)mlx_get_data_addr(img->wall_south.ptr, &img->wall_south.bits_per_pixel, &img->wall_south.line_lenght, &img->wall_south.endian);
-	img->wall_east.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.ea_path, &img->wall_east.width, &img->wall_east.height);
-	img->wall_east.addr = (int *)mlx_get_data_addr(img->wall_east.ptr, &img->wall_east.bits_per_pixel, &img->wall_east.line_lenght, &img->wall_east.endian);
-	img->wall_west.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.we_path, &img->wall_west.width, &img->wall_west.height);
-	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr, &img->wall_west.bits_per_pixel, &img->wall_west.line_lenght, &img->wall_west.endian);
-	return (true);
-}

@@ -166,7 +166,7 @@ void	is_open_texture_path(t_texture_path tp);
 
 
 //map.c
-void	init_map(t_game_data *data);
+void	init_mlx(t_game_data *data);
 
 //loop.c
 void	loop_start(t_game_data *data);
@@ -176,8 +176,8 @@ int		close_window(void);
 int		key_hook(int keycode, t_game_data *data);
 
 void	debug_set_map(char ***m);
-void	init_map(t_game_data *data);
-void	init_player(t_game_data *data);
+void	init_mlx(t_game_data *data);
+void	init_player_param(t_game_data *data);
 void	put_all_tile(t_game_data *data);
 void	loop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);

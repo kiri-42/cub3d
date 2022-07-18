@@ -16,23 +16,17 @@ int	main(int ac, char **av)
 	// check_game_data(&gd);
 	// printf("%s %d\n", __FILE__, __LINE__);
 
-	/* for debug */
+	/* ↓ for debug ↓ */
 	debug_set_color(&gd);
 	debug_set_texpath(&gd);
 	debug_set_map(&gd.map);
+	/* ↑ for debug ↑ */
 
 	set_map_data(&gd);
-
-	gd.fov = malloc(sizeof(t_fov) * gd.ray);	
-	printf("%s %d", __FILE__, __LINE__);
-	
-	init_map(&gd);
+	init_player_param(&gd);
+	gd.fov = malloc(sizeof(t_fov) * gd.ray);
+	init_mlx(&gd);
 	open_tex(&gd, &gd.imgs);
-	printf("%s %d", __FILE__, __LINE__);
-	init_player(&gd);
-	printf("%s %d\n", __FILE__, __LINE__);
-	// put_all_tile(&gd);
-	printf("%s %d", __FILE__, __LINE__);
 	loop_start(&gd);
 	return (0);
 }

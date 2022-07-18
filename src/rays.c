@@ -203,7 +203,6 @@ void	cast_all_rays(t_game_data *data)
 	size_t	i;
 
 	ray_angle = data->player.rotation_angle - (FOV / 2);
-	// ray_angle = player.rotation_angle;
 	i = 0;
 	while (i < (size_t)data->ray)
 	{

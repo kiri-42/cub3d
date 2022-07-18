@@ -41,7 +41,7 @@ t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 	touch.y = intercept.y;
 	if (fov->d.up == true)
 		next = -1;
-	while (touch.x >= 0 && touch.x <= data->width && touch.y >= 0 && touch.y <= data->height)
+	while (touch.x >= 0 && touch.x <= data->map_width && touch.y >= 0 && touch.y <= data->map_height)
 	{
 		if (has_wall(data, touch.x, touch.y + next))
 		{
@@ -71,7 +71,7 @@ t_coord	get_vert_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 	touch.y = intercept.y;
 	if (fov->d.left == true)
 		next = -1;
-	while (touch.x >= 0 && touch.x <= data->width && touch.y >= 0 && touch.y <= data->height)
+	while (touch.x >= 0 && touch.x <= data->map_width && touch.y >= 0 && touch.y <= data->map_height)
 	{
 		if (has_wall(data, touch.x + next, touch.y))
 		{

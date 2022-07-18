@@ -26,7 +26,7 @@ void	get_delta(double *delta_x, double *delta_y)
 
 bool	is_inside_blank(t_game_data *data, size_t index)
 {
-	if (!(index <= (data->width * data->height)))
+	if (!(index <= (data->map_width * data->map_height)))
 		return (false);
 	if (data->map_img_data.addr[index] == 0x0)
 		return (false);

@@ -20,8 +20,8 @@
 # define KEY_S 0x0073
 # define KEY_D 0x0064
 
-# define WINDOW_WIDTH 1300
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 10
+# define WINDOW_HEIGHT 12
 
 # define MAP_WALL '1'
 
@@ -132,6 +132,8 @@ typedef struct s_game_data
 	size_t			ray;
 	size_t			map_width;
 	size_t			map_height;
+	size_t			win_width;
+	size_t			win_height;
 	size_t			rows;
 	size_t			cols;
 }	t_game_data;

@@ -31,7 +31,9 @@ void	set_map_data(t_game_data *gd)
 	gd->cols = cols;
 	gd->map_width = cols * TILE_SIZE;
 	gd->map_height = rows * TILE_SIZE;
-	gd->ray = WINDOW_WIDTH / WALL_STRIP_WIDTH;
+	gd->win_width = WINDOW_WIDTH;
+	gd->win_height = WINDOW_HEIGHT;
+	gd->ray = gd->win_width / WALL_STRIP_WIDTH;	
 }
 
 void	init_mlx(t_game_data *data)
@@ -47,10 +49,10 @@ void	init_mlx(t_game_data *data)
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
 	if (0)
 		exit(EXIT_FAILURE);
-	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE);
+	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);
-	m->ptr = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	m->ptr = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	m->addr = (int *)mlx_get_data_addr(m->ptr, &m->bits_per_pixel, &m->line_lenght, &m->endian);
 }
 

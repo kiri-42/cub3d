@@ -5,7 +5,7 @@ SRCS	= $(wildcard ./src/*.c) #あとでわける
 OBJS	= $(SRCS:%.c=%.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g -O0
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 # CFLAGS = -MMD -MP
 LIBFTDIR = ./libft
 LIBFT = ft

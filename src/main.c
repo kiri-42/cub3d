@@ -28,5 +28,6 @@ int	main(int ac, char **av)
 	init_mlx(&gd);
 	open_tex(&gd, &gd.imgs);
 	loop_start(&gd);
+	free_all(&gd);
 	return (0);
 }

@@ -48,13 +48,13 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 	get_delta(&delta_x, &delta_y);
 	while (fabs(goal.x - start.x) > 0.01 || fabs(goal.y - start.y) > 0.01)
 	{
-		index = to_chr_index(WINDOW_WIDTH, start);
+		index = to_chr_index(data->win_width, start);
 		if (is_inside_blank(data, index))
 			m->addr[index] = color;
 		start.x += delta_x;
 		start.y += delta_y;
 	}
-	index = to_chr_index(WINDOW_WIDTH, start);
+	index = to_chr_index(data->win_width, start);
 	if (is_inside_blank(data, index))
 		m->addr[index] = color;
 }
@@ -98,9 +98,9 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	size_t	wall_bottom_pixel;
 	int		color;
 
-	wall_bottom_pixel = (WINDOW_HEIGHT / 2) + (fov->wall_strip_height / 2);
-	if (wall_bottom_pixel > WINDOW_HEIGHT)
-		wall_bottom_pixel = WINDOW_HEIGHT;
+	wall_bottom_pixel = (data->win_height / 2) + (fov->wall_strip_height / 2);
+	if (wall_bottom_pixel > data->win_height)
+		wall_bottom_pixel = data->win_height;
 	if (fov->was_hit_vert == true)
 		tex_offset_x = (int)floor(fov->wall_hit.y) % TILE_SIZE;
 	else
@@ -131,8 +131,8 @@ void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double len
 	start = floor_coord(start);
 	while (i < length)
 	{
-		index = to_chr_index(WINDOW_WIDTH, start);
-		if (index < WINDOW_WIDTH * WINDOW_HEIGHT)
+		index = to_chr_index(data->win_width, start);
+		if (index < data->win_width * data->win_height)
 		{
 			if (part == CEILING)
 				m->addr[index] = data->ceiling_color.code;

@@ -29,9 +29,10 @@ void	set_map_data(t_game_data *gd)
 	}
 	gd->rows = rows;
 	gd->cols = cols;
+	printf("rows%ld cols%ld\n", rows, cols);
 	gd->width = cols * TILE_SIZE;
 	gd->height = rows * TILE_SIZE;
-	gd->ray = gd->width / WALL_STRIP_WIDTH;
+	gd->ray = WINDOW_WIDTH / WALL_STRIP_WIDTH;
 }
 
 void	init_mlx(t_game_data *data)
@@ -47,10 +48,11 @@ void	init_mlx(t_game_data *data)
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
 	if (0)
 		exit(EXIT_FAILURE);
-	data->win = mlx_new_window(data->mlx, data->width, data->height, TITLE);
+	// data->win = mlx_new_window(data->mlx, data->width, data->height, TITLE);
+	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, TITLE);
 	if (!data->win)
 		exit(EXIT_FAILURE);
-	m->ptr = mlx_new_image(data->mlx, data->width, data->height);
+	m->ptr = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	m->addr = (int *)mlx_get_data_addr(m->ptr, &m->bits_per_pixel, &m->line_lenght, &m->endian);
 }
 

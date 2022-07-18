@@ -20,6 +20,9 @@
 # define KEY_S 0x0073
 # define KEY_D 0x0064
 
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 768
+
 # define MAP_WALL '1'
 
 # define TILE_SIZE 64

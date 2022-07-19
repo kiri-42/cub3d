@@ -57,7 +57,6 @@ int	key_hook(int keycode, t_game_data *data)
 int	loop_hook(t_game_data *data)
 {
 	render_all(data);
-	draw_circle(data);
 	// data->map_img_data.addr[(int)floor(data->player.pos.y) * data->map_width + (int)floor(data->player.pos.x)] = 0xFF0000;
 	mlx_put_image_to_window(data->mlx, data->win, data->map_img_data.ptr, 0, 0);
 	return (0);

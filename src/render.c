@@ -13,7 +13,7 @@ void	draw_minimap_ray(t_game_data *data)
 	{
 		goal.x = data->fov[i].wall_hit.x * MINIMAP_SCALE;
 		goal.y = data->fov[i].wall_hit.y * MINIMAP_SCALE;
-		draw_line(data, start, goal, 0xFF0000);
+		draw_line(data, start, goal, MINIMAP_RAY_COLOR);
 		i++;
 	}
 }
@@ -24,4 +24,5 @@ void	render_all(t_game_data *data)
 	render_3d_projection_wall(data, data->fov);
 	put_all_tile(data);
 	draw_minimap_ray(data);
+	draw_circle(data);
 }

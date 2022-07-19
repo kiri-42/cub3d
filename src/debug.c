@@ -91,4 +91,3 @@ void	debug_set_texpath(t_game_data *data)
 	data->tp.ea_path = ft_strdup("./texture/wall_east.xpm");
 	data->tp.we_path = ft_strdup("./texture/wall_west.xpm");
 }
-

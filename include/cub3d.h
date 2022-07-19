@@ -29,6 +29,9 @@
 # define MINIMAP_SCALE 0.2
 # define MINIMAP_TILE_SIZE (TILE_SIZE * MINIMAP_SCALE)
 
+# define PLAYER_CIRCLE_COLOR 0x52ff00
+# define MINIMAP_RAY_COLOR 0xffff00
+
 # define FOV (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
 

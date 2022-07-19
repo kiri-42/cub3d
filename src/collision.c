@@ -9,5 +9,5 @@ bool	has_wall(char **map, double x, double y)
 		return (true);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
-	return (map[map_y][map_x] == 1);
+	return (map[map_y][map_x] == '1');
 }

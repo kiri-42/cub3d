@@ -83,12 +83,16 @@ void	flood_fill(char **map, int x, int y, int max_y, char new_color)
 		return ;
 	if (map[y][x] == new_color)
 		return ;
+	printf("x %d y %d\n", x, y);
+	printf("tile [%c]\n", map[y][x]);
 	if (!is_valid_position(map[y][x]))
 	{
 		if (map[y][x] == '1')
 			return ;
 		else
+		{
 			exit_error(WALL_ERROR);
+		}
 	}
 
 	map[y][x] = new_color;

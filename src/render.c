@@ -30,7 +30,9 @@ void	draw_minimap_ray(t_game_data *data)
 void	render_all(t_game_data *data)
 {
 	all_whitewash(data);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	cast_all_rays(data);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	render_3d_projection_wall(data, data->fov);
 	put_all_tile(data);
 	draw_minimap_ray(data);

@@ -34,6 +34,7 @@ t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 	t_coord	touch;
 	t_coord	wall_hit;
 	double	next;
+	// int		map_y;
 
 	*hit = false;
 	next = 0;
@@ -43,6 +44,9 @@ t_coord	get_horz_touch_point(t_game_data *data, bool *hit, t_fov *fov, t_coord i
 		next = -1;
 	while (touch.x >= 0 && touch.x <= WIDTH && touch.y >= 0 && touch.y <= HEIGHT)
 	{
+		// map_y = floor(touch.y / TILE_SIZE);
+		// if(data->map[map_y + (int)next] == NULL)
+		// 	break;
 		if (has_wall(data->map, touch.x, touch.y + next))
 		{
 			*hit = true;
@@ -148,8 +152,11 @@ double	found_horz_wall_hit(t_game_data *data, t_fov *fov, t_coord *coord)
 	bool		is_hit;
 
 	intercept = get_horz_intercept(fov->angle, fov->d);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	step = get_horz_step(fov->angle, intercept, fov->d);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	*coord = get_horz_touch_point(data, &is_hit, fov, intercept, step);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	if (is_hit == false)
 		return (DBL_MAX);
 	else
@@ -178,9 +185,13 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 	double	h_distance;
 	double	v_distance;
 
+	// printf("%s %d\n", __FILE__, __LINE__);
 	fov->d = get_direction_of_line(fov->angle);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	h_distance = found_horz_wall_hit(data, fov, &h_wall_hit);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	v_distance = found_vert_wall_hit(data, fov, &v_wall_hit);
+	// printf("%s %d\n", __FILE__, __LINE__);
 	if (h_distance >= v_distance)
 	{
 		fov->distance = v_distance;
@@ -207,9 +218,12 @@ void	cast_all_rays(t_game_data *data)
 	i = 0;
 	while (i < RAYS)
 	{
+		// printf("%s %d\n", __FILE__, __LINE__);
 		data->fov[i].id = i;
 		data->fov[i].angle = normalize_angle(ray_angle);
+		// printf("%s %d\n", __FILE__, __LINE__);
 		calc_one_ray(data, &data->fov[i]);
+		// printf("%s %d\n", __FILE__, __LINE__);
 		ray_angle += (FOV / RAYS);
 		i++;
 	}

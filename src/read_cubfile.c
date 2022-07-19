@@ -38,12 +38,10 @@ void	read_cubfile(t_game_data *gd, char *cubfile_name)
 	char	*line;
 	char	*new_line;
 
-	printf("aaa\n");
 	gd->cubfile = malloc_cubfile(gd, cubfile_name);
 	fd = open(cubfile_name, O_RDONLY);
 	if (fd == -1)
 		exit_error(CUB_OPEN_ERROR);
-	printf("bbb\n");
 	i = 0;
 	while (true)
 	{

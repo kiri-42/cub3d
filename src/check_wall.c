@@ -19,7 +19,7 @@ char **dupmap(char **map)
 	int	i;
 
 	line_size = get_line_size(map);
-	dup = (char **)x_malloc(sizeof(int) * (line_size + 1));
+	dup = (char **)x_malloc(sizeof(char *) * (line_size + 1));
 	i = 0;
 	while (i < line_size)
 	{

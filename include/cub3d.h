@@ -204,8 +204,10 @@ bool	has_wall_minimap(t_game_data *data, double x, double y);
 void	set_map_data(t_game_data *gd);
 void	debug_set_texpath(t_game_data *data);
 void	debug_set_color(t_game_data *data);
+void	debug_print_cubfile(t_game_data *data);
 void	free_all(t_game_data *data);
-
+void	print_map_data(char **map);
 int	to_chr_index(int width, t_coord coord, double scale);
 void	draw_circle(t_game_data *data);
+bool	debug_is_open_path(char *path);
 #endif

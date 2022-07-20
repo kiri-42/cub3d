@@ -9,6 +9,8 @@ bool	has_wall(t_game_data *data, double x, double y)
 		return (true);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
+	if ((size_t)map_x > ft_strlen(data->map[map_y]))
+		return (false);
 	return (data->map[map_y][map_x] == MAP_WALL);
 }
 
@@ -21,5 +23,7 @@ bool	has_wall_minimap(t_game_data *data, double x, double y)
 		return (true);
 	map_x = floor(x / MINIMAP_TILE_SIZE);
 	map_y = floor(y / MINIMAP_TILE_SIZE);
+	if ((size_t)map_x > ft_strlen(data->map[map_y]))
+		return (false);
 	return (data->map[map_y][map_x] == MAP_WALL);
 }

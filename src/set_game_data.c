@@ -35,7 +35,7 @@ char	**malloc_map(t_game_data *gd, int map_start)
 {
 	char	**map;
 
-	map = (char **)x_malloc((gd->cubfile_linage - map_start + 1) * sizeof(char *));
+	map = (char **)ft_calloc((gd->cubfile_linage - map_start + 1) * sizeof(char *), 1);
 	return (map);
 }
 

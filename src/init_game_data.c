@@ -17,6 +17,7 @@ void	init_rgb(t_rgb *color)
 
 void	init_game_data(t_game_data *gd)
 {
+	ft_bzero(gd, sizeof(t_game_data));
 	init_texture_path(&(gd->tp));
 	init_rgb(&(gd->ceiling_color));
 	init_rgb(&(gd->floor_color));

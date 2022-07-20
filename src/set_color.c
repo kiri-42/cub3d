@@ -31,6 +31,9 @@ t_rgb	get_rgb(char *line)
 	rgb.red = ft_atoi(split_rgb[0]);
 	rgb.green = ft_atoi(split_rgb[1]);
 	rgb.blue = ft_atoi(split_rgb[2]);
+	free(split_rgb[0]);
+	free(split_rgb[1]);
+	free(split_rgb[2]);
 	free(split_rgb);
 	free(str_rgb);
 	return (rgb);

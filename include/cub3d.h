@@ -109,7 +109,6 @@ typedef struct s_imgs
 typedef struct s_player_data
 {
 	t_coord	pos;
-	void	*img;
 	int		radius;
 	int		turn_direction;	/* -1 if left, +1 if right */
 	int		walk_direction;	/* -1 if back, +1 if front */

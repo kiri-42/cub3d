@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-// pathの値が有効か確認する(未完成)
 void	check_texture_path(t_texture_path tp)
 {
 	printf("%s %d\n", __FILE__, __LINE__);
@@ -9,14 +8,12 @@ void	check_texture_path(t_texture_path tp)
 	is_open_texture_path(tp);
 }
 
-// rgbの値が有効か確認する(未完成)
 void	check_rgb(t_rgb color)
 {
 	is_initialized_rgb(color);
 	is_invalid_rgb(color);
 }
 
-// rgbの値が有効か確認する(未完成かも)
 void	check_map(t_game_data *gd)
 {
 	is_initialized_map(gd->map);

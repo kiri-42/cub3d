@@ -197,7 +197,7 @@ void	render_all(t_game_data *data);
 bool	open_tex(t_game_data *data, t_imgs *img);
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
-bool	has_wall_minimap(t_game_data *data, double x, double y);
+char	get_minimap_tile(t_game_data *data, double x, double y);
 
 
 
@@ -210,4 +210,5 @@ void	print_map_data(char **map);
 int	to_chr_index(int width, t_coord coord, double scale);
 void	draw_circle(t_game_data *data);
 bool	debug_is_open_path(char *path);
+void	init_player_pos(t_game_data *gd);
 #endif

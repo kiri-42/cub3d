@@ -4,8 +4,8 @@ int	main(int ac, char **av)
 {
 	t_game_data	gd;
 
-	(void)ac;
-	(void)av;
+	// (void)ac;
+	// (void)av;
 	/* input and check */
 	check_arg(ac, av);
 	init_game_data(&gd);

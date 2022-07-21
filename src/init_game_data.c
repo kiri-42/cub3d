@@ -23,3 +23,23 @@ void	init_game_data(t_game_data *gd)
 	init_rgb(&(gd->floor_color));
 	gd->map = NULL;
 }
+
+void	init_player_pos(t_game_data *gd)
+{
+	size_t	i;
+	char	*n;
+
+	i = 0;
+	n = NULL;
+	while (gd->map[i])
+	{
+		n=ft_strchr(gd->map[i], 'N');
+		// printf("%s\n", gd->map[i]);
+		if (n)
+			break;
+		i++;
+	}
+	printf("%ld\n", n - gd->map[i]);
+	gd->player.pos.x = (n - gd->map[i]) * TILE_SIZE;
+	gd->player.pos.y = i * TILE_SIZE;
+}

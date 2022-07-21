@@ -14,7 +14,7 @@ bool	has_wall(t_game_data *data, double x, double y)
 	return (data->map[map_y][map_x] == MAP_WALL);
 }
 
-bool	has_wall_minimap(t_game_data *data, double x, double y)
+char	get_minimap_tile(t_game_data *data, double x, double y)
 {
 	int	map_x;
 	int	map_y;
@@ -24,6 +24,6 @@ bool	has_wall_minimap(t_game_data *data, double x, double y)
 	map_x = floor(x / MINIMAP_TILE_SIZE);
 	map_y = floor(y / MINIMAP_TILE_SIZE);
 	if ((size_t)map_x > ft_strlen(data->map[map_y]))
-		return (false);
-	return (data->map[map_y][map_x] == MAP_WALL);
+		return (' ');
+	return (data->map[map_y][map_x]);
 }

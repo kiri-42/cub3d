@@ -6,6 +6,7 @@ void	put_all_tile(t_game_data *data)
 	int	y;
 	int	row;
 	int	col;
+	char	tile;
 
 	row = (int)floor(MINIMAP_TILE_SIZE * data->rows);
 	col = (int)floor(MINIMAP_TILE_SIZE * data->cols);
@@ -21,10 +22,11 @@ void	put_all_tile(t_game_data *data)
 		x = 0;
 		while (x < col)
 		{
-			if (has_wall_minimap(data, x, y) != true)
-				data->map_img_data.addr[y * data->win_width + x] = 0xFFFFFF;
-			else
+			tile = get_minimap_tile(data, x, y);
+			if (tile == '1')
 				data->map_img_data.addr[y * data->win_width + x] = 0x000000;
+			else if (tile == '0' || tile == 'N')
+				data->map_img_data.addr[y * data->win_width + x] = 0xFFFFFF;
 			x++;
 		}
 		y++;

@@ -48,6 +48,12 @@ typedef enum e_part
 	FLOOR
 }	t_part;
 
+typedef enum e_hv
+{
+	HORIZONTAL,
+	VERTICAL
+}	t_hv;
+
 typedef struct s_coord
 {
 	double	x;
@@ -86,12 +92,6 @@ typedef struct s_fov{
 	bool		was_hit_vert;
 	double		wall_strip_height;
 }	t_fov;
-
-typedef struct s_ray
-{
-	t_coord		wall_hit;
-	double		distance;
-}	t_ray;
 
 typedef struct s_img_data
 {

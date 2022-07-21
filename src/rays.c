@@ -8,9 +8,9 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-double	distance_between_points(double x1, double y1, double x2, double y2)
+double	distance_between_points(t_coord start, t_coord goal)
 {
-	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+	return (sqrt((goal.x - start.x) * (goal.x - start.x) + (goal.y - start.y) * (goal.y - start.y)));
 }
 
 t_direction	get_direction_of_line(double angle)
@@ -29,142 +29,102 @@ t_direction	get_direction_of_line(double angle)
 	return (d);
 }
 
-t_coord	get_horz_intercept(t_player_data *p, double angle, t_direction d)
+t_coord	get_intercept(t_player_data *p, double angle, t_direction d, int hv)
 {
-	t_coord	intercept;
+	t_coord intercept;
 
-	intercept.y = floor(p->pos.y / TILE_SIZE) * TILE_SIZE;
-	if (d.down == 1)
-		intercept.y += TILE_SIZE;
-	intercept.x = p->pos.x + (intercept.y - p->pos.y) / tan(angle);
+	if (hv == HORIZONTAL)
+	{
+		intercept.y = floor(p->pos.y / TILE_SIZE) * TILE_SIZE;
+		if (d.down == 1)
+			intercept.y += TILE_SIZE;
+		intercept.x = p->pos.x + (intercept.y - p->pos.y) / tan(angle);
+	}
+	else
+	{
+		intercept.x = floor(p->pos.x / TILE_SIZE) * TILE_SIZE;
+		if (d.right == true)
+			intercept.x += TILE_SIZE;
+		intercept.y = p->pos.y + (intercept.x - p->pos.x) * tan(angle);
+	}
 	return (intercept);
 }
 
-t_coord	get_vert_intercept(t_player_data *p, double angle, t_direction d)
+t_coord get_step(double angle, t_direction d, int hv)
+{
+	t_coord	step;
+
+	if (hv == HORIZONTAL)
+	{
+		step.x = TILE_SIZE / tan(angle);
+		step.y = TILE_SIZE;
+		if (d.up == 1)
+			step.y *= -1;
+		if ((d.left == 1 && step.x > 0) || (d.right == 1 && step.x < 0))
+			step.x *= -1;
+	}
+	else
+	{
+		step.x = TILE_SIZE;
+		step.y = TILE_SIZE * tan(angle);
+		if (d.left == true)
+			step.x *= -1;
+		if ((d.up == 1 && step.y > 0) || (d.down == 1 && step.y < 0))
+			step.y *= -1;
+	}
+	return (step);
+}
+
+
+double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
 {
 	t_coord	intercept;
-
-	intercept.x = floor(p->pos.x / TILE_SIZE) * TILE_SIZE;
-	if (d.right == true)
-		intercept.x += TILE_SIZE;
-	intercept.y = p->pos.y + (intercept.x - p->pos.x) * tan(angle);
-	return (intercept);
-}
-
-t_coord	get_horz_step(double angle, t_direction d)
-{
 	t_coord	step;
+	t_coord	next;
 
-	step.y = TILE_SIZE;
-	if (d.up == 1)
-		step.y *= -1;
-	step.x = TILE_SIZE / tan(angle);
-	if (d.left == 1 && step.x > 0)
-		step.x *= -1;
-	if (d.right == 1 && step.x < 0)
-		step.x *= -1;
-	return (step);
-}
-
-t_coord	get_vert_step(double angle, t_direction d)
-{
-	t_coord	step;
-
-	step.x = TILE_SIZE;
-	if (d.left == true)
-		step.x *= -1;
-	step.y = TILE_SIZE * tan(angle);
-	if (d.up == 1 && step.y > 0)
-		step.y *= -1;
-	if (d.down == 1 && step.y < 0)
-		step.y *= -1;
-	return (step);
-}
-
-double	get_horz_touch_point(t_game_data *data, t_fov *fov, t_ray *h)
-{
-	t_coord	touch;
-	t_coord	step;
-	double	next;
-
-	next = 0;
-	step = get_horz_step(fov->angle, fov->d);
-	touch = get_horz_intercept(&data->player, fov->angle, fov->d);
-	if (fov->d.up == true)
-		next = -1;
-	while (touch.x >= 0 && touch.x <= data->map_width && touch.y >= 0 && touch.y <= data->map_height)
+	ft_memset(&next, 0, sizeof(t_coord));
+	step = get_step(fov->angle, fov->d, hv);
+	intercept = get_intercept(&data->player, fov->angle, fov->d, hv);
+	if (hv == HORIZONTAL && fov->d.up == true)
+		next.y = -1;
+	else if (hv == VERTICAL && fov->d.left == true)
+		next.x = -1;
+	while (intercept.x >= 0 && intercept.x <= data->map_width && intercept.y >= 0 && intercept.y <= data->map_height)
 	{
-		if (has_wall(data, touch.x, touch.y + next))
+		if (has_wall(data, intercept.x + next.x, intercept.y + next.y))
 		{
-			h->wall_hit = touch;
-			return (distance_between_points(data->player.pos.x, data->player.pos.y, h->wall_hit.x, h->wall_hit.y));
+			*coord = intercept;
+			return (distance_between_points(data->player.pos, *coord));
 		}
 		else
 		{
-			touch.x += step.x;
-			touch.y += step.y;
+			intercept.x += step.x;
+			intercept.y += step.y;
 		}
 	}
 	return (DBL_MAX);
-}
-
-double	get_vert_touch_point(t_game_data *data, t_fov *fov, t_ray *v)
-{
-	t_coord	touch;
-	t_coord	step;
-	double	next;
-
-	next = 0;
-	step = get_vert_step(fov->angle, fov->d);
-	touch = get_vert_intercept(&data->player, fov->angle, fov->d);
-	if (fov->d.left == true)
-		next = -1;
-	while (touch.x >= 0 && touch.x <= data->map_width && touch.y >= 0 && touch.y <= data->map_height)
-	{
-		if (has_wall(data, touch.x + next, touch.y))
-		{
-			v->wall_hit = touch;
-			return (distance_between_points(data->player.pos.x, data->player.pos.y, v->wall_hit.x, v->wall_hit.y));
-		}
-		else
-		{
-			touch.x += step.x;
-			touch.y += step.y;
-		}
-	}
-	return (DBL_MAX);
-}
-
-double	found_horz_wall_hit(t_game_data *data, t_fov *fov, t_ray *h)
-{
-	return (get_horz_touch_point(data, fov, h));
-}
-
-double	found_vert_wall_hit(t_game_data *data, t_fov *fov, t_ray *v)
-{
-	return (get_vert_touch_point(data, fov, v));
 }
 
 void	calc_one_ray(t_game_data *data, t_fov *fov)
 {
-	t_ray	h;
-	t_ray	v;
+	t_coord	h;
+	t_coord	v;
+	double	h_distance;
+	double	v_distance;
 
 	fov->d = get_direction_of_line(fov->angle);
-	h.distance =  found_horz_wall_hit(data, fov, &h);
-	v.distance =  found_vert_wall_hit(data, fov, &v);
-	if (h.distance >= v.distance)
+	h_distance =  get_distance(data, fov, &h, HORIZONTAL);
+	v_distance =  get_distance(data, fov, &v, VERTICAL);
+	if (h_distance >= v_distance)
 	{
-		fov->distance = v.distance;
-		fov->wall_hit.x = v.wall_hit.x;
-		fov->wall_hit.y = v.wall_hit.y;
+		fov->distance = v_distance;
+		fov->wall_hit = v;
 		fov->was_hit_vert = true;
 	}
 	else
 	{
-		fov->distance = h.distance;
-		fov->wall_hit.x = h.wall_hit.x;
-		fov->wall_hit.y = h.wall_hit.y;
+		fov->distance = h_distance;
+		fov->wall_hit = h;
 		fov->was_hit_vert = false;
 	}
 }

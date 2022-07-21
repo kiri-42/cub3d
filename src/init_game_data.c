@@ -32,7 +32,8 @@ bool	get_player_param(const char *s, size_t *i, char *d)
 	*i = 0;
 	while (str[*i])
 	{
-		if (str[*i] == 'N' || str[*i] == 'S' || str[*i] == 'W' || str[*i] == 'E')
+		if (str[*i] == 'N' || str[*i] == 'S'
+			|| str[*i] == 'W' || str[*i] == 'E')
 		{
 			*d = str[*i];
 			return (true);

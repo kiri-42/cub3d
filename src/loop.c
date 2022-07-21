@@ -2,8 +2,8 @@
 
 int	close_window(void *data)
 {
-	t_game_data *gd;
-	
+	t_game_data	*gd;
+
 	gd = data;
 	free_all(gd);
 	exit(EXIT_SUCCESS);
@@ -11,9 +11,9 @@ int	close_window(void *data)
 
 int	key_hook(int keycode, t_game_data *data)
 {
-	double	move_step;
-	double	new_x;
-	double	new_y;
+	double			move_step;
+	double			new_x;
+	double			new_y;
 	t_player_data	*p;
 
 	p = &data->player;
@@ -57,7 +57,6 @@ int	key_hook(int keycode, t_game_data *data)
 int	loop_hook(t_game_data *data)
 {
 	render_all(data);
-	// data->map_img_data.addr[(int)floor(data->player.pos.y) * data->map_width + (int)floor(data->player.pos.x)] = 0xFF0000;
 	mlx_put_image_to_window(data->mlx, data->win, data->map_img_data.ptr, 0, 0);
 	return (0);
 }

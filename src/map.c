@@ -25,7 +25,7 @@ void	put_all_tile(t_game_data *data)
 			tile = get_minimap_tile(data, x, y);
 			if (tile == '1')
 				data->map_img_data.addr[y * data->win_width + x] = 0x000000;
-			else if (tile == '0' || tile == 'N')
+			else if (tile == '0' || tile == 'N' || tile == 'E' || tile == 'W' || tile == 'S')
 				data->map_img_data.addr[y * data->win_width + x] = 0xFFFFFF;
 			x++;
 		}

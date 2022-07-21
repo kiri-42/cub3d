@@ -12,11 +12,11 @@ int	get_line_size(char **map)
 	return (i);
 }
 
-char **dupmap(char **map)
+char	**dupmap(char **map)
 {
 	char	**dup;
-	int	line_size;
-	int	i;
+	int		line_size;
+	int		i;
 
 	line_size = get_line_size(map);
 	dup = (char **)x_malloc(sizeof(char *) * (line_size + 1));
@@ -90,9 +90,7 @@ void	flood_fill(char **map, int x, int y, int max_y, char new_color)
 		else
 			exit_error(WALL_ERROR);
 	}
-
 	map[y][x] = new_color;
-
 	flood_fill(map, x + 1, y, max_y, new_color);
 	flood_fill(map, x - 1, y, max_y, new_color);
 	flood_fill(map, x, y + 1, max_y, new_color);

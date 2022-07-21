@@ -44,3 +44,9 @@ void	free_all(t_game_data *data)
 		free(data->fov);
 	free_mlx(data);
 }
+
+void	free_exit(t_game_data *data)
+{
+	free_all(data);
+	exit(EXIT_FAILURE);
+}

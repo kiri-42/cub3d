@@ -216,4 +216,14 @@ int	to_chr_index(int width, t_coord coord, double scale);
 void	draw_circle(t_game_data *data);
 bool	debug_is_open_path(char *path);
 void	init_player_pos(t_game_data *gd);
+
+
+//rays_utils.c
+double	normalize_angle(double angle);
+double	distance_between_points(t_coord start, t_coord goal);
+t_direction	get_direction_of_line(double angle);
+t_coord	add_coord(t_coord c1, t_coord c2);
+
+//free.c
+void	free_exit(t_game_data *data);
 #endif

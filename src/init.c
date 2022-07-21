@@ -3,12 +3,9 @@
 void	init_player_param(t_game_data *data)
 {
 	init_player_pos(data);
-	// data->player.pos.x = data->map_width / 5;
-	// data->player.pos.y = data->map_height / 5;
 	data->player.radius = 15;
 	data->player.turn_direction = 0;	/* -1 if left, +1 if right */
 	data->player.walk_direction = 0;	/* -1 if back, +1 if front */
-	// data->player.rotation_angle = M_PI / 2;
 	data->player.move_speed = 5.0;
 	data->player.rotation_speed = 3 * (M_PI / 180);
 }

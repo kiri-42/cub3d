@@ -1,37 +1,8 @@
 #include "cub3d.h"
 
-double	normalize_angle(double angle)
-{
-	angle = fmod(angle, 2 * M_PI);
-	if (angle < 0)
-		angle = (2 * M_PI) + angle;
-	return (angle);
-}
-
-double	distance_between_points(t_coord start, t_coord goal)
-{
-	return (sqrt((goal.x - start.x) * (goal.x - start.x) + (goal.y - start.y) * (goal.y - start.y)));
-}
-
-t_direction	get_direction_of_line(double angle)
-{
-	t_direction	d;
-
-	ft_memset(&d, false, sizeof(t_direction));
-	if (angle > 0 && angle < M_PI)
-		d.down = true;
-	else
-		d.up = true;
-	if (angle < 0.5 * M_PI || angle > 1.5 * M_PI)
-		d.right = true;
-	else
-		d.left = true;
-	return (d);
-}
-
 t_coord	get_intercept(t_player_data *p, double angle, t_direction d, int hv)
 {
-	t_coord intercept;
+	t_coord	intercept;
 
 	if (hv == HORIZONTAL)
 	{
@@ -50,7 +21,7 @@ t_coord	get_intercept(t_player_data *p, double angle, t_direction d, int hv)
 	return (intercept);
 }
 
-t_coord get_step(double angle, t_direction d, int hv)
+t_coord	get_step(double angle, t_direction d, int hv)
 {
 	t_coord	step;
 
@@ -75,7 +46,6 @@ t_coord get_step(double angle, t_direction d, int hv)
 	return (step);
 }
 
-
 double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
 {
 	t_coord	intercept;
@@ -89,7 +59,8 @@ double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
 		next.y = -1;
 	else if (hv == VERTICAL && fov->d.left == true)
 		next.x = -1;
-	while (intercept.x >= 0 && intercept.x <= data->map_width && intercept.y >= 0 && intercept.y <= data->map_height)
+	while (intercept.x >= 0 && intercept.x <= data->map_width
+		&& intercept.y >= 0 && intercept.y <= data->map_height)
 	{
 		if (has_wall(data, intercept.x + next.x, intercept.y + next.y))
 		{
@@ -97,10 +68,7 @@ double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
 			return (distance_between_points(data->player.pos, *coord));
 		}
 		else
-		{
-			intercept.x += step.x;
-			intercept.y += step.y;
-		}
+			intercept = add_coord(intercept, step);
 	}
 	return (DBL_MAX);
 }
@@ -113,8 +81,8 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 	double	v_distance;
 
 	fov->d = get_direction_of_line(fov->angle);
-	h_distance =  get_distance(data, fov, &h, HORIZONTAL);
-	v_distance =  get_distance(data, fov, &v, VERTICAL);
+	h_distance = get_distance(data, fov, &h, HORIZONTAL);
+	v_distance = get_distance(data, fov, &v, VERTICAL);
 	if (h_distance >= v_distance)
 	{
 		fov->distance = v_distance;

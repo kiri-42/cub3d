@@ -1,8 +1,26 @@
 #include "cub3d.h"
 
+bool	is_in_minimap(t_coord coord, int width, int height)
+{
+	return (!(coord.x * MINIMAP_SCALE > width * MINIMAP_SCALE
+			|| coord.x < 0
+			|| coord.y * MINIMAP_SCALE > height * MINIMAP_SCALE
+			|| coord.y < 0));
+}
+
+bool	is_in_circle(t_coord center, t_coord coord, int radius)
+{
+	double	x;
+	double	y;
+
+	x = coord.x - center.x;
+	y = coord.y - center.y;
+	return (x * x + y * y <= radius * radius);
+}
+
 void	draw_circle(t_game_data *data)
 {
-	int	*ptr;
+	int		*ptr;
 	t_coord	coord;
 
 	ptr = data->map_img_data.addr;
@@ -13,12 +31,11 @@ void	draw_circle(t_game_data *data)
 		coord.x = floor(data->player.pos.x - data->player.radius);
 		while (coord.x < floor(data->player.pos.x + data->player.radius))
 		{
-			if (coord.x*MINIMAP_SCALE > (int)data->map_width*MINIMAP_SCALE || coord.x < 0 || coord.y*MINIMAP_SCALE > (int)data->map_height*MINIMAP_SCALE || coord.y < 0)
-			{
+			if (!is_in_minimap(coord, data->map_width, data->map_height))
 				break ;
-			}
-			if ((coord.x - data->player.pos.x) * (coord.x - data->player.pos.x) + (coord.y - data->player.pos.y) * (coord.y - data->player.pos.y) <= data->player.radius * data->player.radius)
-				ptr[to_chr_index(data->win_width, coord, MINIMAP_SCALE)] = PLAYER_CIRCLE_COLOR;
+			if (is_in_circle(data->player.pos, coord, data->player.radius))
+				ptr[to_chr_index(data->win_width, coord, MINIMAP_SCALE)]
+					= PLAYER_CIRCLE_COLOR;
 			coord.x++;
 		}
 		coord.y++;

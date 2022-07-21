@@ -20,7 +20,7 @@ char	get_minimap_tile(t_game_data *data, double x, double y)
 	int	map_y;
 
 	if (x < 0 || x > data->map_width || y < 0 || y > data->map_height)
-		return (true);
+		return (' ');
 	map_x = floor(x / MINIMAP_TILE_SIZE);
 	map_y = floor(y / MINIMAP_TILE_SIZE);
 	if ((size_t)map_x > ft_strlen(data->map[map_y]))

@@ -39,9 +39,11 @@ t_rgb	get_rgb(char *line)
 	return (rgb);
 }
 
-void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color *crc)
+void	set_color_line(t_game_data *gd, char *line,
+		char *prefix, t_can_read_color *crc)
 {
 	t_rgb	rgb;
+
 	rgb = get_rgb(line);
 	if (!ft_strncmp(prefix, "F ", 2) && crc->floor)
 	{

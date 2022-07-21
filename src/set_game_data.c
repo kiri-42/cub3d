@@ -40,11 +40,26 @@ char	**malloc_map(t_game_data *gd, int map_start)
 	return (map);
 }
 
+void	set_texture_and_color(t_game_data *gd, int *i)
+{
+	char	*prefix;
+
+	prefix = ft_substr(gd->cubfile[*i], 0, PREFIX_SIZE);
+	if (prefix == NULL)
+		exit_error(MALLOC_ERROR);
+	if (is_path_line(prefix))
+		set_texture_path(gd, i);
+	else if (is_color_line(prefix))
+		set_color(gd, i);
+	else if (gd->cubfile[*i][0] != '\0' || *i == 0)
+		exit_error(CUB_FORMAT_ERROR);
+	free(prefix);
+}
+
 void	set_game_data(t_game_data *gd)
 {
 	int		i;
 	int		map_start;
-	char	*prefix;
 
 	i = 0;
 	map_start = get_map_start(gd->cubfile);
@@ -52,22 +67,9 @@ void	set_game_data(t_game_data *gd)
 	while (gd->cubfile[i] != NULL)
 	{
 		if (i < map_start)
-		{
-			prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
-			if (prefix == NULL)
-				exit_error(MALLOC_ERROR);
-			if (is_path_line(prefix))
-				set_texture_path(gd, &i);
-			else if (is_color_line(prefix))
-				set_color(gd, &i);
-			else if (gd->cubfile[i][0] != '\0' || i == 0)
-				exit_error(CUB_FORMAT_ERROR);
-			free(prefix);
-		}
+			set_texture_and_color(gd, &i);
 		else
-		{
 			gd->map[i - map_start] = ft_strdup(gd->cubfile[i]);
-		}
 		i++;
 	}
 	gd->map[i - map_start] = NULL;

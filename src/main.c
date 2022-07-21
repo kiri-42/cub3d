@@ -8,7 +8,7 @@ int	main(int ac, char **av)
 	init_game_data(&gd);
 	read_cubfile(&gd, av[1]);
 	set_game_data(&gd);
-	free_cubfile(&gd);
+	// free_cubfile(&gd);
 	check_game_data(&gd);
 	set_map_data(&gd);
 	init_player_param(&gd);

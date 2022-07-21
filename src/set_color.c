@@ -49,6 +49,9 @@ void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color 
 		gd->floor_color.red = rgb.red;
 		gd->floor_color.green = rgb.green;
 		gd->floor_color.blue = rgb.blue;
+		gd->floor_color.code = rgb.red << 16;
+		gd->floor_color.code |= rgb.green << 8;
+		gd->floor_color.code |= rgb.blue;
 	}
 	else if (!ft_strncmp(prefix, "C ", 2) && crc->ceiling)
 	{
@@ -56,6 +59,9 @@ void	set_color_line(t_game_data *gd, char *line, char *prefix, t_can_read_color 
 		gd->ceiling_color.red = rgb.red;
 		gd->ceiling_color.green = rgb.green;
 		gd->ceiling_color.blue = rgb.blue;
+		gd->ceiling_color.code = rgb.red << 16;
+		gd->ceiling_color.code |= rgb.green << 8;
+		gd->ceiling_color.code |= rgb.blue;
 	}
 	else
 		exit_error(CUB_FORMAT_ERROR);

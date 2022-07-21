@@ -12,7 +12,7 @@ int	main(int ac, char **av)
 	check_game_data(&gd);
 	set_map_data(&gd);
 	init_player_param(&gd);
-	gd.fov = malloc(sizeof(t_fov) * gd.ray);
+	gd.fov = x_malloc(sizeof(t_fov) * gd.ray);
 	init_mlx(&gd);
 	open_tex(&gd, &gd.imgs);
 	loop_start(&gd);

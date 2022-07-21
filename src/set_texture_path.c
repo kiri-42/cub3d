@@ -10,7 +10,8 @@ char	*get_texture_path(char *line)
 	return (texture_path);
 }
 
-void	set_texture_path_line(t_game_data *gd, char *line, char *prefix, t_can_read_texture *crt)
+void	set_texture_path_line(t_game_data *gd, char *line,
+		char *prefix, t_can_read_texture *crt)
 {
 	char	*texture_path;
 
@@ -36,12 +37,7 @@ void	set_texture_path_line(t_game_data *gd, char *line, char *prefix, t_can_read
 		gd->tp.ea_path = texture_path;
 	}
 	else
-	{
 		exit_error(CUB_FORMAT_ERROR);
-	}
-	// printf("init\n");
-	// print_texture_path(gd);
-	// printf("end\n");
 }
 
 void	set_texture_path(t_game_data *gd, int *line_i)

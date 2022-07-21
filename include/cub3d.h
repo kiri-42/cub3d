@@ -91,9 +91,6 @@ typedef struct s_ray
 {
 	t_coord		wall_hit;
 	double		distance;
-	t_coord		intercept;
-	t_coord		step;
-	bool		is_hit;
 }	t_ray;
 
 typedef struct s_img_data

@@ -19,6 +19,10 @@
 # define KEY_A 0x0061
 # define KEY_S 0x0073
 # define KEY_D 0x0064
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
+# define KEY_UP 65362
+# define KEY_DOWN 65364
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 768
@@ -53,6 +57,14 @@ typedef enum e_hv
 	HORIZONTAL,
 	VERTICAL
 }	t_hv;
+
+typedef enum e_move
+{
+	FRONT,
+	BACK,
+	RIGHT,
+	LEFT
+}	t_move;
 
 typedef struct s_coord
 {

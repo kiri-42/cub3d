@@ -160,6 +160,12 @@ typedef struct s_can_read_texture
 	bool	east;
 }	t_can_read_texture;
 
+typedef struct s_move{
+	double	move_step;
+	double	new_x;
+	double	new_y;
+}	t_move;
+
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);

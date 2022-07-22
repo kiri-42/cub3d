@@ -9,41 +9,42 @@ int	close_window(void *data)
 	exit(EXIT_SUCCESS);
 }
 
+void	run_KEY_W(t_player_data	*p, t_game_data *data, t_move *m)
+{
+	p->walk_direction = 1;
+	m->move_step = p->walk_direction * p->move_speed;
+	m->new_x = p->pos.x + cos(p->rotation_angle) * m->move_step;
+	m->new_y = p->pos.y + sin(p->rotation_angle) * m->move_step;
+	if (!has_wall(data, m->new_x, m->new_y))
+	{
+		p->pos.x = m->new_x;
+		p->pos.y = m->new_y;
+	}
+}
+
+// TODO 3つのdouble変数を構造体でまとめたい
 int	key_hook(int keycode, t_game_data *data)
 {
-	double			move_step;
-	double			new_x;
-	double			new_y;
+	t_move			m;
 	t_player_data	*p;
 
 	p = &data->player;
-	(void)data;
 	if (keycode == KEY_ESC)
 		close_window(data);
 	else if (keycode == KEY_W)
-	{
-		p->walk_direction = 1;
-		move_step = p->walk_direction * p->move_speed;
-		new_x = p->pos.x + cos(p->rotation_angle) * move_step;
-		new_y = p->pos.y + sin(p->rotation_angle) * move_step;
-		if (!has_wall(data, new_x, new_y))
-		{
-			p->pos.x = new_x;
-			p->pos.y = new_y;
-		}
-	}
+		run_KEY_W(p, data,  &m);
 	else if (keycode == KEY_A)
 		p->turn_direction = -1;
 	else if (keycode == KEY_S)
 	{
 		p->walk_direction = -1;
-		move_step = p->walk_direction * p->move_speed;
-		new_x = p->pos.x + cos(p->rotation_angle) * move_step;
-		new_y = p->pos.y + sin(p->rotation_angle) * move_step;
-		if (!has_wall(data, new_x, new_y))
+		m.move_step = p->walk_direction * p->move_speed;
+		m.new_x = p->pos.x + cos(p->rotation_angle) * m.move_step;
+		m.new_y = p->pos.y + sin(p->rotation_angle) * m.move_step;
+		if (!has_wall(data, m.new_x, m.new_y))
 		{
-			p->pos.x = new_x;
-			p->pos.y = new_y;
+			p->pos.x = m.new_x;
+			p->pos.y = m.new_y;
 		}
 	}
 	else if (keycode == KEY_D)

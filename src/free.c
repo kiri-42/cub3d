@@ -23,7 +23,7 @@ void	free_mlx(t_game_data *data)
 
 void	free_all(t_game_data *data)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (data->tp.no_path)

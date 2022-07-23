@@ -23,6 +23,7 @@
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_DOWN 65364
+# define MOUSE_LEFT 1
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 768

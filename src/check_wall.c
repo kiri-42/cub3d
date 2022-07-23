@@ -1,48 +1,5 @@
 #include "cub3d.h"
 
-int	get_line_size(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	**dupmap(char **map)
-{
-	char	**dup;
-	int		line_size;
-	int		i;
-
-	line_size = get_line_size(map);
-	dup = (char **)x_malloc(sizeof(char *) * (line_size + 1));
-	i = 0;
-	while (i < line_size)
-	{
-		dup[i] = ft_strdup(map[i]);
-		i++;
-	}
-	dup[i] = NULL;
-	return (dup);
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 bool	is_valid_position(char c)
 {
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');

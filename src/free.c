@@ -42,6 +42,13 @@ void	free_all(t_game_data *data)
 	}
 	if (data->fov)
 		free(data->fov);
+	i = 0;
+	while (i < data->rows)
+	{
+		free(data->map2[i]);
+		i++;
+	}
+	free(data->map2);
 	free_mlx(data);
 }
 

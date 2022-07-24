@@ -4,10 +4,37 @@ void	init_player_param(t_game_data *data)
 {
 	init_player_pos(data);
 	data->player.radius = 15;
-	data->player.turn_direction = 0;
-	data->player.walk_direction = 0;
 	data->player.move_speed = 5.0;
 	data->player.rotation_speed = 3 * (M_PI / 180);
+}
+
+void	copy_to_cell(t_game_data *gd, char **map)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	i = 0;
+	gd->map2 = (t_cell **)x_malloc(sizeof(t_cell *) * gd->rows);
+	while (i < gd->rows)
+	{
+		gd->map2[i] = x_malloc(sizeof(t_cell) * gd->cols);
+		len = ft_strlen(map[i]);
+		j = 0;
+		while (j < len)
+		{
+			gd->map2[i][j].type = map[i][j];
+			gd->map2[i][j].door_open = 0;
+			j++;
+		}
+		while (j < gd->cols)
+		{
+			gd->map2[i][j].type = ' ';
+			gd->map2[i][j].door_open = CLOSE;
+			j++;
+		}
+		i++;
+	}
 }
 
 void	set_map_data(t_game_data *gd)
@@ -32,6 +59,7 @@ void	set_map_data(t_game_data *gd)
 	gd->win_width = WINDOW_WIDTH;
 	gd->win_height = WINDOW_HEIGHT;
 	gd->ray = gd->win_width / WALL_STRIP_WIDTH;
+	copy_to_cell(gd, gd->map);
 }
 
 void	init_mlx(t_game_data *data)
@@ -78,5 +106,11 @@ bool	open_tex(t_game_data *data, t_imgs *img)
 	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr,
 			&img->wall_west.bits_per_pixel,
 			&img->wall_west.line_lenght, &img->wall_west.endian);
+
+	img->door.ptr = mlx_xpm_file_to_image(data->mlx, "./maps/texture/door.xpm",
+			&img->door.width, &img->door.height);
+	img->door.addr = (int *)mlx_get_data_addr(img->door.ptr,
+			&img->door.bits_per_pixel,
+			&img->door.line_lenght, &img->door.endian);
 	return (true);
 }

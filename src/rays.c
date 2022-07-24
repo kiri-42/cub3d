@@ -46,7 +46,7 @@ t_coord	get_step(double angle, t_direction d, int hv)
 	return (step);
 }
 
-double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
+void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 {
 	t_coord	intercept;
 	t_coord	step;
@@ -62,38 +62,49 @@ double	get_distance(t_game_data *data, t_fov *fov, t_coord *coord, int hv)
 	while (intercept.x >= 0 && intercept.x <= data->map_width
 		&& intercept.y >= 0 && intercept.y <= data->map_height)
 	{
-		if (has_wall(data, intercept.x + next.x, intercept.y + next.y))
+		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_WALL) == true)
 		{
-			*coord = intercept;
-			return (distance_between_points(data->player.pos, *coord));
+			ray->is_hit_door = false;
+			ray->hit = intercept;
+			ray->distance = distance_between_points(data->player.pos, ray->hit);
+			return ;
+		}
+		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_DOOR) == true)
+		{
+			ray->is_hit_door = true;
+			fov->door_hit = add_coord(intercept, next);
+			ray->hit = intercept;
+			ray->distance = distance_between_points(data->player.pos, ray->hit);
+			return ;
 		}
 		else
 			intercept = add_coord(intercept, step);
 	}
-	return (DBL_MAX);
+	ray->distance = DBL_MAX;
+	return ;
 }
 
 void	calc_one_ray(t_game_data *data, t_fov *fov)
 {
-	t_coord	h;
-	t_coord	v;
-	double	h_distance;
-	double	v_distance;
+	t_ray	h;
+	t_ray	v;
 
 	fov->d = get_direction_of_line(fov->angle);
-	h_distance = get_distance(data, fov, &h, HORIZONTAL);
-	v_distance = get_distance(data, fov, &v, VERTICAL);
-	if (h_distance >= v_distance)
+	get_distance(data, fov, &h, HORIZONTAL);
+	get_distance(data, fov, &v, VERTICAL);
+	if (h.distance >= v.distance)
 	{
-		fov->distance = v_distance;
-		fov->wall_hit = v;
+		fov->distance = v.distance;
+		fov->wall_hit = v.hit;
 		fov->was_hit_vert = true;
+		fov->is_door = v.is_hit_door;
 	}
 	else
 	{
-		fov->distance = h_distance;
-		fov->wall_hit = h;
+		fov->distance = h.distance;
+		fov->wall_hit = h.hit;
 		fov->was_hit_vert = false;
+		fov->is_door = h.is_hit_door;
 	}
 }
 

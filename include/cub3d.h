@@ -192,6 +192,12 @@ typedef struct s_can_read_texture
 	bool	east;
 }	t_can_read_texture;
 
+typedef struct s_position
+{
+	int	x;
+	int	y;
+}	t_position;
+
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);

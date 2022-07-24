@@ -62,14 +62,16 @@ void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 	while (intercept.x >= 0 && intercept.x <= data->map_width
 		&& intercept.y >= 0 && intercept.y <= data->map_height)
 	{
-		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_WALL) == true)
+		if (has_wall(data, intercept.x + next.x, \
+		intercept.y + next.y, MAP_WALL))
 		{
 			ray->is_hit_door = false;
 			ray->hit = intercept;
 			ray->distance = distance_between_points(data->player.pos, ray->hit);
 			return ;
 		}
-		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_DOOR) == true)
+		if (has_wall(data, intercept.x + next.x, \
+		intercept.y + next.y, MAP_DOOR))
 		{
 			ray->is_hit_door = true;
 			fov->door_hit = add_coord(intercept, next);

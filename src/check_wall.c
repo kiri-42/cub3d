@@ -5,7 +5,7 @@ bool	is_valid_position(char c)
 	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-void	get_position(char **map, char *c, int *x, int *y)
+void	get_position(char **map, char *c, t_position *position)
 {
 	int	i;
 	int	j;
@@ -19,8 +19,8 @@ void	get_position(char **map, char *c, int *x, int *y)
 			if (is_valid_position(map[i][j]))
 			{
 				*c = map[i][j];
-				*x = j;
-				*y = i;
+				position->x = j;
+				position->y = i;
 				return ;
 			}
 			j++;
@@ -31,45 +31,44 @@ void	get_position(char **map, char *c, int *x, int *y)
 	return ;
 }
 
-void	flood_fill(char **map, int x, int y, int max_y, char new_color)
+void	flood_fill(char **map, t_position p, int max_y, char new_color)
 {
 	int	max_x;
 
-	max_x = ft_strlen(map[y]);
-	if (x < 0 || y < 0 || x >= max_x || y >= max_y)
+	max_x = ft_strlen(map[p.y]);
+	if (p.x < 0 || p.y < 0 || p.x >= max_x || p.y >= max_y)
 		return ;
-	if (map[y][x] == new_color)
+	if (map[p.y][p.x] == new_color)
 		return ;
-	if (!is_valid_position(map[y][x]))
+	if (!is_valid_position(map[p.y][p.x]))
 	{
-		if (map[y][x] == '1')
+		if (map[p.y][p.x] == '1')
 			return ;
 		else
 			exit_error(WALL_ERROR);
 	}
-	map[y][x] = new_color;
-	flood_fill(map, x + 1, y, max_y, new_color);
-	flood_fill(map, x - 1, y, max_y, new_color);
-	flood_fill(map, x, y + 1, max_y, new_color);
-	flood_fill(map, x, y - 1, max_y, new_color);
+	map[p.y][p.x] = new_color;
+	flood_fill(map, p, max_y, new_color);
+	flood_fill(map, p, max_y, new_color);
+	flood_fill(map, p, max_y, new_color);
+	flood_fill(map, p, max_y, new_color);
 }
 
 void	check_wall(t_game_data *gd)
 {
-	char	**map;
-	char	c;
-	int		x;
-	int		y;
-	int		max_y;
+	char		**map;
+	char		c;
+	t_position	position;
+	int			max_y;
 
 	map = dupmap(gd->map);
 	max_y = get_line_size(map);
 	while (true)
 	{
-		get_position(map, &c, &x, &y);
+		get_position(map, &c, &position);
 		if (c == ' ')
 			break ;
-		flood_fill(map, x, y, max_y, '#');
+		flood_fill(map, position, max_y, '#');
 	}
 	free_map(map);
 }

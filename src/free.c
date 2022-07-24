@@ -57,3 +57,16 @@ void	free_exit(t_game_data *data)
 	free_all(data);
 	exit(EXIT_FAILURE);
 }
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}

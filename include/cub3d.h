@@ -252,4 +252,9 @@ t_coord	add_coord(t_coord c1, t_coord c2);
 
 //free.c
 void	free_exit(t_game_data *data);
+void	free_map(char **map);
+
+//dupmap.c
+int		get_line_size(char **map);
+char	**dupmap(char **map);
 #endif

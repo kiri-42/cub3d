@@ -72,6 +72,29 @@ void	print_map_data(char **map)
 	printf("\n");
 }
 
+void	print_cell_data(t_cell **map, int rows, int cols)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < rows)
+	{
+		j = 0;
+		printf("{");
+		while (j < cols)
+		{
+			printf("%c", map[i][j].type);
+			if (j + 1 < cols)
+				printf(", ");
+			j++;
+		}
+		printf("}\n");
+		i++;
+	}
+	printf("\n");
+}
+
 void	debug_set_color(t_game_data *data)
 {
 	data->floor_color.red = 0;

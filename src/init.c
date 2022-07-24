@@ -10,6 +10,35 @@ void	init_player_param(t_game_data *data)
 	data->player.rotation_speed = 3 * (M_PI / 180);
 }
 
+void	copy_to_cell(t_game_data *gd, char **map)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	i = 0;
+	gd->map2 = (t_cell **)x_malloc(sizeof(t_cell *) * gd->rows);
+	while (i < gd->rows)
+	{
+		gd->map2[i] = x_malloc(sizeof(t_cell) * gd->cols);
+		len = ft_strlen(map[i]);
+		j = 0;
+		while (j < len)
+		{
+			gd->map2[i][j].type = map[i][j];
+			gd->map2[i][j].door_open = 0;
+			j++;
+		}
+		while (j < gd->cols)
+		{
+			gd->map2[i][j].type = ' ';
+			gd->map2[i][j].door_open = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	set_map_data(t_game_data *gd)
 {
 	size_t	rows;
@@ -32,6 +61,7 @@ void	set_map_data(t_game_data *gd)
 	gd->win_width = WINDOW_WIDTH;
 	gd->win_height = WINDOW_HEIGHT;
 	gd->ray = gd->win_width / WALL_STRIP_WIDTH;
+	copy_to_cell(gd, gd->map);
 }
 
 void	init_mlx(t_game_data *data)

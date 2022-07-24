@@ -67,11 +67,23 @@ typedef enum e_move
 	LEFT
 }	t_move;
 
+typedef enum e_door
+{
+	OPEN,
+	CLOSE
+}	t_door;
+
 typedef struct s_coord
 {
 	double	x;
 	double	y;
 }	t_coord;
+
+typedef struct s_cell
+{
+	char	type;
+	bool	door_open;
+}	t_cell;
 
 typedef struct s_texture_path
 {
@@ -144,6 +156,7 @@ typedef struct s_game_data
 	int				cubfile_linage;
 	char			**cubfile;
 	char			**map;
+	t_cell			**map2;
 	void			*mlx;
 	void			*win;
 	t_player_data	player;

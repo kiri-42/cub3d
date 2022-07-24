@@ -35,9 +35,9 @@ bool	is_inside_blank(t_game_data *data, size_t index)
 
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 {
-	double	delta_x;
-	double	delta_y;
-	size_t	index;
+	double		delta_x;
+	double		delta_y;
+	size_t		index;
 	t_img_data	*m;
 
 	m = &data->map_img_data;
@@ -75,7 +75,6 @@ int	darken_color(int color, double distance)
 	r *= dark;
 	g *= dark;
 	b *= dark;
-
 	if (r > 0xFF)
 		r = 0xFF;
 	if (g > 0xFF)
@@ -107,20 +106,25 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 		tex_offset_x = (int)floor(fov->wall_hit.x) % TILE_SIZE;
 	tex_offset_y = y * ((double)(TILE_SIZE) / fov->wall_strip_height);
 	if (fov->d.up == true && fov->was_hit_vert == false)
-		color = data->imgs.wall_north.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
+		color = data->imgs.wall_north.addr[tex_offset_y * TILE_SIZE \
+		+ tex_offset_x];
 	else if (fov->d.right == true && fov->was_hit_vert == true)
-		color = data->imgs.wall_east.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
+		color = data->imgs.wall_east.addr[tex_offset_y * TILE_SIZE \
+		+ tex_offset_x];
 	else if (fov->d.left == true && fov->was_hit_vert == true)
-		color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+		color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE \
+		+ (TILE_SIZE-1 - tex_offset_x)];
 	else if (fov->d.down == true && fov->was_hit_vert == false)
-		color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+		color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE \
+		+ (TILE_SIZE-1 - tex_offset_x)];
 	else
 		color = 0;
 	color = darken_color(color, fov->distance);
 	return (color);
 }
 
-void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part part)
+void	draw_straight_line(t_game_data *data, t_fov *fov,
+		t_coord start, double length, t_part part)
 {
 	size_t	index;
 	size_t	i;

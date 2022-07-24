@@ -4,8 +4,6 @@ void	init_player_param(t_game_data *data)
 {
 	init_player_pos(data);
 	data->player.radius = 15;
-	data->player.turn_direction = 0;
-	data->player.walk_direction = 0;
 	data->player.move_speed = 5.0;
 	data->player.rotation_speed = 3 * (M_PI / 180);
 }

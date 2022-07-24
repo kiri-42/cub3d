@@ -29,6 +29,10 @@
 # define WINDOW_HEIGHT 768
 
 # define MAP_WALL '1'
+# define MAP_DOOR 'D'
+
+# define OPEN 1
+# define CLOSE 0
 
 # define TILE_SIZE 64
 # define MINIMAP_SCALE 0.2
@@ -67,12 +71,6 @@ typedef enum e_move
 	LEFT
 }	t_move;
 
-typedef enum e_door
-{
-	OPEN,
-	CLOSE
-}	t_door;
-
 typedef struct s_coord
 {
 	double	x;
@@ -84,6 +82,13 @@ typedef struct s_cell
 	char	type;
 	bool	door_open;
 }	t_cell;
+
+typedef struct s_ray
+{
+	t_coord	hit;
+	double	distance;
+	bool	is_hit_door;
+}	t_ray;
 
 typedef struct s_texture_path
 {
@@ -116,6 +121,8 @@ typedef struct s_fov{
 	t_coord		wall_hit;
 	bool		was_hit_vert;
 	double		wall_strip_height;
+	bool		is_door;
+	t_coord		door_hit;
 }	t_fov;
 
 typedef struct s_img_data
@@ -135,6 +142,7 @@ typedef struct s_imgs
 	t_img_data	wall_south;
 	t_img_data	wall_east;
 	t_img_data	wall_west;
+	t_img_data	door;
 }	t_imgs;
 
 typedef struct s_player_data
@@ -218,7 +226,7 @@ void	init_player_param(t_game_data *data);
 void	put_all_tile(t_game_data *data);
 void	loop_start(t_game_data *data);
 void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
-bool	has_wall(t_game_data *data, double x, double y);
+bool	has_wall(t_game_data *data, double x, double y, char ob);
 void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);

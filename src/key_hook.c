@@ -31,7 +31,7 @@ void	move_player(t_game_data *data, t_move m)
 		new_x = p->pos.x + cos(p->rotation_angle + M_PI / 2) * move_step;
 		new_y = p->pos.y + sin(p->rotation_angle + M_PI / 2) * move_step;
 	}
-	if (!has_wall(data, new_x, new_y))
+	if (!has_wall(data, new_x, new_y, MAP_WALL))
 	{
 		p->pos.x = new_x;
 		p->pos.y = new_y;

@@ -106,16 +106,27 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	else
 		tex_offset_x = (int)floor(fov->wall_hit.x) % TILE_SIZE;
 	tex_offset_y = y * ((double)(TILE_SIZE) / fov->wall_strip_height);
-	if (fov->d.up == true && fov->was_hit_vert == false)
-		color = data->imgs.wall_north.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
-	else if (fov->d.right == true && fov->was_hit_vert == true)
-		color = data->imgs.wall_east.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
-	else if (fov->d.left == true && fov->was_hit_vert == true)
-		color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
-	else if (fov->d.down == true && fov->was_hit_vert == false)
-		color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
-	else
-		color = 0;
+
+	if (fov->is_door == false)
+	{
+		if (fov->d.up == true && fov->was_hit_vert == false)
+			color = data->imgs.wall_north.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
+		else if (fov->d.right == true && fov->was_hit_vert == true)
+			color = data->imgs.wall_east.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
+		else if (fov->d.left == true && fov->was_hit_vert == true)
+			color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+		else if (fov->d.down == true && fov->was_hit_vert == false)
+			color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+		else
+			color = 0;
+	}
+	else if (fov->is_door == true)
+	{
+
+		color = data->imgs.door.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
+	}
+
+
 	color = darken_color(color, fov->distance);
 	return (color);
 }

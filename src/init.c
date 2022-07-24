@@ -30,7 +30,7 @@ void	copy_to_cell(t_game_data *gd, char **map)
 		while (j < gd->cols)
 		{
 			gd->map2[i][j].type = ' ';
-			gd->map2[i][j].door_open = 0;
+			gd->map2[i][j].door_open = CLOSE;
 			j++;
 		}
 		i++;
@@ -106,5 +106,11 @@ bool	open_tex(t_game_data *data, t_imgs *img)
 	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr,
 			&img->wall_west.bits_per_pixel,
 			&img->wall_west.line_lenght, &img->wall_west.endian);
+
+	img->door.ptr = mlx_xpm_file_to_image(data->mlx, "./maps/texture/door.xpm",
+			&img->door.width, &img->door.height);
+	img->door.addr = (int *)mlx_get_data_addr(img->door.ptr,
+			&img->door.bits_per_pixel,
+			&img->door.line_lenght, &img->door.endian);
 	return (true);
 }

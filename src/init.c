@@ -84,7 +84,7 @@ void	init_mlx(t_game_data *data)
 			&m->line_lenght, &m->endian);
 }
 
-bool	open_tex(t_game_data *data, t_imgs *img)
+void	open_tex(t_game_data *data, t_imgs *img)
 {
 	img->wall_north.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.no_path,
 			&img->wall_north.width, &img->wall_north.height);
@@ -106,11 +106,9 @@ bool	open_tex(t_game_data *data, t_imgs *img)
 	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr,
 			&img->wall_west.bits_per_pixel,
 			&img->wall_west.line_lenght, &img->wall_west.endian);
-
 	img->door.ptr = mlx_xpm_file_to_image(data->mlx, "./maps/texture/door.xpm",
 			&img->door.width, &img->door.height);
 	img->door.addr = (int *)mlx_get_data_addr(img->door.ptr,
 			&img->door.bits_per_pixel,
 			&img->door.line_lenght, &img->door.endian);
-	return (true);
 }

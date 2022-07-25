@@ -46,6 +46,29 @@ t_coord	get_step(double angle, t_direction d, int hv)
 	return (step);
 }
 
+// void	tmp(t_game_data *data, t_fov *fov, t_ray *ray, t_coord *intercept, t_coord *next, t_coord *step)
+// {
+// 	if (has_wall(data, intercept->x + next->x, \
+// 	intercept->y + next->y, MAP_WALL))
+// 	{
+// 		ray->is_hit_door = false;
+// 		ray->hit = *intercept;
+// 		ray->distance = distance_between_points(data->player.pos, ray->hit);
+// 		return ;
+// 	}
+// 	if (has_wall(data, intercept->x + next->x, \
+// 	intercept->y + next->y, MAP_DOOR))
+// 	{
+// 		ray->is_hit_door = true;
+// 		fov->door_hit = add_coord(*intercept, *next);
+// 		ray->hit = *intercept;
+// 		ray->distance = distance_between_points(data->player.pos, ray->hit);
+// 		return ;
+// 	}
+// 	else
+// 		*intercept = add_coord(*intercept, *step);
+// }
+
 void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 {
 	t_coord	intercept;
@@ -64,14 +87,17 @@ void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 	while (intercept.x >= 0 && intercept.x <= data->map_width
 		&& intercept.y >= 0 && intercept.y <= data->map_height)
 	{
-		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_WALL) == true)
+		// tmp(data, fov, ray, &intercept, &step, &next);
+		if (has_wall(data, intercept.x + next.x, \
+		intercept.y + next.y, MAP_WALL))
 		{
 			ray->is_hit_door = false;
 			ray->hit = intercept;
 			ray->distance = distance_between_points(data->player.pos, ray->hit);
 			return ;
 		}
-		if (has_wall(data, intercept.x + next.x, intercept.y + next.y, MAP_DOOR) == true)
+		if (has_wall(data, intercept.x + next.x, \
+		intercept.y + next.y, MAP_DOOR))
 		{
 			if (first_hit_opened_door == false)
 			{

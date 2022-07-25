@@ -16,7 +16,7 @@ bool	is_three_elem(char	**rgb)
 	return (false);
 }
 
-t_rgb	get_rgb(char *line)
+static t_rgb	get_rgb(char *line)
 {
 	int		len;
 	t_rgb	rgb;

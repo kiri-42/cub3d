@@ -196,6 +196,12 @@ typedef struct s_can_read_texture
 	bool	east;
 }	t_can_read_texture;
 
+typedef struct s_position
+{
+	int	x;
+	int	y;
+}	t_position;
+
 void	check_arg(int ac, char **av);
 void	init_game_data(t_game_data *gd);
 void	read_cubfile(t_game_data *gd, char *cubfile_name);
@@ -235,9 +241,11 @@ void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
 
-bool	open_tex(t_game_data *data, t_imgs *img);
+void	open_tex(t_game_data *data, t_imgs *img);
 
-void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
+void	draw_ceiling_straight_line(t_game_data *data, t_coord start, double length);
+void	draw_wall_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length);
+void	draw_floor_straight_line(t_game_data *data, t_coord start, double length);
 char	get_minimap_tile(t_game_data *data, double x, double y);
 
 

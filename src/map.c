@@ -10,6 +10,8 @@ void	put_color(t_game_data *data, int x, int y)
 	else if (tile == '0'
 		|| tile == 'N' || tile == 'E' || tile == 'W' || tile == 'S')
 		data->map_img_data.addr[y * data->win_width + x] = 0xFFFFFF;
+	else if (tile == MAP_DOOR)
+		data->map_img_data.addr[y * data->win_width + x] = MINIMAP_DOOR_COLOR;
 }
 
 void	put_all_tile(t_game_data *data)

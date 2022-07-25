@@ -41,13 +41,10 @@
 
 # define PLAYER_CIRCLE_COLOR 0x52ff00
 # define MINIMAP_RAY_COLOR 0xffff00
+# define MINIMAP_DOOR_COLOR 0x696969
 
 # define FOV (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-
-// # ifndef M_PI
-// # define M_PI 3.14159265358979323846
-// # endif
 
 # define PREFIX_SIZE 2
 

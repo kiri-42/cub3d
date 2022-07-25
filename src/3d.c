@@ -17,14 +17,14 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 		* distance_projection_plane;
 		start.x = fov[i].id * WALL_STRIP_WIDTH;
 		start.y = 0;
-		draw_straight_line(data, &fov[i], start, (data->win_height / 2) \
-		- (fov[i].wall_strip_height / 2), CEILING);
+		draw_ceiling_straight_line(data, start, (data->win_height / 2) \
+		- (fov[i].wall_strip_height / 2));
 		start.y = (data->win_height / 2) - (fov[i].wall_strip_height / 2);
-		draw_straight_line(data, &fov[i], start, \
-		fov[i].wall_strip_height, WALL);
+		draw_wall_straight_line(data, &fov[i], start, \
+		fov[i].wall_strip_height);
 		start.y += fov[i].wall_strip_height;
 		if (start.y < data->win_height)
-			draw_straight_line(data, &fov[i], start, data->win_height, FLOOR);
+			draw_floor_straight_line(data, start, data->win_height);
 		i++;
 	}
 }

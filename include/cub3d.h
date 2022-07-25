@@ -239,7 +239,9 @@ void	render_all(t_game_data *data);
 
 void	open_tex(t_game_data *data, t_imgs *img);
 
-void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
+void	draw_ceiling_straight_line(t_game_data *data, t_coord start, double length);
+void	draw_wall_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length);
+void	draw_floor_straight_line(t_game_data *data, t_coord start, double length);
 char	get_minimap_tile(t_game_data *data, double x, double y);
 
 

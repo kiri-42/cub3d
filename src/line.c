@@ -145,8 +145,36 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	return (color);
 }
 
-void	draw_straight_line(t_game_data *data, t_fov *fov,
-		t_coord start, double length, t_part part)
+// void	draw_straight_line(t_game_data *data, t_fov *fov,
+// 		t_coord start, double length, t_part part)
+// {
+// 	size_t		index;
+// 	size_t		i;
+// 	t_img_data	*m;
+
+// 	printf("%d\n", part);
+// 	m = &data->map_img_data;
+// 	i = 0;
+// 	start = floor_coord(start);
+// 	while (i < length)
+// 	{
+// 		index = to_chr_index(data->win_width, start, 1);
+// 		if (index < data->win_width * data->win_height)
+// 		{
+// 			if (part == CEILING)
+// 				m->addr[index] = data->ceiling_color.code;
+// 			else if (part == WALL)
+// 				m->addr[index] = get_tex_color(data, fov, i);
+// 			else if (part == FLOOR)
+// 				m->addr[index] = data->floor_color.code;
+// 		}
+// 		start.y++;
+// 		i++;
+// 	}
+// }
+
+void	draw_ceiling_straight_line(t_game_data *data,
+		t_coord start, double length)
 {
 	size_t		index;
 	size_t		i;
@@ -159,14 +187,46 @@ void	draw_straight_line(t_game_data *data, t_fov *fov,
 	{
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)
-		{
-			if (part == CEILING)
-				m->addr[index] = data->ceiling_color.code;
-			else if (part == WALL)
-				m->addr[index] = get_tex_color(data, fov, i);
-			else if (part == FLOOR)
-				m->addr[index] = data->floor_color.code;
-		}
+			m->addr[index] = data->ceiling_color.code;
+		start.y++;
+		i++;
+	}
+}
+
+void	draw_wall_straight_line(t_game_data *data, t_fov *fov,
+		t_coord start, double length)
+{
+	size_t		index;
+	size_t		i;
+	t_img_data	*m;
+
+	m = &data->map_img_data;
+	i = 0;
+	start = floor_coord(start);
+	while (i < length)
+	{
+		index = to_chr_index(data->win_width, start, 1);
+		if (index < data->win_width * data->win_height)
+			m->addr[index] = get_tex_color(data, fov, i);
+		start.y++;
+		i++;
+	}
+}
+
+void	draw_floor_straight_line(t_game_data *data, t_coord start, double length)
+{
+	size_t		index;
+	size_t		i;
+	t_img_data	*m;
+
+	m = &data->map_img_data;
+	i = 0;
+	start = floor_coord(start);
+	while (i < length)
+	{
+		index = to_chr_index(data->win_width, start, 1);
+		if (index < data->win_width * data->win_height)
+			m->addr[index] = data->floor_color.code;
 		start.y++;
 		i++;
 	}

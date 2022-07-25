@@ -59,35 +59,41 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 		m->addr[index] = color;
 }
 
+static t_rgb	get_rgb(int color)
+{
+	t_rgb	rgb;
+
+	rgb.red = color >> 16;
+	rgb.green = color >> 8 & 0xFF;
+	rgb.blue = color & 0xFF;
+	return (rgb);
+}
+
 int	darken_color(int color, double distance)
 {
-	int		r;
-	int		g;
-	int		b;
+	t_rgb	rgb;
 	double	dark;
 
-	r = color >> 16;
-	g = color >> 8 & 0xFF;
-	b = color & 0xFF;
+	rgb = get_rgb(color);
 	dark = (200 / distance);
 	if (dark > 1)
 		dark = 1;
-	r *= dark;
-	g *= dark;
-	b *= dark;
-	if (r > 0xFF)
-		r = 0xFF;
-	if (g > 0xFF)
-		g = 0xFF;
-	if (b > 0xFF)
-		b = 0xFF;
-	if (r < 0)
-		r = 0;
-	if (g < 0)
-		g = 0;
-	if (b < 0)
-		b = 0;
-	return (r << 16 | g << 8 | b);
+	rgb.red *= dark;
+	rgb.green *= dark;
+	rgb.blue *= dark;
+	if (rgb.red > 0xFF)
+		rgb.red = 0xFF;
+	if (rgb.green > 0xFF)
+		rgb.green = 0xFF;
+	if (rgb.blue > 0xFF)
+		rgb.blue = 0xFF;
+	if (rgb.red < 0)
+		rgb.red = 0;
+	if (rgb.green < 0)
+		rgb.green = 0;
+	if (rgb.blue < 0)
+		rgb.blue = 0;
+	return (rgb.red << 16 | rgb.green << 8 | rgb.blue);
 }
 
 int	get_tex_color(t_game_data *data, t_fov *fov, int y)
@@ -114,10 +120,10 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 		+ tex_offset_x];
 	else if (fov->d.left == true && fov->was_hit_vert == true)
 		color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE \
-		+ (TILE_SIZE-1 - tex_offset_x)];
+		+ (TILE_SIZE - 1 - tex_offset_x)];
 	else if (fov->d.down == true && fov->was_hit_vert == false)
 		color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE \
-		+ (TILE_SIZE-1 - tex_offset_x)];
+		+ (TILE_SIZE - 1 - tex_offset_x)];
 	if (fov->is_door == false)
 	{
 		if (fov->d.up == true && fov->was_hit_vert == false)
@@ -125,9 +131,9 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 		else if (fov->d.right == true && fov->was_hit_vert == true)
 			color = data->imgs.wall_east.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
 		else if (fov->d.left == true && fov->was_hit_vert == true)
-			color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+			color = data->imgs.wall_west.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE - 1 - tex_offset_x)];
 		else if (fov->d.down == true && fov->was_hit_vert == false)
-			color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE-1 - tex_offset_x)];
+			color = data->imgs.wall_south.addr[tex_offset_y * TILE_SIZE + (TILE_SIZE - 1 - tex_offset_x)];
 		else
 			color = 0;
 	}
@@ -135,9 +141,6 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	{
 		color = data->imgs.door.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
 	}
-
-
-
 	color = darken_color(color, fov->distance);
 	return (color);
 }
@@ -145,8 +148,8 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 void	draw_straight_line(t_game_data *data, t_fov *fov,
 		t_coord start, double length, t_part part)
 {
-	size_t	index;
-	size_t	i;
+	size_t		index;
+	size_t		i;
 	t_img_data	*m;
 
 	m = &data->map_img_data;

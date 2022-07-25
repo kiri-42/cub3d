@@ -46,7 +46,7 @@
 # define WALL_STRIP_WIDTH 1
 
 # ifndef M_PI
-# define M_PI 3.14159265358979323846
+#  define M_PI 3.14159265358979323846
 # endif
 
 # define PREFIX_SIZE 2
@@ -201,94 +201,96 @@ typedef struct s_position
 	int	y;
 }	t_position;
 
-void	check_arg(int ac, char **av);
-void	init_game_data(t_game_data *gd);
-void	read_cubfile(t_game_data *gd, char *cubfile_name);
-void	set_game_data(t_game_data *gd);
-void	set_texture_path(t_game_data *gd, int *line_i);
-void	set_color(t_game_data *gd, int *line_i);
-bool	is_path_line(char *str);
-bool	is_color_line(char *str);
-void	free_cubfile(t_game_data *gd);
-void	check_game_data(t_game_data *gd);
-void	is_initialized_texture_path(t_texture_path tp);
-void	is_initialized_rgb(t_rgb color);
-void	is_initialized_map(char **map);
-void	check_wall(t_game_data *gd);
-void	is_invalid_rgb(t_rgb color);
-void	is_open_texture_path(t_texture_path tp);
-
+void		check_arg(int ac, char **av);
+void		init_game_data(t_game_data *gd);
+void		read_cubfile(t_game_data *gd, char *cubfile_name);
+void		set_game_data(t_game_data *gd);
+void		set_texture_path(t_game_data *gd, int *line_i);
+void		set_color(t_game_data *gd, int *line_i);
+bool		is_path_line(char *str);
+bool		is_color_line(char *str);
+void		free_cubfile(t_game_data *gd);
+void		check_game_data(t_game_data *gd);
+void		is_initialized_texture_path(t_texture_path tp);
+void		is_initialized_rgb(t_rgb color);
+void		is_initialized_map(char **map);
+void		check_wall(t_game_data *gd);
+void		is_invalid_rgb(t_rgb color);
+void		is_open_texture_path(t_texture_path tp);
 
 //map.c
-void	init_mlx(t_game_data *data);
+void		init_mlx(t_game_data *data);
 
 //loop.c
-void	loop_start(t_game_data *data);
+void		loop_start(t_game_data *data);
 
 //hook.c
-int		close_window(void *data);
-int		key_hook(int keycode, t_game_data *data);
+int			close_window(void *data);
+int			key_hook(int keycode, t_game_data *data);
 
-void	debug_set_map(char ***m);
-void	init_mlx(t_game_data *data);
-void	init_player_param(t_game_data *data);
-void	put_all_tile(t_game_data *data);
-void	loop_start(t_game_data *data);
-void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
-bool	has_wall(t_game_data *data, double x, double y, char ob);
-void	cast_all_rays(t_game_data *data);
-void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
-void	render_all(t_game_data *data);
+void		debug_set_map(char ***m);
+void		init_mlx(t_game_data *data);
+void		init_player_param(t_game_data *data);
+void		put_all_tile(t_game_data *data);
+void		loop_start(t_game_data *data);
+void		draw_line(t_game_data *data, t_coord start, \
+			t_coord goal, int color);
+bool		has_wall(t_game_data *data, double x, double y, char ob);
+void		cast_all_rays(t_game_data *data);
+void		render_3d_projection_wall(t_game_data *data, t_fov *fov);
+void		render_all(t_game_data *data);
 
-void	open_tex(t_game_data *data, t_imgs *img);
+void		open_tex(t_game_data *data, t_imgs *img);
 
-void	draw_ceiling_straight_line(t_game_data *data, t_coord start, double length);
-void	draw_wall_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length);
-void	draw_floor_straight_line(t_game_data *data, t_coord start, double length);
-char	get_minimap_tile(t_game_data *data, double x, double y);
+void		draw_ceiling_straight_line(t_game_data *data, t_coord start, \
+			double length);
+void		draw_wall_straight_line(t_game_data *data, t_fov *fov, \
+			t_coord start, double length);
+void		draw_floor_straight_line(t_game_data *data, t_coord start, \
+			double length);
+char		get_minimap_tile(t_game_data *data, double x, double y);
 
 //line.c
-t_coord	floor_coord(t_coord coord);
-int		to_chr_index(int width, t_coord coord, double scale);
-int		get_tex_color(t_game_data *data, t_fov *fov, int y);
-void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
+t_coord		floor_coord(t_coord coord);
+int			to_chr_index(int width, t_coord coord, double scale);
+int			get_tex_color(t_game_data *data, t_fov *fov, int y);
+void		draw_line(t_game_data *data, t_coord start, \
+			t_coord goal, int color);
 
-void	set_map_data(t_game_data *gd);
-void	debug_set_texpath(t_game_data *data);
-void	debug_set_color(t_game_data *data);
-void	debug_print_cubfile(t_game_data *data);
-void	free_all(t_game_data *data);
-void	print_map_data(char **map);
-int		to_chr_index(int width, t_coord coord, double scale);
-void	draw_circle(t_game_data *data);
-bool	debug_is_open_path(char *path);
-void	init_player_pos(t_game_data *gd);
-
+void		set_map_data(t_game_data *gd);
+void		debug_set_texpath(t_game_data *data);
+void		debug_set_color(t_game_data *data);
+void		debug_print_cubfile(t_game_data *data);
+void		free_all(t_game_data *data);
+void		print_map_data(char **map);
+int			to_chr_index(int width, t_coord coord, double scale);
+void		draw_circle(t_game_data *data);
+bool		debug_is_open_path(char *path);
+void		init_player_pos(t_game_data *gd);
 
 //rays_utils.c
-double	normalize_angle(double angle);
-double	distance_between_points(t_coord start, t_coord goal);
+double		normalize_angle(double angle);
+double		distance_between_points(t_coord start, t_coord goal);
 t_direction	get_direction_of_line(double angle);
-t_coord	add_coord(t_coord c1, t_coord c2);
+t_coord		add_coord(t_coord c1, t_coord c2);
 
 //free.c
-void	free_exit(t_game_data *data);
-void	free_map(char **map);
+void		free_exit(t_game_data *data);
+void		free_map(char **map);
 
 //dupmap.c
-int		get_line_size(char **map);
-char	**dupmap(char **map);
+int			get_line_size(char **map);
+char		**dupmap(char **map);
 
-void	print_cell_data(t_cell **map, int rows, int cols);
-t_cell	*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
-
+void		print_cell_data(t_cell **map, int rows, int cols);
+t_cell		*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
 
 // rays_utils.c
-void
-	ret_on_collision(t_game_data *data, t_ray *ray,
-	t_coord intercept, bool door);
-void	init_neighbor(t_coord *n, t_direction d, t_hv hv);
-void	store_nearest_door(bool	*flag, t_ray *ray, t_coord coord);
-bool	is_inside_map(t_game_data *gd, t_coord intercept, t_coord n);
-void	copy_to_fov(t_game_data *data, t_fov *fov, t_ray *ray, bool hv);
+void		ret_on_collision(t_game_data *data, t_ray *ray, \
+			t_coord intercept, bool door);
+void		init_neighbor(t_coord *n, t_direction d, t_hv hv);
+void		store_nearest_door(bool	*flag, t_ray *ray, t_coord coord);
+bool		is_inside_map(t_game_data *gd, t_coord intercept, t_coord n);
+void		copy_to_fov(t_game_data *data, t_fov *fov, t_ray *ray, bool hv);
+
 #endif

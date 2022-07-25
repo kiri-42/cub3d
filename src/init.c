@@ -8,7 +8,7 @@ void	init_player_param(t_game_data *data)
 	data->player.rotation_speed = 3 * (M_PI / 180);
 }
 
-void	copy_to_cell(t_game_data *gd, char **map)
+static void	copy_to_cell(t_game_data *gd, char **map)
 {
 	size_t	i;
 	size_t	j;

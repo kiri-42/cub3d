@@ -12,6 +12,8 @@ void	free_mlx(t_game_data *data)
 			mlx_destroy_image(data->mlx, data->imgs.wall_south.ptr);
 		if (data->imgs.wall_west.ptr)
 			mlx_destroy_image(data->mlx, data->imgs.wall_west.ptr);
+		if (data->imgs.door.ptr)
+			mlx_destroy_image(data->mlx, data->imgs.door.ptr);
 		if (data->win)
 			mlx_destroy_window(data->mlx, data->win);
 		if (data->map_img_data.ptr)
@@ -21,41 +23,21 @@ void	free_mlx(t_game_data *data)
 	}
 }
 
-void	free_all(t_game_data *data)
+void	free_cell(t_game_data *data)
 {
 	size_t	i;
 
 	i = 0;
-	if (data->tp.no_path)
-		free(data->tp.no_path);
-	if (data->tp.ea_path)
-		free(data->tp.ea_path);
-	if (data->tp.so_path)
-		free(data->tp.so_path);
-	if (data->tp.we_path)
-		free(data->tp.we_path);
-	if (data->map)
+	if (data->map2)
 	{
-		while (data->map[i])
-			free(data->map[i++]);
-		free(data->map);
+		while (i < data->rows)
+		{
+			if (data->map2[i])
+				free(data->map2[i]);
+			i++;
+		}
+		free(data->map2);
 	}
-	if (data->fov)
-		free(data->fov);
-	i = 0;
-	while (i < data->rows)
-	{
-		free(data->map2[i]);
-		i++;
-	}
-	free(data->map2);
-	free_mlx(data);
-}
-
-void	free_exit(t_game_data *data)
-{
-	free_all(data);
-	exit(EXIT_FAILURE);
 }
 
 void	free_map(char **map)
@@ -69,4 +51,27 @@ void	free_map(char **map)
 		i++;
 	}
 	free(map);
+}
+
+void	free_all(t_game_data *data)
+{
+	if (data->tp.no_path)
+		free(data->tp.no_path);
+	if (data->tp.ea_path)
+		free(data->tp.ea_path);
+	if (data->tp.so_path)
+		free(data->tp.so_path);
+	if (data->tp.we_path)
+		free(data->tp.we_path);
+	free_cell(data);
+	free_map(data->map);
+	if (data->fov)
+		free(data->fov);
+	free_mlx(data);
+}
+
+void	free_exit(t_game_data *data)
+{
+	free_all(data);
+	exit(EXIT_FAILURE);
 }

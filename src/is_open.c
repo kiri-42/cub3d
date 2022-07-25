@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	is_open_path(char *path)
+static void	is_open_path(char *path)
 {
 	int	fd;
 

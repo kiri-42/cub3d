@@ -89,5 +89,4 @@ char	*ft_strchr_gnl(const char *s, int c);
 void	exit_error(char *error_message);
 void	*x_malloc(size_t size);
 
-
 #endif

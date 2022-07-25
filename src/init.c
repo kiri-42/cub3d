@@ -24,7 +24,7 @@ void	copy_to_cell(t_game_data *gd, char **map)
 		while (j < len)
 		{
 			gd->map2[i][j].type = map[i][j];
-			gd->map2[i][j].door_open = 0;
+			gd->map2[i][j].door_open = CLOSE;
 			j++;
 		}
 		while (j < gd->cols)

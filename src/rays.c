@@ -48,7 +48,7 @@ t_coord	get_step(double angle, t_direction d, int hv)
 
 // void	tmp(t_game_data *data, t_fov *fov, t_ray *ray, t_coord *intercept, t_coord *next, t_coord *step)
 // {
-// 	if (has_wall(data, intercept->x + next->x, \
+// 	if (has_wall(data, intercept->x + next->x, 
 // 	intercept->y + next->y, MAP_WALL))
 // 	{
 // 		ray->is_hit_door = false;
@@ -56,7 +56,7 @@ t_coord	get_step(double angle, t_direction d, int hv)
 // 		ray->distance = distance_between_points(data->player.pos, ray->hit);
 // 		return ;
 // 	}
-// 	if (has_wall(data, intercept->x + next->x, \
+// 	if (has_wall(data, intercept->x + next->x, 
 // 	intercept->y + next->y, MAP_DOOR))
 // 	{
 // 		ray->is_hit_door = true;

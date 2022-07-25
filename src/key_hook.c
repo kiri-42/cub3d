@@ -10,11 +10,25 @@ void	turn_player(t_game_data *data, t_move m)
 	data->player.rotation_angle += data->player.rotation_speed * direction;
 }
 
+bool	is_reachable(t_game_data *gd, t_coord coord)
+{
+	t_cell	*c;
+
+	if (has_wall(gd, coord.x, coord.y, MAP_WALL))
+		return (false);
+	if (has_wall(gd, coord.x, coord.y, MAP_DOOR))
+	{
+		c = get_door_status(gd->map2, coord);
+		if (c->door_open == CLOSE)
+			return (false);
+	}
+	return (true);
+}
+
 void	move_player(t_game_data *data, t_move m)
 {
 	double			move_step;
-	double			new_x;
-	double			new_y;
+	t_coord			new;
 	t_player_data	*p;
 
 	p = &data->player;
@@ -23,19 +37,16 @@ void	move_player(t_game_data *data, t_move m)
 		move_step *= -1;
 	if (m == FRONT || m == BACK)
 	{
-		new_x = p->pos.x + cos(p->rotation_angle) * move_step;
-		new_y = p->pos.y + sin(p->rotation_angle) * move_step;
+		new.x = p->pos.x + cos(p->rotation_angle) * move_step;
+		new.y = p->pos.y + sin(p->rotation_angle) * move_step;
 	}
 	else
 	{
-		new_x = p->pos.x + cos(p->rotation_angle + M_PI / 2) * move_step;
-		new_y = p->pos.y + sin(p->rotation_angle + M_PI / 2) * move_step;
+		new.x = p->pos.x + cos(p->rotation_angle + M_PI / 2) * move_step;
+		new.y = p->pos.y + sin(p->rotation_angle + M_PI / 2) * move_step;
 	}
-	if (!has_wall(data, new_x, new_y, MAP_WALL))
-	{
-		p->pos.x = new_x;
-		p->pos.y = new_y;
-	}
+	if (is_reachable(data, new))
+		p->pos = new;
 }
 
 void	operate_door(t_game_data *gd)

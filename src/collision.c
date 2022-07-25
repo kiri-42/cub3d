@@ -11,8 +11,6 @@ bool	has_wall(t_game_data *data, double x, double y, char ob)
 	map_y = floor(y / TILE_SIZE);
 	if (map_x >= data->cols || map_y >= data->rows)
 		return (false);
-	if (ob == MAP_WALL && data->map2[map_y][map_x].type == MAP_WALL)
-		return (true);
 	return (data->map2[map_y][map_x].type == ob);
 }
 

@@ -281,4 +281,14 @@ char	**dupmap(char **map);
 
 void	print_cell_data(t_cell **map, int rows, int cols);
 t_cell	*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
+
+
+// rays_utils.c
+void
+	ret_on_collision(t_game_data *data, t_ray *ray,
+	t_coord intercept, bool door);
+void	init_neighbor(t_coord *n, t_direction d, t_hv hv);
+void	store_nearest_door(bool	*flag, t_ray *ray, t_coord coord);
+bool	is_inside_map(t_game_data *gd, t_coord intercept, t_coord n);
+void	copy_to_fov(t_game_data *data, t_fov *fov, t_ray *ray, bool hv);
 #endif

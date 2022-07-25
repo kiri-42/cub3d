@@ -247,7 +247,11 @@ void	draw_wall_straight_line(t_game_data *data, t_fov *fov, t_coord start, doubl
 void	draw_floor_straight_line(t_game_data *data, t_coord start, double length);
 char	get_minimap_tile(t_game_data *data, double x, double y);
 
-
+//line.c
+t_coord	floor_coord(t_coord coord);
+int		to_chr_index(int width, t_coord coord, double scale);
+int		get_tex_color(t_game_data *data, t_fov *fov, int y);
+void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color);
 
 void	set_map_data(t_game_data *gd);
 void	debug_set_texpath(t_game_data *data);
@@ -255,7 +259,7 @@ void	debug_set_color(t_game_data *data);
 void	debug_print_cubfile(t_game_data *data);
 void	free_all(t_game_data *data);
 void	print_map_data(char **map);
-int	to_chr_index(int width, t_coord coord, double scale);
+int		to_chr_index(int width, t_coord coord, double scale);
 void	draw_circle(t_game_data *data);
 bool	debug_is_open_path(char *path);
 void	init_player_pos(t_game_data *gd);

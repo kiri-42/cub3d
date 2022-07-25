@@ -5,6 +5,18 @@ int	to_chr_index(int width, t_coord coord, double scale)
 	return ((int)round(coord.y * scale) * width + (int)round(coord.x * scale));
 }
 
+t_cell	*get_door_status(t_cell **map, t_coord coord)
+{
+	int	x;
+	int	y;
+	t_cell	*cell;
+
+	x = (int)floor((coord.x) / TILE_SIZE);
+	y = (int)floor((coord.y) / TILE_SIZE);
+	cell = &map[y][x];
+	return (cell);
+}
+
 t_coord	floor_coord(t_coord coord)
 {
 	coord.x = floor(coord.x);
@@ -122,7 +134,6 @@ int	get_tex_color(t_game_data *data, t_fov *fov, int y)
 	}
 	else if (fov->is_door == true)
 	{
-
 		color = data->imgs.door.addr[tex_offset_y * TILE_SIZE + tex_offset_x];
 	}
 

@@ -23,6 +23,7 @@
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_DOWN 65364
+# define KEY_SPACE 32
 # define MOUSE_LEFT 1
 
 # define WINDOW_WIDTH 1024
@@ -88,6 +89,7 @@ typedef struct s_ray
 	t_coord	hit;
 	double	distance;
 	bool	is_hit_door;
+	t_coord	touching_door;
 }	t_ray;
 
 typedef struct s_texture_path
@@ -122,7 +124,6 @@ typedef struct s_fov{
 	bool		was_hit_vert;
 	double		wall_strip_height;
 	bool		is_door;
-	t_coord		door_hit;
 }	t_fov;
 
 typedef struct s_img_data
@@ -176,6 +177,9 @@ typedef struct s_game_data
 	size_t			win_height;
 	size_t			rows;
 	size_t			cols;
+	bool			is_touching_door;
+	t_cell			*touching_door;
+	double			touching_door_distance;
 }	t_game_data;
 
 typedef struct s_can_read_color
@@ -263,4 +267,7 @@ void	free_map(char **map);
 //dupmap.c
 int		get_line_size(char **map);
 char	**dupmap(char **map);
+
+
+t_cell	*get_door_status(t_cell **map, t_coord coord);
 #endif

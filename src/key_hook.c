@@ -38,6 +38,16 @@ void	move_player(t_game_data *data, t_move m)
 	}
 }
 
+void	operate_door(t_game_data *gd)
+{
+	if (!gd->touching_door || gd->is_touching_door == false)
+		return ;
+	if (gd->touching_door->door_open == CLOSE)
+		gd->touching_door->door_open = OPEN;
+	else if (gd->touching_door->door_open == OPEN)
+		gd->touching_door->door_open = CLOSE;
+}
+
 int	key_hook(int keycode, t_game_data *data)
 {
 	if (keycode == KEY_ESC)
@@ -54,5 +64,7 @@ int	key_hook(int keycode, t_game_data *data)
 		turn_player(data, RIGHT);
 	else if (keycode == KEY_LEFT)
 		turn_player(data, LEFT);
+	else if (keycode == KEY_SPACE)
+		operate_door(data);
 	return (0);
 }

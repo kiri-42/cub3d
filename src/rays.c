@@ -69,15 +69,23 @@ t_coord	get_step(double angle, t_direction d, int hv)
 // 		*intercept = add_coord(*intercept, *step);
 // }
 
+void	ret_on_collision(t_coord player, t_ray *ray, t_coord intercept, bool door)
+{
+	ray->hit = intercept;
+	ray->distance = distance_between_points(player, ray->hit);
+	ray->is_hit_door = door;
+}
+
 void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 {
 	t_coord	intercept;
 	t_coord	step;
 	t_coord	next;
-	bool	first_hit_opened_door;
+	t_cell	*c;
+	bool	first_hit_door;
 
 	ft_memset(&next, 0, sizeof(t_coord));
-	first_hit_opened_door = false;
+	first_hit_door = false;
 	step = get_step(fov->angle, fov->d, hv);
 	intercept = get_intercept(&data->player, fov->angle, fov->d, hv);
 	if (hv == HORIZONTAL && fov->d.up == true)
@@ -87,35 +95,46 @@ void	get_distance(t_game_data *data, t_fov *fov, t_ray *ray, int hv)
 	while (intercept.x >= 0 && intercept.x <= data->map_width
 		&& intercept.y >= 0 && intercept.y <= data->map_height)
 	{
+		// printf("%ld %ld\n", data->cols, data->rows);
+		// printf("%c\n", data->map2[14][14].type);
+		c = get_cell_addr(data, data->map2, add_coord(intercept, next));
+		if (!c)
+			break;
 		// tmp(data, fov, ray, &intercept, &step, &next);
-		if (has_wall(data, intercept.x + next.x, \
-		intercept.y + next.y, MAP_WALL))
+		if (c->type == MAP_WALL)
+			return (ret_on_collision(data->player.pos, ray, intercept, false));
+		if (c->type == MAP_DOOR)
 		{
-			ray->is_hit_door = false;
-			ray->hit = intercept;
-			ray->distance = distance_between_points(data->player.pos, ray->hit);
-			return ;
-		}
-		if (has_wall(data, intercept.x + next.x, \
-		intercept.y + next.y, MAP_DOOR))
-		{
-			if (first_hit_opened_door == false)
+			if (first_hit_door == false)
 			{
 				ray->touching_door = add_coord(intercept, next);
-				first_hit_opened_door = true;
+				first_hit_door = true;
 			}
-			if (data->map2[(int)floor((intercept.y + next.y) / TILE_SIZE)][(int)floor((intercept.x + next.x) / TILE_SIZE)].door_open == CLOSE)
-			{
-				ray->is_hit_door = true;
-				ray->hit = intercept;
-				ray->distance = distance_between_points(data->player.pos, ray->hit);
-				return ;
-			}
+			if (c->door_open == CLOSE)
+				return (ret_on_collision(data->player.pos, ray, intercept, true));
 		}
 		intercept = add_coord(intercept, step);
+		// printf("map width:%ld map height:%ld\n", data->map_width, data->map_height);
+		// printf("x:%f y:%f\n", intercept.x, intercept.y);
 	}
 	ray->distance = DBL_MAX;
 	return ;
+}
+
+void	copy_to_fov(t_game_data *data, t_fov *fov, t_ray *ray, bool hv)
+{
+	fov->distance = ray->distance;
+	fov->wall_hit = ray->hit;
+	fov->was_hit_vert = hv;
+	fov->is_door = ray->is_hit_door;
+	if ((size_t)fov->id == data->ray / 2)
+	{
+		data->touching_door = get_cell_addr(data, data->map2, ray->touching_door);
+		if (distance_between_points(data->player.pos, ray->touching_door) < TILE_SIZE)
+			data->is_touching_door = true;
+		else
+			data->is_touching_door = false;
+	}
 }
 
 void	calc_one_ray(t_game_data *data, t_fov *fov)
@@ -129,43 +148,9 @@ void	calc_one_ray(t_game_data *data, t_fov *fov)
 	get_distance(data, fov, &h, HORIZONTAL);
 	get_distance(data, fov, &v, VERTICAL);
 	if (h.distance >= v.distance)
-	{
-		fov->distance = v.distance;
-		fov->wall_hit = v.hit;
-		fov->was_hit_vert = true;
-		fov->is_door = v.is_hit_door;
-		if ((size_t)fov->id == data->ray / 2)
-		{
-			data->touching_door = get_door_status(data->map2, v.touching_door);
-			data->touching_door_distance = distance_between_points(data->player.pos, v.touching_door);
-			if (data->touching_door_distance < TILE_SIZE)
-				data->is_touching_door = true;
-			else
-			{
-				data->touching_door_distance = 0;
-				data->is_touching_door = false;
-			}
-		}
-	}
+		copy_to_fov(data, fov, &v, true);
 	else
-	{
-		fov->distance = h.distance;
-		fov->wall_hit = h.hit;
-		fov->was_hit_vert = false;
-		fov->is_door = h.is_hit_door;
-		if ((size_t)fov->id == data->ray / 2)
-		{
-			data->touching_door = get_door_status(data->map2, h.touching_door);
-			data->touching_door_distance = distance_between_points(data->player.pos, h.touching_door);
-			if (data->touching_door_distance < TILE_SIZE)
-				data->is_touching_door = true;
-			else
-			{
-				data->touching_door_distance = 0;
-				data->is_touching_door = false;
-			}
-		}
-	}
+		copy_to_fov(data, fov, &h, false);
 }
 
 void	cast_all_rays(t_game_data *data)

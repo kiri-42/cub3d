@@ -179,7 +179,6 @@ typedef struct s_game_data
 	size_t			cols;
 	bool			is_touching_door;
 	t_cell			*touching_door;
-	double			touching_door_distance;
 }	t_game_data;
 
 typedef struct s_can_read_color
@@ -276,6 +275,6 @@ void	free_map(char **map);
 int		get_line_size(char **map);
 char	**dupmap(char **map);
 
-
-t_cell	*get_door_status(t_cell **map, t_coord coord);
+void	print_cell_data(t_cell **map, int rows, int cols);
+t_cell	*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
 #endif

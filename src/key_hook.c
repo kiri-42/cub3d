@@ -18,7 +18,7 @@ bool	is_reachable(t_game_data *gd, t_coord coord)
 		return (false);
 	if (has_wall(gd, coord.x, coord.y, MAP_DOOR))
 	{
-		c = get_door_status(gd->map2, coord);
+		c = get_cell_addr(gd, gd->map2, coord);
 		if (c->door_open == CLOSE)
 			return (false);
 	}

@@ -237,7 +237,7 @@ void	cast_all_rays(t_game_data *data);
 void	render_3d_projection_wall(t_game_data *data, t_fov *fov);
 void	render_all(t_game_data *data);
 
-bool	open_tex(t_game_data *data, t_imgs *img);
+void	open_tex(t_game_data *data, t_imgs *img);
 
 void	draw_straight_line(t_game_data *data, t_fov *fov, t_coord start, double length, t_part inte);
 char	get_minimap_tile(t_game_data *data, double x, double y);

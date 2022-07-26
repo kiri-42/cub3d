@@ -15,4 +15,7 @@
 # define WALL_ERROR				"Map was not walled off"
 # define MAP_INVALID_ERROR		"Map is invalid value"
 
+# define INIT_ERROR				"Initialization failed"
+# define MAPSIZE_ERROR			"The map is too big for the screen"
+
 #endif

@@ -70,8 +70,8 @@ void	free_all(t_game_data *data)
 	free_mlx(data);
 }
 
-void	free_exit(t_game_data *data)
+void	free_exit(t_game_data *data, char *msg)
 {
 	free_all(data);
-	exit(EXIT_FAILURE);
+	exit_error(msg);
 }

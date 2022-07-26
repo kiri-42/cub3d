@@ -71,15 +71,17 @@ void	init_mlx(t_game_data *data)
 	m = &data->map_img_data;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit(EXIT_FAILURE);
+		free_exit(data, INIT_ERROR);
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
-	if (0)
-		exit(EXIT_FAILURE);
+	if ((size_t)win_x < data->win_width || (size_t)win_y < data->win_height)
+		free_exit(data, MAPSIZE_ERROR);
 	data->win = mlx_new_window(data->mlx, data->win_width,
 			data->win_height, TITLE);
 	if (!data->win)
-		exit(EXIT_FAILURE);
+		free_exit(data, INIT_ERROR);
 	m->ptr = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	if (!m->ptr)
+		free_exit(data, INIT_ERROR);
 	m->addr = (int *)mlx_get_data_addr(m->ptr, &m->bits_per_pixel,
 			&m->line_lenght, &m->endian);
 }
@@ -106,7 +108,7 @@ void	open_tex(t_game_data *data, t_imgs *img)
 	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr,
 			&img->wall_west.bits_per_pixel,
 			&img->wall_west.line_lenght, &img->wall_west.endian);
-	img->door.ptr = mlx_xpm_file_to_image(data->mlx, "./maps/texture/door.xpm",
+	img->door.ptr = mlx_xpm_file_to_image(data->mlx, DOOR_TEX_PATH,
 			&img->door.width, &img->door.height);
 	img->door.addr = (int *)mlx_get_data_addr(img->door.ptr,
 			&img->door.bits_per_pixel,

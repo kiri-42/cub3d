@@ -21,8 +21,8 @@ void	put_all_tile(t_game_data *data)
 	int		row;
 	int		col;
 
-	row = (int)floor(MINIMAP_TILE_SIZE * data->rows);
-	col = (int)floor(MINIMAP_TILE_SIZE * data->cols);
+	row = (int)floor((TILE_SIZE * MINIMAP_SCALE) * data->rows);
+	col = (int)floor((TILE_SIZE * MINIMAP_SCALE) * data->cols);
 	y = 0;
 	if ((size_t)row > data->win_height || (size_t)col > data->win_width)
 		free_exit(data);

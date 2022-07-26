@@ -54,6 +54,26 @@ void	flood_fill(char **map, t_position p, int max_y, char new_color)
 	flood_fill(map, p, max_y, new_color);
 }
 
+void	check_valid_map(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] == ' ' || map[i][j] == '1' || map[i][j] == '#')
+				return ;
+			exit_error(MAP_INVALID_ERROR);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	check_wall(t_game_data *gd)
 {
 	char		**map;
@@ -70,5 +90,6 @@ void	check_wall(t_game_data *gd)
 			break ;
 		flood_fill(map, position, max_y, '#');
 	}
+	check_valid_map(map);
 	free_map(map);
 }

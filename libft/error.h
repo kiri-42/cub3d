@@ -13,5 +13,6 @@
 # define RGB_INIT_ERROR			"RGB is uninitialized"
 # define RGB_INVALID_ERROR		"RGB is invalid value"
 # define WALL_ERROR				"Map was not walled off"
+# define MAP_INVALID_ERROR		"Map is invalid value"
 
 #endif

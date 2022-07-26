@@ -35,10 +35,8 @@ SRCS	= ./src/map.c \
 
 OBJS	= $(SRCS:%.c=%.o)
 
-DEPS	= $(SRCS:%.c=%.d)
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror
 LIBFTDIR = ./libft
 LIBFT = ft
 MLXDIR	=	./minilibx
@@ -72,7 +70,6 @@ fclean : clean
 	make clean -C $(MLXDIR)
 	rm -rf $(NAME)
 	rm -rf $(OBJS)
-	rm -rf $(DEPS)
 
 re : fclean all
 

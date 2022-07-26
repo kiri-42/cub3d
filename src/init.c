@@ -71,15 +71,17 @@ void	init_mlx(t_game_data *data)
 	m = &data->map_img_data;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit(EXIT_FAILURE);
+		free_exit(data, INIT_ERROR);
 	mlx_get_screen_size(data->mlx, &win_x, &win_y);
-	if (0)
-		exit(EXIT_FAILURE);
+	if ((size_t)win_x < data->win_width || (size_t)win_y < data->win_height)
+		free_exit(data, MAPSIZE_ERROR);
 	data->win = mlx_new_window(data->mlx, data->win_width,
 			data->win_height, TITLE);
 	if (!data->win)
-		exit(EXIT_FAILURE);
+		free_exit(data, INIT_ERROR);
 	m->ptr = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	if (!m->ptr)
+		free_exit(data, INIT_ERROR);
 	m->addr = (int *)mlx_get_data_addr(m->ptr, &m->bits_per_pixel,
 			&m->line_lenght, &m->endian);
 }

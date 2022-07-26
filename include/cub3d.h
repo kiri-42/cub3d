@@ -234,7 +234,7 @@ void		free_cubfile(t_game_data *gd);
 
 // free.c
 void		free_all(t_game_data *data);
-void		free_exit(t_game_data *data);
+void		free_exit(t_game_data *data, char *msg);
 void		free_map(char **map);
 
 // init_game_data.c

@@ -14,4 +14,7 @@
 # define RGB_INVALID_ERROR		"RGB is invalid value"
 # define WALL_ERROR				"Map was not walled off"
 
+# define INIT_ERROR				"Initialization failed"
+# define MAPSIZE_ERROR			"The map is too big for the screen"
+
 #endif

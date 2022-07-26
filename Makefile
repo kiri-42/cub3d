@@ -32,7 +32,6 @@ SRCS	= ./src/map.c \
 		./src/is_initialized.c \
 		./src/is_invalid.c \
 		./src/check_arg.c \
-		./src/debug.c
 
 SRCSB	= ./src/map.c \
 		./src/collision.c \
@@ -65,7 +64,6 @@ SRCSB	= ./src/map.c \
 		./src/is_initialized.c \
 		./src/is_invalid.c \
 		./src/check_arg.c \
-		./src/debug.c
 
 OBJS	= $(SRCS:%.c=%.o)
 OBJSB	= $(SRCSB:%.c=%.o)

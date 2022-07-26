@@ -32,8 +32,8 @@
 # define MAP_WALL '1'
 # define MAP_DOOR 'D'
 
-# define OPEN 1
-# define CLOSE 0
+# define OPEN true
+# define CLOSE false
 
 # define TILE_SIZE 64
 # define MINIMAP_SCALE 0.2
@@ -42,7 +42,7 @@
 # define MINIMAP_RAY_COLOR 0xffff00
 # define MINIMAP_DOOR_COLOR 0x696969
 
-# define FOV (60 * (M_PI / 180))
+# define FOV 1.0471975512
 # define WALL_STRIP_WIDTH 1
 
 # define PREFIX_SIZE 2

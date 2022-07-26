@@ -47,6 +47,8 @@
 
 # define PREFIX_SIZE 2
 
+# define DOOR_TEX_PATH "./maps/texture/door.xpm"
+
 typedef enum e_part
 {
 	WALL,

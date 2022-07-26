@@ -2,7 +2,8 @@
 
 bool	is_valid_position(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W' \
+	|| c == 'D');
 }
 
 void	get_position(char **map, char *c, t_position *position)

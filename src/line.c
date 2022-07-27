@@ -36,7 +36,12 @@ void	draw_ceiling_straight_line(t_game_data *data,
 	m = &data->map_img_data;
 	i = 0;
 	start = floor_coord(start);
-	while (i < length)
+	if (start.y < 0)
+	{
+		i = start.y * -1;
+		start.y = 0;
+	}
+	while (i < length && start.y < data->win_height)
 	{
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)
@@ -56,7 +61,12 @@ void	draw_wall_straight_line(t_game_data *data, t_fov *fov,
 	m = &data->map_img_data;
 	i = 0;
 	start = floor_coord(start);
-	while (i < length)
+	if (start.y < 0)
+	{
+		i = start.y * -1;
+		start.y = 0;
+	}
+	while (i < length && start.y < data->win_height)
 	{
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)
@@ -76,7 +86,12 @@ void
 	m = &data->map_img_data;
 	i = 0;
 	start = floor_coord(start);
-	while (i < length)
+	if (start.y < 0)
+	{
+		i = start.y * -1;
+		start.y = 0;
+	}
+	while (i < length && start.y < data->win_height)
 	{
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)

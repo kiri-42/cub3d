@@ -320,6 +320,7 @@ bool		is_color_line(char *str);
 
 // set_game_data.c
 char		*get_texture_path(char *line);
+void		set_game_data(t_game_data *gd);
 
 // debug.c
 void		print_map_data(char **map);

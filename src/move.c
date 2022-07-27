@@ -42,7 +42,7 @@ bool	is_reachable_diagonal(t_game_data *data, t_cell **map, t_position new, t_po
 	return (true);
 }
 
-bool	is_movable(t_game_data *gd, t_cell **map, t_coord coord)
+bool	is_reachable(t_game_data *gd, t_cell **map, t_coord coord)
 {
 	t_position	player;
 	t_position	new;

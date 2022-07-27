@@ -215,7 +215,6 @@ void		check_wall(t_game_data *gd);
 void		draw_circle(t_game_data *data);
 
 // collision.c
-bool		has_wall(t_game_data *data, double x, double y, char ob);
 char		get_minimap_tile(t_game_data *data, double x, double y);
 
 // color.c
@@ -322,11 +321,14 @@ bool		is_color_line(char *str);
 char		*get_texture_path(char *line);
 void		set_game_data(t_game_data *gd);
 
+// move.c
+bool		is_reachable(t_game_data *gd, t_cell **map, t_coord coord);
+
 // debug.c
 void		print_map_data(char **map);
 void		print_cell_data(t_cell **map, int rows, int cols);
 void		debug_set_texpath(t_game_data *data);
 void		debug_set_color(t_game_data *data);
 void		debug_print_cubfile(t_game_data *data);
-bool	is_movable(t_game_data *gd, t_cell **map, t_coord coord);
+
 #endif

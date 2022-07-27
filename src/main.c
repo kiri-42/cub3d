@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 	init_player_param(&gd);
 	gd.fov = x_malloc(sizeof(t_fov) * gd.ray);
 	init_mlx(&gd);
-	open_tex(&gd, &gd.imgs);
+	open_all_tex(&gd, &gd.imgs);
 	loop_start(&gd);
 	return (0);
 }

@@ -45,7 +45,9 @@ void	move_player(t_game_data *data, t_move m)
 		new.x = p->pos.x + cos(p->rotation_angle + M_PI / 2) * move_step;
 		new.y = p->pos.y + sin(p->rotation_angle + M_PI / 2) * move_step;
 	}
-	if (is_reachable(data, new))
+	// if (is_reachable(data, new))
+	// 	p->pos = new;
+	if (is_movable(data, data->map2, new))
 		p->pos = new;
 }
 

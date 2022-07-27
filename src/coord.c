@@ -5,12 +5,12 @@ int	to_chr_index(int width, t_coord coord, double scale)
 	return ((int)round(coord.y * scale) * width + (int)round(coord.x * scale));
 }
 
-t_position	divide_coord(t_coord coord, int tile)
+t_position	divide_coord(t_coord coord, double denominator)
 {
 	t_position	p;
 
-	p.x = (int)floor(coord.x / tile);
-	p.y = (int)floor(coord.y / tile);
+	p.x = (int)floor(coord.x / denominator);
+	p.y = (int)floor(coord.y / denominator);
 	return (p);
 }
 

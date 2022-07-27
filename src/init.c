@@ -86,31 +86,21 @@ void	init_mlx(t_game_data *data)
 			&m->line_lenght, &m->endian);
 }
 
-void	open_tex(t_game_data *data, t_imgs *img)
+void	open_tex(t_game_data *data, t_img_data *img, char *path)
 {
-	img->wall_north.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.no_path,
-			&img->wall_north.width, &img->wall_north.height);
-	img->wall_north.addr = (int *)mlx_get_data_addr(img->wall_north.ptr,
-			&img->wall_north.bits_per_pixel,
-			&img->wall_north.line_lenght, &img->wall_north.endian);
-	img->wall_south.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.so_path,
-			&img->wall_south.width, &img->wall_south.height);
-	img->wall_south.addr = (int *)mlx_get_data_addr(img->wall_south.ptr,
-			&img->wall_south.bits_per_pixel,
-			&img->wall_south.line_lenght, &img->wall_south.endian);
-	img->wall_east.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.ea_path,
-			&img->wall_east.width, &img->wall_east.height);
-	img->wall_east.addr = (int *)mlx_get_data_addr(img->wall_east.ptr,
-			&img->wall_east.bits_per_pixel,
-			&img->wall_east.line_lenght, &img->wall_east.endian);
-	img->wall_west.ptr = mlx_xpm_file_to_image(data->mlx, data->tp.we_path,
-			&img->wall_west.width, &img->wall_west.height);
-	img->wall_west.addr = (int *)mlx_get_data_addr(img->wall_west.ptr,
-			&img->wall_west.bits_per_pixel,
-			&img->wall_west.line_lenght, &img->wall_west.endian);
-	img->door.ptr = mlx_xpm_file_to_image(data->mlx, DOOR_TEX_PATH,
-			&img->door.width, &img->door.height);
-	img->door.addr = (int *)mlx_get_data_addr(img->door.ptr,
-			&img->door.bits_per_pixel,
-			&img->door.line_lenght, &img->door.endian);
+	img->ptr = mlx_xpm_file_to_image(data->mlx, path, &img->width, &img->height);
+	if (!img->ptr || img->width != TILE_SIZE || img->height != TILE_SIZE)
+		free_exit(data, "Failed to load image");
+	img->addr = (int *)mlx_get_data_addr(img->ptr, &img->bits_per_pixel, &img->line_lenght, &img->endian);
+	if (!img->addr)
+		free_exit(data, INIT_ERROR);
+}
+
+void	open_all_tex(t_game_data *data, t_imgs *img)
+{
+	open_tex(data, &img->wall_north, data->tp.no_path);
+	open_tex(data, &img->wall_south, data->tp.so_path);
+	open_tex(data, &img->wall_east, data->tp.ea_path);
+	open_tex(data, &img->wall_west, data->tp.we_path);
+	open_tex(data, &img->door, DOOR_TEX_PATH);
 }

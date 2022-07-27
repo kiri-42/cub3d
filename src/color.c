@@ -18,7 +18,7 @@ int	darken_color(int color, double distance)
 	rgb = get_rgb_from_code(color);
 	dark = (200 / distance);
 	if (dark > 1)
-		dark = 1;
+		return (color);
 	rgb.red *= dark;
 	rgb.green *= dark;
 	rgb.blue *= dark;

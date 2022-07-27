@@ -226,7 +226,7 @@ int			darken_color(int color, double distance);
 int			to_chr_index(int width, t_coord coord, double scale);
 t_cell		*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
 t_coord		floor_coord(t_coord coord);
-t_position	divide_coord(t_coord coord, int tile);
+t_position	divide_coord(t_coord coord, double denominator);
 
 //dupmap.c
 int			get_line_size(char **map);
@@ -245,7 +245,7 @@ void		init_player_pos(t_game_data *gd);
 void		init_game_data(t_game_data *gd);
 
 // init.c
-void		open_tex(t_game_data *data, t_imgs *img);
+void		open_all_tex(t_game_data *data, t_imgs *img);
 void		init_mlx(t_game_data *data);
 void		set_map_data(t_game_data *gd);
 void		init_player_param(t_game_data *data);

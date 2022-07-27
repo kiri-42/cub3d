@@ -311,15 +311,14 @@ void		read_cubfile(t_game_data *gd, char *cubfile_name);
 void		render_all(t_game_data *data);
 
 // set_color.c
-void		set_color(t_game_data *gd, int *line_i);
+t_rgb		get_color(char *line);
 
 // set_game_data_utils.c
 bool		is_path_line(char *str);
 bool		is_color_line(char *str);
 
 // set_game_data.c
-void		set_game_data(t_game_data *gd);
-void		set_texture_path(t_game_data *gd, int *line_i);
+char		*get_texture_path(char *line);
 
 // debug.c
 void		print_map_data(char **map);

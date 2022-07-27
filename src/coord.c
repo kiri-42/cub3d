@@ -5,6 +5,15 @@ int	to_chr_index(int width, t_coord coord, double scale)
 	return ((int)round(coord.y * scale) * width + (int)round(coord.x * scale));
 }
 
+t_position	divide_coord(t_coord coord, int tile)
+{
+	t_position	p;
+
+	p.x = (int)floor(coord.x / tile);
+	p.y = (int)floor(coord.y / tile);
+	return (p);
+}
+
 t_cell	*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord)
 {
 	int	x;

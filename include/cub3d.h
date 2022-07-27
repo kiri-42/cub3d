@@ -226,6 +226,7 @@ int			darken_color(int color, double distance);
 int			to_chr_index(int width, t_coord coord, double scale);
 t_cell		*get_cell_addr(t_game_data *gd, t_cell **map, t_coord coord);
 t_coord		floor_coord(t_coord coord);
+t_position	divide_coord(t_coord coord, int tile);
 
 //dupmap.c
 int			get_line_size(char **map);
@@ -327,4 +328,5 @@ void		print_cell_data(t_cell **map, int rows, int cols);
 void		debug_set_texpath(t_game_data *data);
 void		debug_set_color(t_game_data *data);
 void		debug_print_cubfile(t_game_data *data);
+bool	is_movable(t_game_data *gd, t_cell **map, t_coord coord);
 #endif

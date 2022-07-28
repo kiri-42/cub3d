@@ -8,31 +8,33 @@ bool	is_wall(t_cell **map, t_position p)
 	return (m.type == MAP_WALL || (m.type == MAP_DOOR && m.door_open == CLOSE));
 }
 
-bool	is_reachable_diagonal(t_game_data *data, t_cell **map, t_position new, t_position player)
+bool	is_reachable_diagonal(t_game_data *data, t_cell **map, \
+		t_position new, t_position player)
 {
-	t_position p;
-	t_position p2;
+	t_position	p;
+	t_position	p2;
 
 	p = player;
 	p2 = player;
-	if (new.x < 0 || new.y < 0 || (size_t)new.x >= data->cols || (size_t)new.y >= data->rows)
+	if (new.x < 0 || new.y < 0 || \
+	(size_t)new.x >= data->cols || (size_t)new.y >= data->rows)
 		return (false);
-	if (new.x > player.x && new.y > player.y) //斜め右下
+	if (new.x > player.x && new.y > player.y)
 	{
 		p.x = player.x + 1;
 		p2.y = player.y + 1;
 	}
-	else if (new.x > player.x && new.y < player.y) //斜め右上
+	else if (new.x > player.x && new.y < player.y)
 	{
 		p.x = player.x + 1;
 		p2.y = player.y - 1;
 	}
-	else if (new.x < player.x && new.y < player.y) //斜め左上
+	else if (new.x < player.x && new.y < player.y)
 	{
 		p.x = player.x - 1;
 		p2.y = player.y - 1;
 	}
-	else if (new.x < player.x && new.y < player.y) //斜め左下
+	else if (new.x < player.x && new.y < player.y)
 	{
 		p.x = player.x - 1;
 		p2.y = player.y + 1;

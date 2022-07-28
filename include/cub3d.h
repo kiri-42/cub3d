@@ -244,10 +244,12 @@ void		init_player_pos(t_game_data *gd);
 void		init_game_data(t_game_data *gd);
 
 // init.c
-void		open_all_tex(t_game_data *data, t_imgs *img);
 void		init_mlx(t_game_data *data);
 void		set_map_data(t_game_data *gd);
 void		init_player_param(t_game_data *data);
+
+// open_tex.c
+void		open_all_tex(t_game_data *data, t_imgs *img);
 
 // is_initialized.c
 void		is_initialized_texture_path(t_texture_path tp);

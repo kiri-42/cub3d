@@ -1,6 +1,7 @@
 #include "cub3d.h"
 
-double	calc_flat_distance(double distance, double ray_angle, double player_angle)
+static double
+	calc_flat_distance(double distance, double ray_angle, double player_angle)
 {
 	double	flat_distance;
 
@@ -10,7 +11,7 @@ double	calc_flat_distance(double distance, double ray_angle, double player_angle
 	return (flat_distance);
 }
 
-void	set_param(t_coord *c, double *len, t_fov *fov, size_t win_height)
+static void	set_param(t_coord *c, double *len, t_fov *fov, size_t win_height)
 {
 	c[0].x = fov->id * WALL_STRIP_WIDTH;
 	c[0].y = 0;
@@ -35,7 +36,8 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 	distance_projection_plane = (data->win_width / 2) / tan(FOV / 2);
 	while (i < data->ray)
 	{
-		ray_distance = calc_flat_distance(fov[i].distance, fov[i].angle, data->player.rotation_angle);
+		ray_distance = calc_flat_distance(fov[i].distance, fov[i].angle, \
+			data->player.rotation_angle);
 		fov[i].wall_strip_height = (TILE_SIZE / ray_distance) \
 		* distance_projection_plane;
 		set_param(start, length, &fov[i], data->win_height);

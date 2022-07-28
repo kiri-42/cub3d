@@ -75,7 +75,11 @@ void	set_game_data(t_game_data *gd)
 		if (i < map_start)
 			set_texture_and_color(gd, i);
 		else
+		{
+			if (gd->cubfile[i][0] == '\0')
+				exit_error(MAP_INVALID_ERROR);
 			gd->map[i - map_start] = ft_strdup(gd->cubfile[i]);
+		}
 		i++;
 	}
 	gd->map[i - map_start] = NULL;

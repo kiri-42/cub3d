@@ -3,9 +3,11 @@ SO ./maps/texture/wall_south.xpm
 WE ./maps/texture/wall_west.xpm
 EA ./maps/texture/wall_east.xpm
 
-F a,100,0
+F 0,100,0
 C 225,30,100
 
-         1  111
-        1S1 1S1
-         1  111
+11111
+10101
+11E11
+10101
+11111

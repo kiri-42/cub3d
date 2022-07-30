@@ -29,7 +29,7 @@ static void	set_diagonal_cell(t_position new, t_position player, \
 		(*p).x = player.x - 1;
 		(*p2).y = player.y - 1;
 	}
-	else if (new.x < player.x && new.y < player.y)
+	else if (new.x < player.x && new.y > player.y)
 	{
 		(*p).x = player.x - 1;
 		(*p2).y = player.y + 1;

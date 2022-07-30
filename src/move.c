@@ -4,7 +4,7 @@ static bool	is_wall(t_game_data *gd, t_cell **map, t_position p)
 {
 	t_cell	m;
 
-	if ((size_t)p.y >= gd->rows || (size_t)p.x >= gd->cols)
+	if (p.x < 0 || p.y < 0 || (size_t)p.y >= gd->rows || (size_t)p.x >= gd->cols)
 		return (true);
 	m = map[p.y][p.x];
 	return (m.type == MAP_WALL || (m.type == MAP_DOOR && m.door_open == CLOSE));

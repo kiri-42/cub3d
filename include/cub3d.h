@@ -200,7 +200,7 @@ typedef struct s_position
 }	t_position;
 
 // 3d.c
-void		render_3d_projection_wall(t_game_data *data, t_fov *fov);
+void		render_projection_wall(t_game_data *data, t_fov *fov);
 
 // check_arg.c
 void		check_arg(int ac, char **av);
@@ -246,7 +246,7 @@ void		init_game_data(t_game_data *gd);
 // init.c
 void		init_mlx(t_game_data *data);
 void		set_map_data(t_game_data *gd);
-void		init_player_param(t_game_data *data);
+void		init_param(t_game_data *data);
 
 // open_tex.c
 void		open_all_tex(t_game_data *data, t_imgs *img);
@@ -273,11 +273,9 @@ int			get_index(t_game_data *data, t_fov *fov, int y);
 int			get_tex_color(t_game_data *data, t_fov *fov, int y);
 
 // line.c
-void		draw_ceiling_straight_line(t_game_data *data,
-				t_coord start, double length);
-void		draw_wall_straight_line(t_game_data *data, t_fov *fov,
-				t_coord start, double length);
-void		draw_floor_straight_line(t_game_data *data,
+void		draw_straight_line(t_game_data *data,
+				t_coord start, double length, t_part p);
+void		draw_wall_line(t_game_data *data, t_fov *fov,
 				t_coord start, double length);
 void		draw_line(t_game_data *data, t_coord start,
 				t_coord goal, int color);

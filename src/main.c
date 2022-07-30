@@ -11,8 +11,7 @@ int	main(int ac, char **av)
 	free_cubfile(&gd);
 	check_game_data(&gd);
 	set_map_data(&gd);
-	init_player_param(&gd);
-	gd.fov = x_malloc(sizeof(t_fov) * gd.ray);
+	init_param(&gd);
 	init_mlx(&gd);
 	open_all_tex(&gd, &gd.imgs);
 	loop_start(&gd);

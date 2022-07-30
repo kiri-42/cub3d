@@ -17,7 +17,7 @@ SRCS	= ./src/map.c \
 		./src/key_hook.c \
 		./src/set_color.c \
 		./src/main.c \
-		./src/3d.c \
+		./src/projection.c \
 		./src/loop.c \
 		./src/dupmap.c \
 		./src/check_game_data.c \
@@ -51,7 +51,7 @@ SRCSB	= ./src/map.c \
 		./src/key_hook.c \
 		./src/set_color.c \
 		./src/main.c \
-		./src/3d.c \
+		./src/projection.c \
 		./src/loop.c \
 		./src/dupmap.c \
 		./src/check_game_data.c \

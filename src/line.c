@@ -26,13 +26,18 @@ void	draw_line(t_game_data *data, t_coord start, t_coord goal, int color)
 		m->addr[index] = color;
 }
 
-void	draw_ceiling_straight_line(t_game_data *data,
-		t_coord start, double length)
+void	draw_straight_line(t_game_data *data,
+		t_coord start, double length, t_part p)
 {
 	size_t		index;
 	size_t		i;
 	t_img_data	*m;
+	int			c;
 
+	if (p == CEILING)
+		c = data->ceiling_color.code;
+	else
+		c = data->floor_color.code;
 	m = &data->map_img_data;
 	i = 0;
 	start = floor_coord(start);
@@ -45,13 +50,13 @@ void	draw_ceiling_straight_line(t_game_data *data,
 	{
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)
-			m->addr[index] = data->ceiling_color.code;
+			m->addr[index] = c;
 		start.y++;
 		i++;
 	}
 }
 
-void	draw_wall_straight_line(t_game_data *data, t_fov *fov,
+void	draw_wall_line(t_game_data *data, t_fov *fov,
 		t_coord start, double length)
 {
 	size_t		index;
@@ -71,31 +76,6 @@ void	draw_wall_straight_line(t_game_data *data, t_fov *fov,
 		index = to_chr_index(data->win_width, start, 1);
 		if (index < data->win_width * data->win_height)
 			m->addr[index] = get_tex_color(data, fov, i);
-		start.y++;
-		i++;
-	}
-}
-
-void
-	draw_floor_straight_line(t_game_data *data, t_coord start, double length)
-{
-	size_t		index;
-	size_t		i;
-	t_img_data	*m;
-
-	m = &data->map_img_data;
-	i = 0;
-	start = floor_coord(start);
-	if (start.y < 0)
-	{
-		i = start.y * -1;
-		start.y = 0;
-	}
-	while (i < length && start.y < data->win_height)
-	{
-		index = to_chr_index(data->win_width, start, 1);
-		if (index < data->win_width * data->win_height)
-			m->addr[index] = data->floor_color.code;
 		start.y++;
 		i++;
 	}

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_player_param(t_game_data *data)
+void	init_param(t_game_data *data)
 {
 	init_player_pos(data);
 	data->player.radius = 15;
@@ -59,6 +59,7 @@ void	set_map_data(t_game_data *gd)
 	gd->win_width = WINDOW_WIDTH;
 	gd->win_height = WINDOW_HEIGHT;
 	gd->ray = gd->win_width / WALL_STRIP_WIDTH;
+	gd->fov = ft_calloc(sizeof(t_fov), gd->ray);
 	copy_to_cell(gd, gd->map);
 }
 

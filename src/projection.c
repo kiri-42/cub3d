@@ -24,7 +24,7 @@ static void	set_param(t_coord *c, double *len, t_fov *fov, size_t win_height)
 	len[2] = win_height;
 }
 
-void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
+void	render_projection_wall(t_game_data *data, t_fov *fov)
 {
 	double	ray_distance;
 	double	distance_projection_plane;
@@ -42,10 +42,10 @@ void	render_3d_projection_wall(t_game_data *data, t_fov *fov)
 		* distance_projection_plane;
 		set_param(start, length, &fov[i], data->win_height);
 		if (length[0] > 0)
-			draw_ceiling_straight_line(data, start[0], length[0]);
-		draw_wall_straight_line(data, &fov[i], start[1], length[1]);
+			draw_straight_line(data, start[0], length[0], CEILING);
+		draw_wall_line(data, &fov[i], start[1], length[1]);
 		if (start[2].y < data->win_height)
-			draw_floor_straight_line(data, start[2], length[2]);
+			draw_straight_line(data, start[2], length[2], FLOOR);
 		i++;
 	}
 }

@@ -1,73 +1,43 @@
 NAME = cub3D
 UNAME	=	$(shell uname)
 
-SRCS	= ./src/map.c \
-		./src/collision.c \
-		./src/check_wall.c \
-		./src/rays_utils1.c \
-		./src/rays_utils2.c \
-		./src/line_utils.c \
-		./src/line.c \
-		./src/init.c \
-		./src/is_open.c \
-		./src/color.c \
-		./src/coord.c \
-		./src/rays.c \
-		./src/free.c \
-		./src/key_hook.c \
-		./src/set_color.c \
-		./src/main.c \
-		./src/projection.c \
-		./src/loop.c \
-		./src/dupmap.c \
-		./src/check_game_data.c \
-		./src/set_texture_path.c \
-		./src/set_game_data_utils.c \
-		./src/set_game_data.c \
-		./src/init_game_data.c \
-		./src/render.c \
-		./src/read_cubfile.c \
-		./src/circle.c \
-		./src/free_cubfile.c \
-		./src/is_initialized.c \
-		./src/is_invalid.c \
-		./src/check_arg.c \
-		./src/move.c \
-		./src/open_tex.c
+SRC	=	map.c \
+		collision.c \
+		rays_utils1.c \
+		rays_utils2.c \
+		line_utils.c \
+		line.c \
+		init.c \
+		is_open.c \
+		color.c \
+		coord.c \
+		rays.c \
+		free.c \
+		key_hook.c \
+		set_color.c \
+		main.c \
+		projection.c \
+		loop.c \
+		dupmap.c \
+		check_game_data.c \
+		set_texture_path.c \
+		set_game_data_utils.c \
+		set_game_data.c \
+		init_game_data.c \
+		render.c \
+		read_cubfile.c \
+		circle.c \
+		free_cubfile.c \
+		is_initialized.c \
+		is_invalid.c \
+		check_arg.c \
+		move.c \
+		open_tex.c
 
-SRCSB	= ./src/map.c \
-		./src/collision.c \
-		./src/check_wall_bonus.c \
-		./src/rays_utils1.c \
-		./src/rays_utils2.c \
-		./src/line_utils.c \
-		./src/line.c \
-		./src/init.c \
-		./src/is_open.c \
-		./src/color.c \
-		./src/coord.c \
-		./src/rays.c \
-		./src/free.c \
-		./src/key_hook.c \
-		./src/set_color.c \
-		./src/main.c \
-		./src/projection.c \
-		./src/loop.c \
-		./src/dupmap.c \
-		./src/check_game_data.c \
-		./src/set_texture_path.c \
-		./src/set_game_data_utils.c \
-		./src/set_game_data.c \
-		./src/init_game_data.c \
-		./src/render.c \
-		./src/read_cubfile.c \
-		./src/circle.c \
-		./src/free_cubfile.c \
-		./src/is_initialized.c \
-		./src/is_invalid.c \
-		./src/check_arg.c \
-		./src/move.c \
-		./src/open_tex.c
+SRCS =	$(addprefix ./src/, $(SRC))
+SRCSB = $(addprefix ./src/, $(SRC))
+SRCS += ./src/check_wall.c
+SRCSB += ./src/check_wall_bonus.c
 
 OBJS	= $(SRCS:%.c=%.o)
 OBJSB	= $(SRCSB:%.c=%.o)
@@ -85,6 +55,10 @@ ifeq ($(UNAME),Darwin)
 	LFLAG += -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
 	LFLAG += -lXext -lX11 -lm
+endif
+
+ifdef WITH_BONUS
+OBJS = $(OBJSB)
 endif
 
 .c.o :
@@ -110,9 +84,7 @@ fclean : clean
 
 re : fclean all
 
-bonus : $(OBJSB)
-	make -C $(MLXDIR)
-	make bonus -C ./libft
-	$(CC) $(CFLAGS) $(OBJSB) $(INCLUDE) $(LFLAG) -o $(NAME)
+bonus :
+	make WITH_BONUS=1
 
-.PHONY: all clean fclean re .c.o
+.PHONY: all clean fclean re .c.o bonus

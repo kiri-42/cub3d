@@ -5,7 +5,7 @@ static bool	is_cub_extension(char *map_file)
 	char	*extension;
 
 	extension = ft_strrchr(map_file, '.');
-	if (!extension || ft_strncmp(extension, ".cub", 4))
+	if (!extension || ft_strncmp(extension, ".cub", 5))
 		return (false);
 	return (true);
 }

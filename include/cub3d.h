@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:37:00 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/08/01 15:50:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define FOV 1.0471975512
 # define WALL_STRIP_WIDTH 1
 
-# define PREFIX_SIZE 2
+# define PREFIX_SIZE 3
 
 # define DOOR_TEX_PATH "./maps/texture/door.xpm"
 

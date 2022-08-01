@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/08/01 15:13:10 by tkirihar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -326,12 +338,5 @@ void		set_game_data(t_game_data *gd);
 
 // move.c
 bool		is_reachable(t_game_data *gd, t_cell **map, t_coord coord);
-
-// debug.c
-void		print_map_data(char **map);
-void		print_cell_data(t_cell **map, int rows, int cols);
-void		debug_set_texpath(t_game_data *data);
-void		debug_set_color(t_game_data *data);
-void		debug_print_cubfile(t_game_data *data);
 
 #endif

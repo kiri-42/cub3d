@@ -19,7 +19,6 @@ void	check_N(char **map)
 		}
 		i++;
 	}
-	printf("%d\n", count_N);
 	if (count_N != 1)
 		exit_error(MAP_INVALID_ERROR);
 }

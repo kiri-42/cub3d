@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar  <tkirihar@student.42tokyo.>      +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:27:00 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/07/27 22:54:05 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:06:12 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ char	*get_texture_path(char *line)
 	char	*texture_path;
 
 	len = ft_strlen(line);
-	texture_path = ft_substr(line, PREFIX_SIZE + 1, len - PREFIX_SIZE + 1);
+	texture_path = ft_substr(line, PREFIX_SIZE, len - PREFIX_SIZE);
 	return (texture_path);
 }

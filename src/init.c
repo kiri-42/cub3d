@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar  <tkirihar@student.42tokyo.>      +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 13:19:39 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:34:36 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,32 @@ void	set_map_data(t_game_data *gd)
 	copy_to_cell(gd, gd->map);
 }
 
+bool	is_oversized(t_game_data *data)
+{
+	int		win_x;
+	int		win_y;
+	size_t	row;
+	size_t	col;
+
+	mlx_get_screen_size(data->mlx, &win_x, &win_y);
+	if ((size_t)win_x < data->win_width || (size_t)win_y < data->win_height)
+		return (true);
+	row = (size_t)floor((TILE_SIZE * MINIMAP_SCALE) * data->rows);
+	col = (size_t)floor((TILE_SIZE * MINIMAP_SCALE) * data->cols);
+	if (row > data->win_height || col > data->win_width)
+		return (true);
+	return (false);
+}
+
 void	init_mlx(t_game_data *data)
 {
-	int			win_x;
-	int			win_y;
 	t_img_data	*m;
 
 	m = &data->map_img_data;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		free_exit(data, INIT_ERROR);
-	mlx_get_screen_size(data->mlx, &win_x, &win_y);
-	if ((size_t)win_x < data->win_width || (size_t)win_y < data->win_height)
+	if (is_oversized(data))
 		free_exit(data, MAPSIZE_ERROR);
 	data->win = mlx_new_window(data->mlx, data->win_width,
 			data->win_height, TITLE);

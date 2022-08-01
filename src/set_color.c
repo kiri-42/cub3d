@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar  <tkirihar@student.42tokyo.>      +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:27:00 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 14:52:15 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:18:31 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_number(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_isdigit(s[i]))
+		if (!ft_isdigit(s[i]))
 			exit_error(CUB_FORMAT_ERROR);
 		i++;
 	}

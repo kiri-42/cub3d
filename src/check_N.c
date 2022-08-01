@@ -13,7 +13,8 @@ void	check_N(char **map)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == 'N')
+			if (map[i][j] == 'N' || map[i][j] == 'E' \
+			|| map[i][j] == 'W' || map[i][j] == 'S')
 				count_N++;
 			j++;
 		}

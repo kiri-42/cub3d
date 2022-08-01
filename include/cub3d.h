@@ -211,6 +211,9 @@ void		check_game_data(t_game_data *gd);
 // check_wall.c
 void		check_wall(t_game_data *gd);
 
+// check_N.c
+void		check_N(char **map);
+
 // circle.c
 void		draw_circle(t_game_data *data);
 

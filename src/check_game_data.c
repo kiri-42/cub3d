@@ -15,6 +15,7 @@ void	check_rgb(t_rgb color)
 void	check_map(t_game_data *gd)
 {
 	is_initialized_map(gd->map);
+	check_N(gd->map);
 	check_wall(gd);
 }
 

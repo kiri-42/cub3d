@@ -32,7 +32,8 @@ SRC	=	map.c \
 		is_invalid.c \
 		check_arg.c \
 		move.c \
-		open_tex.c
+		open_tex.c \
+		check_N.c
 
 SRCS =	$(addprefix ./src/, $(SRC))
 SRCSB = $(addprefix ./src/, $(SRC))

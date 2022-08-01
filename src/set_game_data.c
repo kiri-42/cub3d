@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:04:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:27:01 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/08/01 15:37:31 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	set_texture_and_color(t_game_data *gd, int i)
 		gd->tp.we_path = get_texture_path(gd->cubfile[i]);
 	else if (!ft_strncmp(prefix, "EA", 2) && gd->tp.ea_path == NULL)
 		gd->tp.ea_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "F ", 2))
+	else if (!ft_strncmp(prefix, "F ", 2) && is_first_input(gd->floor_color))
 		gd->floor_color = get_color(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "C ", 2))
+	else if (!ft_strncmp(prefix, "C ", 2) && is_first_input(gd->ceiling_color))
 		gd->ceiling_color = get_color(gd->cubfile[i]);
 	else if (gd->cubfile[i][0] != '\0')
 		exit_error(CUB_FORMAT_ERROR);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:19:49 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:37:00 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ void		open_all_tex(t_game_data *data, t_imgs *img);
 void		is_initialized_texture_path(t_texture_path tp);
 void		is_initialized_rgb(t_rgb color);
 void		is_initialized_map(char **map);
+bool		is_first_input(t_rgb color);
 
 // is_invalid.c
 void		is_invalid_rgb(t_rgb color);

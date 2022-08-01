@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_initialized.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar  <tkirihar@student.42tokyo.>      +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:27:00 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/07/26 15:27:00 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:36:40 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ void	is_initialized_texture_path(t_texture_path tp)
 		exit_error(PATH_INIT_ERROR);
 	if (tp.ea_path == NULL)
 		exit_error(PATH_INIT_ERROR);
+}
+
+bool	is_first_input(t_rgb color)
+{
+	if (color.red == -1 && color.green == -1 && color.blue == -1)
+		return (true);
+	return (false);
 }
 
 void	is_initialized_rgb(t_rgb color)

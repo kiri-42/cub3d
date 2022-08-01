@@ -8,7 +8,7 @@ void	check_N(char **map)
 
 	count_N = 0;
 	i = 0;
-	while (map[i] == NULL)
+	while (map[i] != NULL)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
@@ -19,6 +19,7 @@ void	check_N(char **map)
 		}
 		i++;
 	}
+	printf("%d\n", count_N);
 	if (count_N != 1)
 		exit_error(MAP_INVALID_ERROR);
 }

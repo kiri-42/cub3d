@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_game_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar  <tkirihar@student.42tokyo.>      +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:04:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/07/28 21:31:50 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:27:01 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	set_texture_and_color(t_game_data *gd, int i)
 	char	*prefix;
 
 	prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
-	if (!ft_strncmp(prefix, "NO", 2))
+	if (!ft_strncmp(prefix, "NO", 2) && gd->tp.no_path == NULL)
 		gd->tp.no_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "SO", 2))
+	else if (!ft_strncmp(prefix, "SO", 2) && gd->tp.so_path == NULL)
 		gd->tp.so_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "WE", 2))
+	else if (!ft_strncmp(prefix, "WE", 2) && gd->tp.we_path == NULL)
 		gd->tp.we_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "EA", 2))
+	else if (!ft_strncmp(prefix, "EA", 2) && gd->tp.ea_path == NULL)
 		gd->tp.ea_path = get_texture_path(gd->cubfile[i]);
 	else if (!ft_strncmp(prefix, "F ", 2))
 		gd->floor_color = get_color(gd->cubfile[i]);

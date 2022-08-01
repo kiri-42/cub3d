@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:13:10 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:19:49 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define MAP_WALL '1'
 # define MAP_DOOR 'D'
 
-# define OPEN true
-# define CLOSE false
+# define OPEN 1
+# define CLOSE 0
 
 # define TILE_SIZE 64
 # define MINIMAP_SCALE 0.2

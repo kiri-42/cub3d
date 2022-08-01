@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_game_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:04:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:59:34 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/08/01 17:03:34 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,22 @@ void	set_texture_and_color(t_game_data *gd, int i)
 {
 	char	*prefix;
 
-	prefix = ft_substr(gd->cubfile[i], 0, PREFIX_SIZE);
-	if (!ft_strncmp(prefix, "NO ", PREFIX_SIZE) && gd->tp.no_path == NULL)
+	prefix = ft_substr(gd->cubfile[i], 0, T_PREFIX_SIZE);
+	if (!ft_strncmp(prefix, "NO ", T_PREFIX_SIZE) && gd->tp.no_path == NULL)
 		gd->tp.no_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "SO ", PREFIX_SIZE) && gd->tp.so_path == NULL)
+	else if (!ft_strncmp(prefix, "SO ", T_PREFIX_SIZE)
+		&& gd->tp.so_path == NULL)
 		gd->tp.so_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "WE ", PREFIX_SIZE) && gd->tp.we_path == NULL)
+	else if (!ft_strncmp(prefix, "WE ", T_PREFIX_SIZE)
+		&& gd->tp.we_path == NULL)
 		gd->tp.we_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "EA ", PREFIX_SIZE) && gd->tp.ea_path == NULL)
+	else if (!ft_strncmp(prefix, "EA ", T_PREFIX_SIZE)
+		&& gd->tp.ea_path == NULL)
 		gd->tp.ea_path = get_texture_path(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "F ", 2)
+	else if (!ft_strncmp(prefix, "F ", C_PREFIX_SIZE)
 		&& is_first_input(gd->floor_color))
 		gd->floor_color = get_color(gd->cubfile[i]);
-	else if (!ft_strncmp(prefix, "C ", 2)
+	else if (!ft_strncmp(prefix, "C ", C_PREFIX_SIZE)
 		&& is_first_input(gd->ceiling_color))
 		gd->ceiling_color = get_color(gd->cubfile[i]);
 	else if (gd->cubfile[i][0] != '\0')

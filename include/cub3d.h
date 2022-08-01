@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:19:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:50:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:53:11 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@
 # define FOV 1.0471975512
 # define WALL_STRIP_WIDTH 1
 
-# define PREFIX_SIZE 3
+# define T_PREFIX_SIZE 3
+# define C_PREFIX_SIZE 2
 
 # define DOOR_TEX_PATH "./maps/texture/door.xpm"
 
@@ -328,10 +329,6 @@ void		render_all(t_game_data *data);
 
 // set_color.c
 t_rgb		get_color(char *line);
-
-// set_game_data_utils.c
-bool		is_path_line(char *str);
-bool		is_color_line(char *str);
 
 // set_game_data.c
 char		*get_texture_path(char *line);

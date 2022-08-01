@@ -21,7 +21,6 @@ SRC	=	map.c \
 		dupmap.c \
 		check_game_data.c \
 		set_texture_path.c \
-		set_game_data_utils.c \
 		set_game_data.c \
 		init_game_data.c \
 		render.c \

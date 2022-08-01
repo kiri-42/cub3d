@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:27:00 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/08/01 15:18:31 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:02:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_rgb	get_rgb(char *line)
 	char	**split_rgb;
 
 	len = ft_strlen(line);
-	str_rgb = ft_substr(line, PREFIX_SIZE, len - PREFIX_SIZE);
+	str_rgb = ft_substr(line, C_PREFIX_SIZE, len - C_PREFIX_SIZE);
 	split_rgb = ft_split(str_rgb, ',');
 	if (!is_three_elem(split_rgb))
 		exit_error(CUB_FORMAT_ERROR);
